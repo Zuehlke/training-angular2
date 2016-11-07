@@ -58,9 +58,26 @@ namespace Zuehlke.ExpenseReporting.Data
             }
         }
 
+        /// <summary>
+        /// Adds the provided expense record to the database.
+        /// </summary>
+        /// <param name="record">The record to be added.</param>
+        /// <exception cref="ArgumentNullException">Thrown if no record has been provided.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if the record to be added already exists in the database.</exception>
         public void Create(ExpenseRecord record)
         {
-            throw new NotImplementedException();
+            if (record == null)
+            {
+                throw new ArgumentNullException(nameof(record));
+            }
+            lock (this.database)
+            {
+                if (this.FindById(record.Id) != null)
+                {
+                    throw new InvalidOperationException($"An expense record with ID {record.Id} already exists in the database!");
+                }
+                this.database.Add(record);
+            }
         }
 
         /// <summary>

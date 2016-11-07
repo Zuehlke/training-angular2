@@ -58,16 +58,55 @@ namespace Zuehlke.ExpenseReporting.Data
             }
         }
 
+        /// <summary>
+        /// Adds the provided expense record to the database.
+        /// </summary>
+        /// <param name="record">The record to be added.</param>
+        /// <exception cref="ArgumentNullException">Thrown if no record has been provided.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if the record to be added already exists in the database.</exception>
         public void Create(ExpenseRecord record)
         {
-            throw new NotImplementedException();
+            if (record == null)
+            {
+                throw new ArgumentNullException(nameof(record));
+            }
+            lock (this.database)
+            {
+                if (this.FindById(record.Id) != null)
+                {
+                    throw new InvalidOperationException($"An expense record with ID {record.Id} already exists in the database!");
+                }
+                this.database.Add(record);
+            }
         }
 
+        /// <summary>
+        /// Updates the provided expense record in the database.
+        /// </summary>
+        /// <param name="record">The record to be added.</param>
+        /// <exception cref="ArgumentNullException">Thrown if no record has been provided.</exception>
+        /// <exception cref="InvalidOperationException">Thrown if the record to be modified does not exist in the database.</exception>
         public void Update(ExpenseRecord record)
         {
-            throw new NotImplementedException();
-        }
+            if (record == null)
+            {
+                throw new ArgumentNullException(nameof(record));
+            }
+            lock (this.database)
+            {
+                var oldRecord = this.FindById(record.Id);
+                if (oldRecord == null)
+                {
+                    throw new InvalidOperationException($"An expense record with ID {record.Id} does not exist in the database!");
+                }
 
+                oldRecord.Amount = record.Amount;
+                oldRecord.Date = record.Date;
+                oldRecord.Name = record.Name;
+                oldRecord.Reason = record.Reason;
+                oldRecord.Text = record.Text;
+            }
+        }
 
         /// <summary>
         /// Removes the expense record with the specified id from the database.
