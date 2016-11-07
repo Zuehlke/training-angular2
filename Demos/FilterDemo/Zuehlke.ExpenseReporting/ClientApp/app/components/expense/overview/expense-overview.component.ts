@@ -1,5 +1,5 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Expense } from '../model/expense';
@@ -16,21 +16,22 @@ export class ExpenseOverviewComponent implements OnInit {
 
     expenses: Expense[];
 
-   constructor(private http: Http) { }
+    constructor(private http: Http) { }
 
     ngOnInit(): void {
         this.getExpenses()
-            .subscribe(expenses => this.expenses = expenses, error => { this.handleError(error) });
+            .subscribe(result => this.expenses = result, error => { this.handleError(error) });
     }
 
     getExpenses(): Observable<Expense[]> {
         return this.http.get('api/expenses')
-            .map(this.mapExpenses)
-            .catch(this.handleError);
+            .map(response => this.mapExpenses(response))
+            .catch(error => this.handleError(error));
     }
 
     private mapExpenses(response: Response): any {
         const mappedExpenses = response.json() || [];
+        console.info('loaded ' + mappedExpenses.length + ' expense records from database');
         return mappedExpenses;
     }
 
