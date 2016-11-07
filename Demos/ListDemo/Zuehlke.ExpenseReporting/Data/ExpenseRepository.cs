@@ -33,13 +33,12 @@ namespace Zuehlke.ExpenseReporting.Data
 
         #region Public Methods and Operators
 
-        /// <summary>
-        /// Gets all expense records that are stored in the database.
-        /// </summary>
-        /// <returns>An <see cref="IEnumerable{T}"/> holding the expense records stored in the database.</returns>
         public IEnumerable<ExpenseRecord> All()
         {
-            throw new NotImplementedException();
+            lock (this.database)
+            {
+                return this.database;
+            }
         }
 
         public ExpenseRecord FindById(Guid id)
