@@ -21,6 +21,7 @@
                     <tr>
                         <th>From</th>
                         <th>Date</th>
+                        <th>Amount</th>
                         <th>For what</th>
                         <th></th>
                     </tr>
@@ -28,9 +29,10 @@
                 <tbody>
                     <tr *ngFor='let expense of expenses | expenseFilter:expenseFilter'>
                         <td> 
-                            <a id="{{expense.id}}" [routerLink]="['/expense', expense.id]">{{ expense.name }}</a>
+                            <a id="{{expense.id}}" [routerLink]="['/expense', expense.id]">{{ expense.name | uppercase }}</a>
                         </td>
                         <td>{{ expense.date | date:"dd/MM/yyyy" }}</td>
+                        <td>{{ expense.amount | currency:'EUR':true }}</td>
                         <td>{{ expense.reason }}</td>
                         <td><span class="glyphicon glyphicon-remove delete" (click)="deleteExpense(expense); $event.stopPropagation()"></span></td>
                     </tr>
