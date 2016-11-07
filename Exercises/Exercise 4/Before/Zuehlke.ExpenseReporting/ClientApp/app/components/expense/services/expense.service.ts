@@ -18,13 +18,17 @@ export class ExpenseService {
 
     getExpenses(): Observable<Expense[]> {
         return this.http.get(this.expenseUrl)
-            .map(this.mapExpenses)
+            .map(response => this.mapExpenses(response))
             .catch(this.handleError);
     }
-    
-    // Exercise 4
-    // TODO: add method to get an expense with a specific id
-    // Hint: use getExpenses() method and search for the expense with the wanted id - no changes in the backend are necessary for that
+
+    getExpense(id: string): Observable<Expense> {
+        const url = `${this.expenseUrl}/${id}`;
+
+        return this.http.get(url)
+            .map(response => this.mapExpense(response))
+            .catch(error => this.handleError(error));
+    }
 
     updateExpense(expense: Expense): Observable<Response> {
         const dtoExpense = JSON.parse(JSON.stringify(expense));
@@ -40,20 +44,31 @@ export class ExpenseService {
         return this.http.delete(url, { headers: this.headers, body: "" });
     }
 
-    private mapExpenses(response: Response) : any {
+    private mapExpenses(response: Response): any {
         const mappedExpenses = response.json() || [];
-        const tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
-        mappedExpenses.forEach((expense: any) => {
-            const dateArray = expense.date.split(".");
-            const theDate = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
-            const finalDate = new Date(theDate.getTime() - tzoffset);
-            expense.date = finalDate.toISOString().slice(0, 10);
+        mappedExpenses.forEach((expense: Expense) => {
+            expense.date = this.sanitizeDate(expense.date);
         });
 
         return mappedExpenses;
     }
 
-    private convertDateToString(date: string) : string {
+    private sanitizeDate(rawDate: string): string {
+        const tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        const dateArray: any = rawDate.split(".");
+        const theDate = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
+        const finalDate = new Date(theDate.getTime() - tzoffset);
+        return finalDate.toISOString().slice(0, 10);
+    }
+
+    private mapExpense(response: Response): any {
+        const mappedExpense = response.json();
+        mappedExpense.date = this.sanitizeDate(mappedExpense.date);
+
+        return mappedExpense;
+    }
+
+    private convertDateToString(date: string): string {
         const day = date.substring(8, 10);
         const month = date.substring(5, 7);
         const year = date.substring(0, 4);
@@ -61,7 +76,7 @@ export class ExpenseService {
         return day + '.' + month + '.' + year;
     }
 
-    private handleError(error: Response) : Observable<any> {
+    private handleError(error: Response): Observable<any> {
         console.error(error);
         return Observable.throw(error);
     }
