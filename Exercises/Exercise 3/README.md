@@ -15,12 +15,12 @@ In this exercise, we add the possibility to delete an exisiting expense in the o
 
 ### Implementation Hints ###
 
-1. Add a new `<td>` and a new `<th>` in the `expense-overview.component.html` with a click handler (`(click)="methodToImplement()"`) that deletes an expense
+1. Add a new `<td>` and a new `<th>` in the `expense-overview.component.html`. Futhermore, add a button for every expense with a click handler (`(click)="methodToImplement()"`) that deletes an expense
 
 2. Add a method in the `expense-overview.component.ts` and delegate the acutal deletion to the `expense-services.ts`
 
-3. Add a method in `expense-services.ts` that performs the HTTP DELETE request - use `this.http.delete(url, headers)`
+3. Add a method in `expense-services.ts` that performs the HTTP DELETE request - use `this.http.delete(url, headers)` and return it. In the component, subscribe to the returned Observable from the service.
 
-4. Delete the entry from the repository in the method `Delete(Guid id)` in the `ExpenseController`. For that matter, implement the `Delete(Guid id)` method in the `ExpenseRepository` class.
+4. Delete the entry from the repository in the method `Delete(Guid id)` in the `ExpenseController`.
 
 
