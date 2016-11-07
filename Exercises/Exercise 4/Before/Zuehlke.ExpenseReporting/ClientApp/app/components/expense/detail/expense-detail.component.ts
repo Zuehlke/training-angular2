@@ -19,8 +19,7 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
         this.sub = this.route.params.subscribe(
             params => {
                 const id = params['id'];
-                // Exercise 4
-                // TODO 
+                this.setExpense(id);
             });
     }
 
@@ -28,8 +27,18 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
+    private setExpense(id: string): void {
+        this.expenseService.getExpense(id)
+            .subscribe(expense => this.expense = expense, error => { this.handleError(error) });
+    }
+
     goBack(): void {
         this.router.navigate(['/overview']);
+    }
+
+    private handleError(error: any): Observable<any> {
+        console.error('Error with expense: ' + this.expense);
+        return Observable.throw(error);
     }
 
 }
