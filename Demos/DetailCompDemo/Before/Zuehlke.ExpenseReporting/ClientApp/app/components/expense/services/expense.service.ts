@@ -18,7 +18,7 @@ export class ExpenseService {
 
     getExpenses(): Observable<Expense[]> {
         return this.http.get(this.expenseUrl)
-            .map(this.mapExpenses)
+            .map(response => this.mapExpenses(response))
             .catch(this.handleError);
     }
 
@@ -30,15 +30,19 @@ export class ExpenseService {
 
     private mapExpenses(response: Response): any {
         const mappedExpenses = response.json() || [];
-        const tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
-        mappedExpenses.forEach((expense: any) => {
-            const dateArray = expense.date.split(".");
-            const theDate = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
-            const finalDate = new Date(theDate.getTime() - tzoffset);
-            expense.date = finalDate.toISOString().slice(0, 10);
+        mappedExpenses.forEach((expense: Expense) => {
+            expense.date = this.sanitizeDate(expense.date);
         });
 
         return mappedExpenses;
+    }
+
+    private sanitizeDate(rawDate: string): string {
+        const tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+        const dateArray: any = rawDate.split(".");
+        const theDate = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
+        const finalDate = new Date(theDate.getTime() - tzoffset);
+        return finalDate.toISOString().slice(0, 10);
     }
 
     private handleError(error: Response): Observable<any> {
