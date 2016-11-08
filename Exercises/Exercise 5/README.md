@@ -25,7 +25,7 @@ and then
 
 ### Implementation Hints ###
 
-1. Add a new button/link (`<a class="btn">`) in the `expense-overview.component.html` that routes to the `ExpenseAddComponent`. Check out the already provided route for the component in `expense.routing.ts`.
+1. Add a new button/link (`<a class="btn btn-primary">`) in the `expense-overview.component.html` that routes to the `ExpenseAddComponent`. Check out the already provided route for the component in `expense.routing.ts`.
 
 2. Add the selector of the `expense-form.component.ts` to  `expense-add.component.html`.
 
