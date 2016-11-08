@@ -6,11 +6,11 @@ In this exercise, we reuse the existing form component and use it to add a new e
 
 Make sure after the checkout that you run
 
-	webpack --config webpack.config.vendor.js
-
-and
-
 	npm install
+
+and then
+
+	webpack --config webpack.config.vendor.js
 
 
 ### Tasks ###

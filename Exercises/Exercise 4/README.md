@@ -6,11 +6,11 @@ In this exercise, we add the possibility to edit an exisiting expense. For that 
 
 Make sure after the checkout that you run
 
-	webpack --config webpack.config.vendor.js
-
-and
-
 	npm install
+
+and then
+
+	webpack --config webpack.config.vendor.js
 
 
 ### Tasks ###

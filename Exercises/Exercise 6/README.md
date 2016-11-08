@@ -6,11 +6,11 @@ In this exercise, we are going to unit test the code of our application.
 
 Make sure after the checkout that you run
 
-	webpack --config webpack.config.vendor.js
-
-and
-
 	npm install
+
+and then
+
+	webpack --config webpack.config.vendor.js
 
 ### Tasks ###
 

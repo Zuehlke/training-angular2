@@ -6,11 +6,11 @@ This exercise is about deploying our web app to Azure in order to have it availa
 
 Make sure after the checkout that you run
 
-	webpack --config webpack.config.vendor.js
-
-and
-
 	npm install
+
+and then
+
+	webpack --config webpack.config.vendor.js
 
 
 ### Tasks ###
