@@ -52,8 +52,8 @@ describe('ExpenseOverviewComponent', () => {
            
             const tableBody = fixture.debugElement.query(By.css('tbody')); //check for table to contain the two expenses
             expect(tableBody.nativeElement.children.length).toEqual(2);
-            expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('Anakin Skywalker');
-            expect(tableBody.nativeElement.children[1].children[0].textContent).toContain('Yoda');
+            expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('ANAKIN SKYWALKER');
+            expect(tableBody.nativeElement.children[1].children[0].textContent).toContain('YODA');
         });
     }));
 
@@ -73,7 +73,7 @@ describe('ExpenseOverviewComponent', () => {
 
         const tableBody = fixture.debugElement.query(By.css('tbody')); //check for table to not contain Anakin Skywalker anymore
         expect(tableBody.nativeElement.children.length).toEqual(1);
-        expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('Yoda');
+        expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('YODA');
     }));
 
 });

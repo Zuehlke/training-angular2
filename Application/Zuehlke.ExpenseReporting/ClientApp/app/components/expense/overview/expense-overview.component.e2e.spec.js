@@ -6,6 +6,6 @@
 
         browser.get('/overview');
 
-        expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toEqual('Anakin Skywalker');
+        expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toEqual('ANAKIN SKYWALKER');
     });
 });
