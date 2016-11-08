@@ -31,6 +31,6 @@ and then
 
 2. Extend the `expense-form.component.html` so that all fields of an expense (except the id) can be updated. Use two-way binding `[(ngModel)]` to ensure that changes in the input fields are also passed to the property. For orientation, use the `input` fields for the already provided fields of an expense.
 
-3. Add a save button in the `expense-form.component.html` to save the changes and register a click handler that persists changes. For that matter, implement the save method in the `expense-form.component.ts` and delegate the handling to the `expense.services.ts`. Perform a HTTP PUT request. You can use `JSON.stringify(...)` to get a JSON representation of the `expense` object. After the update is succesful, return to the overview page using the `navigateToOverview()` method.
+3. Add a save button in the `expense-form.component.html` to save the changes and register a click handler that persists changes. For that matter, implement the save method in the `expense-form.component.ts` and delegate the handling to the `expense.services.ts`. Perform a HTTP PUT request. After the update is succesful, return to the overview page using the `navigateToOverview()` method.
 
-4. Implement the `Put(Expense Record record)` method in the `ExpenseController` as well as the `Update(ExpenseRecord record)` method in the `ExpenseRepository`.
+4. Implement the `Put(Expense Record record)` method in the `ExpenseController`.
