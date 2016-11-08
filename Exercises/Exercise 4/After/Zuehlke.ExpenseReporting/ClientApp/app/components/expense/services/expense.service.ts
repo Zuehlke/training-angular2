@@ -39,7 +39,7 @@ export class ExpenseService {
     deleteExpense(expense: Expense): Observable<Response> {
         const url = `${this.expenseUrl}/${expense.id}`;
 
-        return this.http.delete(url, { headers: this.headers, body: "" });
+        return this.http.delete(url, { headers: this.headers, body: '' });
     }
 
     private mapExpenses(response: Response) : any {
