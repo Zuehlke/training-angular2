@@ -32,7 +32,7 @@
                         </td>
                         <td>{{ expense.date | date:"dd/MM/yyyy" }}</td>
                         <td>{{ expense.reason }}</td>
-                        <td><span class="glyphicon glyphicon-remove delete" (click)="deleteExpense(expense); $event.stopPropagation()"></span></td>
+                        <td><a class="glyphicon glyphicon-remove delete" (click)="deleteExpense(expense)"></a></td>
                     </tr>
                 </tbody>
             </table>
