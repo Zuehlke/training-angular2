@@ -11,7 +11,6 @@ import { ExpenseService } from '../services/expense.service';
 export class ExpenseOverviewComponent implements OnInit {
 
     expenses: Expense[];
-    expenseFilter: string = '';
     errorMessage: string;
 
     constructor(private expenseService: ExpenseService) { }
