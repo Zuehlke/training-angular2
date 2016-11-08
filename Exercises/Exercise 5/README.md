@@ -31,6 +31,6 @@ and then
 
 3. Extend the `expense-form.component.ts` to also handle the creation of new expenses when clicking the save button. For that, use the `createExpense(expense: Expense)` method in the `expense.service.ts`
 
-4. Implement the `createExpense(expense: Expense)` method in the `ExpenseService` and perform the actual HTTP Post request. Use `JSON.stringify(expense)` to get an JSON representation of the expense.
+4. Implement the `createExpense(expense: Expense)` method in the `ExpenseService` and perform the actual HTTP Post request. 
 
-5. Implement the creation of a new expense in the `ExpenseController` (`Post(ExpenseRecord record)`) and `ExpenseRepository` (`Update(ExpenseRecord record)`).
+5. Implement the creation of a new expense in the `ExpenseController` (`Post(ExpenseRecord record)`).
