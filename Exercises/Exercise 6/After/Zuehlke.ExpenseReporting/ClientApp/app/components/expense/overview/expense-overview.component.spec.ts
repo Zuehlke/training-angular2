@@ -62,7 +62,7 @@ describe('ExpenseOverviewComponent', () => {
         tick(); //simulates the passage of time until all pending asynchronous activities (i.e. getExpenses) complete
         fixture.detectChanges(); // update view with expsenses
 
-        const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr  span')); //query delete icon
+        const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a')); //query delete icon
         firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent')); //trigger a delete
 
         tick(); //simulates the passage of time until all pending asynchronous activities complete
