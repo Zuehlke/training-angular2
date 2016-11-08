@@ -32,7 +32,7 @@ export class ExpenseService {
         const dtoExpense = JSON.parse(JSON.stringify(expense));
         dtoExpense.date = this.convertDateToString(expense.date);
 
-        return this.http.post(this.expenseUrl, JSON.stringify(dtoExpense), { headers: this.headers });
+        return this.http.post(this.expenseUrl, dtoExpense, { headers: this.headers });
     }
 
     updateExpense(expense: Expense): Observable<Response> {
@@ -41,7 +41,7 @@ export class ExpenseService {
         const dtoExpense = JSON.parse(JSON.stringify(expense));
         dtoExpense.date = this.convertDateToString(expense.date);
 
-        return this.http.put(url, JSON.stringify(dtoExpense), { headers: this.headers });
+        return this.http.put(url, dtoExpense, { headers: this.headers });
     }
 
     deleteExpense(expense: Expense): Observable<Response> {
