@@ -2,6 +2,15 @@
 
 In this exercise, we add the possibility to delete an exisiting expense in the overview. For that matter, we have to adapt the client (i.e. the HTML, the component and the service) as well as the backend (the Controller and the Repository).
 
+### Preparations ###
+
+Make sure after the checkout that you run
+
+	webpack --config webpack.config.vendor.js
+
+and
+
+	npm install
 
 ### Tasks ###
 

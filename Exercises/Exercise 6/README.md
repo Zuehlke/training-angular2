@@ -2,6 +2,15 @@
 
 In this exercise, we are going to unit test the code of our application.
 
+### Preparations ###
+
+Make sure after the checkout that you run
+
+	webpack --config webpack.config.vendor.js
+
+and
+
+	npm install
 
 ### Tasks ###
 

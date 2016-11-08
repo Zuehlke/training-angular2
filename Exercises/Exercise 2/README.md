@@ -2,6 +2,16 @@
 
 This exercise is about deploying our web app to Azure in order to have it available under a public URL.
 
+### Preparations ###
+
+Make sure after the checkout that you run
+
+	webpack --config webpack.config.vendor.js
+
+and
+
+	npm install
+
 
 ### Tasks ###
 
