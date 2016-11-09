@@ -23,4 +23,7 @@ and then
 
 1. Add a unit test that tests that an expense record can be deleted in `ExpenseRepositoryTests.cs`. Implement it in the test method `CanDeleteRecord()`.
 
-2. Add a unit test that tests the deletion of an expense in `expense-overview.component.spec.ts`. For orientation, you can refer to the already existing `"should show two expenses after OnInit"` unit test.
+2. Add a unit test that tests the deletion of an expense in `expense-overview.component.spec.ts`. For orientation, you can refer to the already existing `"should show two expenses after OnInit"` unit test. In order to delete an entry by clicking the delete button, you can use 
+
+	`const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a'));`
+	`firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent'));`
