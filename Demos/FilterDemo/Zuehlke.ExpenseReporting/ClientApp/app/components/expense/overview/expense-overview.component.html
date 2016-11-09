@@ -8,6 +8,7 @@
                     <tr>
                         <th>From</th>
                         <th>Date</th>
+                        <th>Amount</th>
                         <th>For what</th>
                     </tr>
                 </thead>
@@ -15,6 +16,7 @@
                     <tr *ngFor='let expense of expenses'>
                         <td>{{ expense.name }}</td>
                         <td>{{ expense.date }}</td>
+                        <td>{{ expense.amount }}</td>
                         <td>{{ expense.reason }}</td>
                     </tr>
                 </tbody>
