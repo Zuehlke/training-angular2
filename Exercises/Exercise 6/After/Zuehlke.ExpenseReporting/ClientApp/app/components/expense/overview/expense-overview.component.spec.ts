@@ -57,23 +57,23 @@ describe('ExpenseOverviewComponent', () => {
         });
     }));
 
-    it('should remove one entry when it is deleted', fakeAsync(() => { //use fakeAsync to handle async request with a tick()
+    it('should remove one entry when it is deleted', async(() => { //use async to handle async request
         fixture.detectChanges();
-        tick(); //simulates the passage of time until all pending asynchronous activities (i.e. getExpenses) complete
-        fixture.detectChanges(); // update view with expsenses
+        fixture.whenStable().then(() => {
+            fixture.detectChanges(); // update view with expsenses
 
-        const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a')); //query delete icon
-        firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent')); //trigger a delete
+            const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a')); //query delete icon
+            firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent')); //trigger a delete
 
-        tick(); //simulates the passage of time until all pending asynchronous activities complete
-        fixture.detectChanges(); //update view
+            fixture.detectChanges(); //update view
 
-        expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1); //check that deleteExpense from the expense service was called
-        expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1); //check that deleteExpense from the expense service was called with Anakin's expense
+            expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1); //check that deleteExpense from the expense service was called
+            expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1); //check that deleteExpense from the expense service was called with Anakin's expense
 
-        const tableBody = fixture.debugElement.query(By.css('tbody')); //check for table to not contain Anakin Skywalker anymore
-        expect(tableBody.nativeElement.children.length).toEqual(1);
-        expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('Yoda');
+            const tableBody = fixture.debugElement.query(By.css('tbody')); //check for table to not contain Anakin Skywalker anymore
+            expect(tableBody.nativeElement.children.length).toEqual(1);
+            expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('YODA');
+        });
     }));
 
 });
