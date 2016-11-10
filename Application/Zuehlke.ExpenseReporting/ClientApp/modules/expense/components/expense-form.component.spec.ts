@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { RouterStub } from '../../../../utils/testutils';
+import { RouterStub } from '../../../utils/testutils';
 
 import { ExpenseFormComponent } from './expense-form.component';
 import { ExpenseService } from '../services/expense.service';

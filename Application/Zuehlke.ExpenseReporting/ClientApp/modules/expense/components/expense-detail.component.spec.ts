@@ -6,10 +6,10 @@ import { HttpModule } from '@angular/http';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
-import { ActivatedRouteStub, RouterStub } from '../../../../utils/testutils';
+import { ActivatedRouteStub, RouterStub } from '../../../utils/testutils';
 
 import { ExpenseDetailComponent } from './expense-detail.component';
-import { ExpenseFormComponent } from '../form/expense-form.component';
+import { ExpenseFormComponent } from './expense-form.component';
 import { ExpenseService } from '../services/expense.service';
 import { Expense, Reason } from '../model/expense';
 

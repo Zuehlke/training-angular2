@@ -5,10 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { By } from '@angular/platform-browser';
 
-import { RouterStub } from '../../../../utils/testutils';
+import { RouterStub } from '../../../utils/testutils';
 
 import { ExpenseAddComponent } from './expense-add.component';
-import { ExpenseFormComponent } from '../form/expense-form.component';
+import { ExpenseFormComponent } from './expense-form.component';
 import { ExpenseService } from '../services/expense.service';
 
 describe('ExpenseDetailComponent', () => {

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
-import { AppComponent } from './components/app/app.component'
-import { NavMenuComponent } from './components/navmenu/navmenu.component';
-import { HomeComponent } from './components/home/home.component';
-import { ExpenseModule } from './components/expense/expense.module';
+import { AppComponent } from './components/app.component'
+import { NavMenuComponent } from './components/navmenu.component';
+import { HomeComponent } from './components/home.component';
+import { ExpenseModule } from '../expense/expense.module';
 
 @NgModule({
     bootstrap: [ AppComponent ],
