@@ -4,13 +4,13 @@ This exercise is about deploying our web app to Azure in order to have it availa
 
 ### Preparations ###
 
-Make sure after the checkout that you run
-
-	webpack --config webpack.config.vendor.js
-
-and
+Make sure after the checkout that you go into the root folder of your application where the `package.json` is located and run
 
 	npm install
+
+and then
+
+	webpack --config webpack.config.vendor.js
 
 
 ### Tasks ###

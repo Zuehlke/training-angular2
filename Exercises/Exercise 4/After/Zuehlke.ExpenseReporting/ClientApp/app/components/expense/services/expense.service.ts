@@ -27,27 +27,19 @@ export class ExpenseService {
             .map((expenses: Expense[]) => expenses.find(p => p.id === id));
     }
 
-    createExpense(expense: Expense): Observable<Response> {
-        expense.id = this.generateGuid();
-        const dtoExpense = JSON.parse(JSON.stringify(expense));
-        dtoExpense.date = this.convertDateToString(expense.date);
-
-        return this.http.post(this.expenseUrl, JSON.stringify(dtoExpense), { headers: this.headers });
-    }
-
     updateExpense(expense: Expense): Observable<Response> {
         const url = `${this.expenseUrl}/${expense.id}`;
   
         const dtoExpense = JSON.parse(JSON.stringify(expense));
         dtoExpense.date = this.convertDateToString(expense.date);
 
-        return this.http.put(url, JSON.stringify(dtoExpense), { headers: this.headers });
+        return this.http.put(url, dtoExpense, { headers: this.headers });
     }
 
     deleteExpense(expense: Expense): Observable<Response> {
         const url = `${this.expenseUrl}/${expense.id}`;
 
-        return this.http.delete(url, { headers: this.headers, body: "" });
+        return this.http.delete(url);
     }
 
     private mapExpenses(response: Response) : any {
@@ -74,17 +66,6 @@ export class ExpenseService {
     private handleError(error: Response) : Observable<any> {
         console.error(error);
         return Observable.throw(error);
-    }
-
-    private generateGuid() : string {
-        return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
-            this.s4() + '-' + this.s4() + this.s4() + this.s4();
-    }
-
-    private s4(): string {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
     }
 
 }

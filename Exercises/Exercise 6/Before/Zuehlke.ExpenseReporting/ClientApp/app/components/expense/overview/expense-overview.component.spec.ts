@@ -57,7 +57,7 @@ describe('ExpenseOverviewComponent', () => {
         });
     }));
 
-    it('should remove one entry when it is deleted', fakeAsync(() => {
+    it('should remove one entry when it is deleted', async(() => {
 
         // Exercise 6
         // TODO 

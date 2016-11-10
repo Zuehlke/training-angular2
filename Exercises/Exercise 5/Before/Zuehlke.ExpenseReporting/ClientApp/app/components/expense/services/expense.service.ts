@@ -43,13 +43,13 @@ export class ExpenseService {
         const dtoExpense = JSON.parse(JSON.stringify(expense));
         dtoExpense.date = this.convertDateToString(expense.date);
 
-        return this.http.put(url, JSON.stringify(dtoExpense), { headers: this.headers });
+        return this.http.put(url, dtoExpense, { headers: this.headers });
     }
 
     deleteExpense(expense: Expense): Observable<Response> {
         const url = `${this.expenseUrl}/${expense.id}`;
 
-        return this.http.delete(url, { headers: this.headers, body: "" });
+        return this.http.delete(url);
     }
 
     private mapExpenses(response: Response) : any {

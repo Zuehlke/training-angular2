@@ -4,13 +4,13 @@ In this exercise, we add the possibility to delete an exisiting expense in the o
 
 ### Preparations ###
 
-Make sure after the checkout that you run
-
-	webpack --config webpack.config.vendor.js
-
-and
+Make sure after the checkout that you go to the `Zuehlke.ExpenseReporting` directory and run
 
 	npm install
+
+and then
+
+	webpack --config webpack.config.vendor.js
 
 ### Tasks ###
 
