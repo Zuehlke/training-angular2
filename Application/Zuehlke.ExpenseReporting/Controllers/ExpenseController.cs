@@ -124,7 +124,7 @@ namespace Zuehlke.ExpenseReporting.Controllers
                 this.repository.Delete(id);
                 return this.NoContent();
             }
-            catch (InvalidOperationException)
+            catch (InvalidOperationException ex)
             {
                 return this.NotFound();
             }
