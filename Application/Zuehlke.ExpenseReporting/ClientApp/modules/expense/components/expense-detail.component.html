@@ -1,5 +1,5 @@
 <div class="panel panel-primary" *ngIf="expense">
-    <div class="panel-heading" style="font-size: large">Expense from {{ expense.name }}</div>
+    <div class="panel-heading">Expense from {{ expense.name }}</div>
     <div class="panel-body">
         <expense-form [expense]="expense"></expense-form>
     </div>
