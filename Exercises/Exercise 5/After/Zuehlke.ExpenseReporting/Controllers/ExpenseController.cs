@@ -86,7 +86,7 @@ namespace Zuehlke.ExpenseReporting.Controllers
         /// </summary>
         /// <param name="record">The record to be added.</param>
         /// <returns>
-        /// HTTP 202 if the record was updated successfully, 
+        /// HTTP 204 if the record was updated successfully, 
         /// HTTP 400 if no record was present in the body of the request
         /// or HTTP 404 if the record to be updated was not found in the database.
         /// </returns>
