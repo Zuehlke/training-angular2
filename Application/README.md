@@ -18,4 +18,10 @@ After you have done this run
 
 in a command prompt located at the Zuehlke.ExpenseReporting folder.
 
+In case the application does not run properly try running
+
+    npm install
+
+in the same folder.
+
 You need to repeat this step if you want to add another third party library to the project. See [bit.ly/aspnetcoretp](http://bit.ly/aspnetcoretp) for details.
