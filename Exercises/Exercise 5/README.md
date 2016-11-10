@@ -4,7 +4,7 @@ In this exercise, we reuse the existing form component and use it to add a new e
 
 ### Preparations ###
 
-Make sure after the checkout that you run
+Make sure after the checkout that you go to the `Zuehlke.ExpenseReporting` directory and run
 
 	npm install
 

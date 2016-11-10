@@ -4,7 +4,7 @@ In this exercise, we add the possibility to edit an exisiting expense. For that 
 
 ### Preparations ###
 
-Make sure after the checkout that you run
+Make sure after the checkout that you go to the `Zuehlke.ExpenseReporting` directory and run
 
 	npm install
 

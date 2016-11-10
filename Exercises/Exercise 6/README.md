@@ -4,7 +4,7 @@ In this exercise, we are going to unit test the code of our application.
 
 ### Preparations ###
 
-Make sure after the checkout that you run
+Make sure after the checkout that you go to the `Zuehlke.ExpenseReporting` directory and run
 
 	npm install
 

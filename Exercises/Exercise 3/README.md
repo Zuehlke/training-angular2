@@ -4,7 +4,7 @@ In this exercise, we add the possibility to delete an exisiting expense in the o
 
 ### Preparations ###
 
-Make sure after the checkout that you run
+Make sure after the checkout that you go to the `Zuehlke.ExpenseReporting` directory and run
 
 	npm install
 
