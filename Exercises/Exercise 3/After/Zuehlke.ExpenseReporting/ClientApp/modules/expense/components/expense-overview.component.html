@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-md-1">Filter by:</div>
                 <div class="col-md-2">
-                    <input type="text" [(ngModel)]="expenseFilter" />
+                    <input type="text" [(ngModel)]="expenseFilterInput" />
                 </div>
-                <div class="col-md-9" *ngIf="expenseFilter">
-                    Filtered by: <strong>{{ expenseFilter }}</strong>
+                <div class="col-md-9" *ngIf="expenseFilterInput">
+                    Filtered by: <strong>{{ expenseFilterInput }}</strong>
                 </div>
             </div>
         </div>
@@ -24,7 +24,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let expense of expenses | expenseFilter:expenseFilter">
+            <tr *ngFor="let expense of expenses | expenseFilter:expenseFilterInput">
                 <td>{{ expense.name | uppercase }}</td>
                 <td>{{ expense.date | date:"yyyy-MM-dd" }}</td>
                 <td>{{ expense.amount | currency:"EUR":true }}</td>
