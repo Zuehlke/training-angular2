@@ -1,35 +1,107 @@
-## Exercise 3 ##
+## Exercise 3: Deleting a record ##
 
-In this exercise, we add the possibility to delete an exisiting expense in the overview. For that matter, we have to adapt the client (i.e. the HTML, the component and the service) as well as the backend (the Controller and the Repository).
+In this exercise you will extend the application to support the deletion of an expense record.
 
-### Preparations ###
+### Before you start ###
 
-Make sure after the checkout that you go to the `Zuehlke.ExpenseReporting` directory and run
+Open the solution contained in the [Before][1] folder of this tutorial. After opening the solution for the first time, open a console window, switch to the [Zuehlke.ExpenseReporting][2] folder and run
 
-	npm install
+```bash
+npm install
+```
 
-and then
+followed by
 
-	webpack --config webpack.config.vendor.js
+```bash
+webpack --config webpack.config.vendor.js
+```
+
+to make sure all dependencies are loaded and the vendor scripts have been built and included properly.
 
 ### Tasks ###
 
-1. Extend the Overview HTML and add a delete button in every row of the expenses table
-
-2. Add a method in the overview component that deletes an expense and is called when the user clicks the delete button to delete an expense.
-
-3. Extend the expense-service so it can send an HTTP DELETE request to the backend in order to effectively delete an expense.
-
-4. Implement the delete method in the `ExpenseController` and the `ExpenseRepository` on the server side.
+1. Extend the ExpenseController to delete an expense when its being invoked using the HTTP verb DELETE. Make sure the method returns HTTP 204 on successful deletion and HTTP 404 if the expense record was not found in the database.
+2. Extend the ExpenseService to be able to invoke the delete method of the REST service.
+3. Extend the ExpennseOverview component to have a click handler that invokes the delete method of the ExpenseService.
+4. Extend the template of the ExpenseOverview component to have a delete button in each row of the table. Have a look at [getbootstrap.com](http://www.getbootstrap.com) to find out how to create a button.
 
 ### Implementation Hints ###
 
-1. Add a new `<td>` and a new `<th>` in the `expense-overview.component.html`. Futhermore, add a button for every expense with a click handler (`(click)="methodToImplement()"`) that deletes an expense
+#### 1. Extend the ExpenseController ####
 
-2. Add a method in the `expense-overview.component.ts` and delegate the acutal deletion to the `expense-services.ts`
+1. Create a method named `Delete(Guid id)` returning an `IAsyncResult` and decorate this method using the `[HttpDelete({id})]` attribute.
+1. Invoke the `Delete()` method of the repository passing the id of the expense record:
+  * If the delete method returns fine return `this.NoContent(`).
+  * If the delete method throws an InvalidOperationException return `this.NotFound()`.
 
-3. Add a method in `expense-services.ts` that performs the HTTP DELETE request - use `this.http.delete(url, headers)` and return it. In the component, subscribe to the returned Observable from the service.
+  The delete method of the controller should look like this now:
+  ```csharp
+[HttpDelete("{id}")]
+public IActionResult Delete(Guid id)
+{
+        try
+        {
+            this.repository.Delete(id);
+            return this.NoContent();
+        }
+        catch (InvalidOperationException)
+        {
+            return this.NotFound();
+        }
+}
+  ```
 
-4. Delete the entry from the repository in the method `Delete(Guid id)` in the `ExpenseController`.
+#### 2. Extend the ExpenseService ####
 
+1. Create a method named `deleteExpense(expense: Expense)` that returns an `Observable<Response>`. Within this method invoke the `delete()` method of the Http service using the URL /api/expenses/{id} to remove the specified expense from the database.
+
+  The delete method of the service should look like this now:
+  ```typescript
+deleteExpense(expense: Expense): Observable<Response> {
+      return this.http.delete(`${this.expenseUrl}/${expense.id}`);
+}
+  ```
+
+#### 3: Extend the ExpenseOverview component ####
+
+1. Implement the `deleteExpense(expense: Expense)` method to invoke the `deleteExpense()` method of the `ExpenseService`.
+1. Call the `subscribe()` method to filter the list of expenses to exclude the one you have just deleted.
+
+  The delete method of the component should look like this now:
+
+  ```typescript
+deleteExpense(expense: Expense) : void {
+      this.expenseService.deleteExpense(expense)
+          .subscribe(() => { this.expenses = this.expenses.filter(exp => exp.id !== expense.id) });
+    }
+  ```
+
+#### 4: Extend the template ####
+
+1. Add a new column to the table of expenses. The column has to have an empty header.
+1. Add a button to each row that on click invokes the deleteExpense method of the component.
+
+  The relevant section of the template should look like this now:
+  ```html
+<table class="table" *ngIf="expenses && expenses.length">
+        <thead>
+            <tr>
+                <th>From</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>For what</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let expense of expenses | expenseFilter:expenseFilter">
+                <td>{{ expense.name | uppercase }}</td>
+                <td>{{ expense.date | date:"yyyy-MM-dd" }}</td>
+                <td>{{ expense.amount | currency:"EUR":true }}</td>
+                <td>{{ expense.reason }}</td>
+                <td><a class="glyphicon glyphicon-remove delete" (click)="deleteExpense(expense)"></a></td>
+            </tr>
+        </tbody>
+</table>
+  ```
 

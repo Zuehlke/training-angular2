@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Zuehlke.ExpenseReporting.Data;
 
@@ -32,22 +30,6 @@ namespace Zuehlke.ExpenseReporting.Controllers
         public IActionResult Get()
         {
             return this.Ok(this.repository.All());
-        }
-
-       
-
-        /// <summary>
-        /// Removes the expense record with the specified id from the database.
-        /// </summary>
-        /// <param name="id">Unique id of the record to be deleted</param>
-        /// <returns>HTTP 202 to indicate that the provided record is no longer available in the database.</returns>
-        [HttpDelete("{id}")]
-        public IActionResult Delete(Guid id)
-        {
-            // Exercise 3
-            // TODO
-
-            throw new NotImplementedException();
         }
     }
 }
