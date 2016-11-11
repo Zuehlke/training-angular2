@@ -24,7 +24,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 1. Create and configure a new module named `ExpenseModule`.
 2. Add a component named `ExpenseOverview` to the newly created module. This component should show some simple static HTML.
 3. Configure a route to the newly created component.
-4. Add a menu item to the application main navigation to access the component.
+4. Add a menu item to the application's main navigation to access the component.
 
 ### Detailed Steps ###
 
@@ -98,7 +98,7 @@ import { Routes, RouterModule} from '@angular/router';
 import { ExpenseOverviewComponent } from './components/expense-overview.component';
 
 export const expenseRoutes: Routes = [
-  { path: 'overview', component: ExpenseOverviewComponent }
+      { path: 'overview', component: ExpenseOverviewComponent }
 ];
 
 export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expenseRoutes);
@@ -114,7 +114,7 @@ export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expense
         CommonModule, expenseRouting
     ],
     declarations: [
-      ExpenseOverviewComponent,
+      ExpenseOverviewComponent
     ]
   })
   ```
