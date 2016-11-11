@@ -1,4 +1,4 @@
-## Exercise 3: Edit a record ##
+## Exercise 4: Edit a record ##
 
 In this exercise you will extend the application to viewing and editing the details of an expense record.
 
