@@ -54,7 +54,6 @@ namespace Zuehlke.ExpenseReporting.Controllers
             return this.NotFound();
         }
 
-
         /// <summary>
         /// Updates the provided expense record in the database.
         /// </summary>
@@ -87,7 +86,7 @@ namespace Zuehlke.ExpenseReporting.Controllers
         /// </summary>
         /// <param name="id">Unique id of the record to be deleted</param>
         /// <returns>
-        /// HTTP 202 to indicate that the provided record has been deleted 
+        /// HTTP 204 to indicate that the provided record has been deleted 
         /// and is no longer available in the database,
         /// HTTP 404 if the requested record was not found.</returns>
         [HttpDelete("{id}")]

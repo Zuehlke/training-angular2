@@ -1,0 +1,10 @@
+<div class="panel panel-primary" *ngIf="expense">
+    <div class="panel-heading">Receipt from {{ expense.name }}</div>
+    <div class="panel-body">
+        <div class="alert alert-danger" *ngIf="errorMessage" role="alert"><strong>Oh snap!</strong> {{errorMessage}}</div>
+
+    </div>
+    <div class="panel-footer">
+        <a class="btn btn-default" (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> Back to Overview</a>
+    </div>
+</div>

@@ -25,7 +25,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 3. Extend the ExpennseOverview component to have a click handler that invokes the delete method of the ExpenseService.
 4. Extend the template of the ExpenseOverview component to have a delete button in each row of the table. Have a look at [getbootstrap.com](http://www.getbootstrap.com) to find out how to create a button.
 
-### Implementation Hints ###
+### Detailed Steps ###
 
 #### 1. Extend the ExpenseController ####
 

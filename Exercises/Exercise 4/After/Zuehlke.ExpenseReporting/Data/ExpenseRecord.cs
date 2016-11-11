@@ -17,7 +17,7 @@ namespace Zuehlke.ExpenseReporting.Data
         /// <summary>
         /// Gets or sets the date the expense was made.
         /// </summary>
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the person creating the report.
@@ -89,7 +89,7 @@ namespace Zuehlke.ExpenseReporting.Data
             unchecked
             {
                 var hashCode = this.Id.GetHashCode();
-                hashCode = (hashCode * 397) ^ (this.Date?.GetHashCode() ?? 0);
+                hashCode = (hashCode * 397) ^ this.Date.GetHashCode();
                 hashCode = (hashCode * 397) ^ (this.Name?.GetHashCode() ?? 0);
                 hashCode = (hashCode * 397) ^ (int)this.Reason;
                 hashCode = (hashCode * 397) ^ this.Amount.GetHashCode();
