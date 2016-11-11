@@ -5,10 +5,10 @@ import { ExpenseOverviewComponent } from './components/expense-overview.componen
 import { ExpenseDetailComponent } from './components/expense-detail.component';
 import { ExpenseAddComponent } from './components/expense-add.component';
 
-export const productRoutes: Routes = [
+export const expenseRoutes: Routes = [
   { path: 'overview', component: ExpenseOverviewComponent },
   { path: 'expense/add', component: ExpenseAddComponent },
   { path: 'expense/:id', component: ExpenseDetailComponent }
 ];
 
-export const productRouting: ModuleWithProviders = RouterModule.forChild(productRoutes);
+export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expenseRoutes);
