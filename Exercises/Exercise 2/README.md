@@ -65,7 +65,7 @@ public class ExpenseController : Controller
 1. Create a method named `getExpenses()` that returns an `Observable<Expense[]>`. Within this method invoke the `get()` method of the Http service to retrieve a list of expense records from the service.
 1. Call the `map()` method to extract the array of expense records from the response or return an empty array if the response has no content.
 
-  The ExpenseService class should look like this now:
+  The `ExpenseService` class should look like this now:
 
   ```typescript
 import { Observable } from 'rxjs/Observable';
@@ -85,6 +85,24 @@ export class ExpenseService {
               .map(response => response.json() || []);
       }
 }
+  ```
+
+1. Add a providers section to the `NgModule` decorator of the `ExpenseModule` and add the service to it, so that the module knows that this service exists.
+
+  The `NgModule` decorator should look like this now:
+
+  ```typescript
+  @NgModule({
+    imports: [
+        CommonModule
+    ],
+    declarations: [
+      ExpenseOverviewComponent
+    ],
+    providers: [
+      ExpenseService
+    ]
+  })
   ```
 
 #### 3. Load the data ####
@@ -119,24 +137,6 @@ export class ExpenseOverviewComponent implements OnInit {
       }
 }
 
-  ```
-
-1. Add a providers section to the `NgModule` decorator of the `ExpenseModule` and add the service to it, so that the module knows that this service exists.
-
-  The `NgModule` decorator should look like this now:
-
-  ```typescript
-  @NgModule({
-    imports: [
-        CommonModule
-    ],
-    declarations: [
-      ExpenseOverviewComponent
-    ],
-    providers: [
-      ExpenseService
-    ]
-  })
   ```
 
 #### 4. Display the data ####
