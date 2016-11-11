@@ -19,7 +19,7 @@ describe('ExpenseDetailComponent', () => {
     let fixture: ComponentFixture<ExpenseAddComponent>;
     let expenseService: ExpenseService;
 
-    const newExpense = new Expense(null, 'Palpatine', Reason.Hotel, '12.01.1999', 54.00, 'Reasoning about the dark side of the force');
+    const newExpense = new Expense(null, 'Palpatine', Reason.Hotel, new Date('1999/1/12'), 54.00, 'Reasoning about the dark side of the force');
 
     beforeEach(() => {
         TestBed.configureTestingModule({

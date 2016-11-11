@@ -18,8 +18,8 @@ describe('ExpenseDetailComponent', () => {
     let expenseDetailComponent: ExpenseDetailComponent;
     let fixture: ComponentFixture<ExpenseDetailComponent>;
 
-    const expense1 = new Expense('00000000-0000-0000-0000-000000000001', 'Anakin Skywalker', Reason.Bus, '12.01.2016', 12.22, 'Visiting Mom');
-    const expense2 = new Expense('00000000-0000-0000-0000-000000000002', 'Yoda', Reason.Flight, '12.05.2016', 10, 'Flight to Coruscant');
+    const expense1 = new Expense('00000000-0000-0000-0000-000000000001', 'Anakin Skywalker', Reason.Bus, new Date('2016/1/12'), 12.22, 'Visiting Mom');
+    const expense2 = new Expense('00000000-0000-0000-0000-000000000002', 'Yoda', Reason.Flight, new Date('2016/5/12'), 10, 'Flight to Coruscant');
     const testExpenses = [expense1, expense2];
 
     let expenseService: ExpenseService;

@@ -16,8 +16,8 @@ describe('ExpenseOverviewComponent', () => {
     let expenseOverviewComponent: ExpenseOverviewComponent;
     let fixture: ComponentFixture<ExpenseOverviewComponent>;
 
-    const expense1 = new Expense('1', 'Anakin Skywalker', Reason.Bus, '12.01.2016', 12.22, 'Visiting Mom');
-    const expense2 = new Expense('2', 'Yoda', Reason.Flight, '12.05.2016', 10, 'Flight to Coruscant');
+    const expense1 = new Expense('1', 'Anakin Skywalker', Reason.Bus, new Date('2016/1/12'), 12.22, 'Visiting Mom');
+    const expense2 = new Expense('2', 'Yoda', Reason.Flight, new Date('2016/5/12'), 10, 'Flight to Coruscant');
     const testExpenses = [expense1, expense2];
 
     let expenseService: ExpenseService;

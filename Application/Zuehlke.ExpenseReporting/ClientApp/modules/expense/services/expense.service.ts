@@ -30,7 +30,6 @@ export class ExpenseService {
     createExpense(expense: Expense): Observable<Response> {
         expense.id = this.generateGuid();
         const dtoExpense = JSON.parse(JSON.stringify(expense));
-        dtoExpense.date = this.convertDateToString(expense.date);
 
         return this.http.post(this.expenseUrl, dtoExpense, { headers: this.headers });
     }
@@ -39,7 +38,6 @@ export class ExpenseService {
         const url = `${this.expenseUrl}/${expense.id}`;
   
         const dtoExpense = JSON.parse(JSON.stringify(expense));
-        dtoExpense.date = this.convertDateToString(expense.date);
 
         return this.http.put(url, dtoExpense, { headers: this.headers });
     }
@@ -51,24 +49,7 @@ export class ExpenseService {
     }
 
     private mapExpenses(response: Response) : any {
-        const mappedExpenses = response.json() || [];
-        const tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
-        mappedExpenses.forEach((expense: any) => {
-            const dateArray = expense.date.split(".");
-            const theDate = new Date(dateArray[2], dateArray[1] - 1, dateArray[0]);
-            const finalDate = new Date(theDate.getTime() - tzoffset);
-            expense.date = finalDate.toISOString().slice(0, 10);
-        });
-
-        return mappedExpenses;
-    }
-
-    private convertDateToString(date: string) : string {
-        const day = date.substring(8, 10);
-        const month = date.substring(5, 7);
-        const year = date.substring(0, 4);
-
-        return day + '.' + month + '.' + year;
+        return response.json() || [];
     }
 
     private handleError(error: Response) : Observable<any> {
