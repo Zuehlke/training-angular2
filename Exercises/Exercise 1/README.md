@@ -52,7 +52,7 @@ export class ExpenseModule { }
 
 #### 2. Create the ExpenseOverview component ####
 
-1. Create a folder named "components" to the modules folder.
+1. Add a folder named "components" to the modules folder.
 1. Add a file named "expense-overview.component.html" that contains some simple HTML like a heading or a single paragraph.
 1. Add a file named "expense-overview.component.ts" and implement a class named `ExpenseOverview` decorated with the `@Component()` decorator.
 1. Configure the component to use the expense-overview.component.html as its template.
@@ -69,7 +69,7 @@ export class ExpenseOverviewComponent {
 }
 
   ```
-1. Add a declarations section to the `NgModule` decorator of the `ExpenseModule` so that the module knows that this component exists.
+1. Add a declarations section to the `NgModule` decorator of the `ExpenseModule` and add the component to it, so that the module knows that this component exists.
 
   The `NgModule` decorator should look like this now:
 
@@ -79,7 +79,7 @@ export class ExpenseOverviewComponent {
         CommonModule
     ],
     declarations: [
-      ExpenseOverviewComponent,
+      ExpenseOverviewComponent
     ]
   })
   ```
