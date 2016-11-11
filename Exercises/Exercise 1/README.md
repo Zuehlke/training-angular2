@@ -21,7 +21,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 
 ### Tasks ###
 
-1. Create and configure a new module named `ExpenseModule`
+1. Create and configure a new module named `ExpenseModule`.
 2. Add a component named `ExpenseOverview` to the newly created module. This component should show some simple static HTML.
 3. Configure a route to the newly created component.
 4. Add a menu item to the application main navigation to access the component.
@@ -32,7 +32,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 
 1. Create folder named "expense" in the modules folder of your solution.
 1. Add a file named "expense.module.ts" to the folder and implement a class named `ExpenseModule` decorated with the `@NgModule()` decorator.
-1. Configure the module to import the `CommonModule`:
+1. Configure the module to import the `CommonModule`.
 
   Your module declaration should look like this now:
 
@@ -104,7 +104,20 @@ export const expenseRoutes: Routes = [
 export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expenseRoutes);
   ```
 
-1. Add the `expenseRouting` information to the `imports` sections of the `NgModule` decorator of the `ExpenseModule` to make the routes known to the application.
+1. Add the `expenseRouting` information to the `imports` section of the `NgModule` decorator of the `ExpenseModule` to make the routes known to the application.
+
+  The `NgModule` decorator should look like this now:
+
+  ```typescript
+  @NgModule({
+    imports: [
+        CommonModule, expenseRouting
+    ],
+    declarations: [
+      ExpenseOverviewComponent,
+    ]
+  })
+  ```
 
 #### 4. Add a menu item ####
 
