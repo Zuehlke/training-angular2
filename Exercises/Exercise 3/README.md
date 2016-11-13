@@ -34,74 +34,17 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
   * If the delete method returns fine return `this.NoContent(`).
   * If the delete method throws an InvalidOperationException return `this.NotFound()`.
 
-  The delete method of the controller should look like this now:
-  ```csharp
-[HttpDelete("{id}")]
-public IActionResult Delete(Guid id)
-{
-        try
-        {
-            this.repository.Delete(id);
-            return this.NoContent();
-        }
-        catch (InvalidOperationException)
-        {
-            return this.NotFound();
-        }
-}
-  ```
-
 #### 2. Extend the ExpenseService ####
 
 1. Create a method named `deleteExpense(expense: Expense)` that returns an `Observable<Response>`. Within this method invoke the `delete()` method of the Http service using the URL /api/expenses/{id} to remove the specified expense from the database.
 
-  The delete method of the service should look like this now:
-  ```typescript
-deleteExpense(expense: Expense): Observable<Response> {
-      return this.http.delete(`${this.expenseUrl}/${expense.id}`);
-}
-  ```
 
 #### 3: Extend the ExpenseOverview component ####
 
 1. Implement the `deleteExpense(expense: Expense)` method to invoke the `deleteExpense()` method of the `ExpenseService`.
 1. Call the `subscribe()` method to filter the list of expenses to exclude the one you have just deleted.
 
-  The delete method of the component should look like this now:
-
-  ```typescript
-deleteExpense(expense: Expense) : void {
-      this.expenseService.deleteExpense(expense)
-          .subscribe(() => { this.expenses = this.expenses.filter(exp => exp.id !== expense.id) });
-    }
-  ```
-
 #### 4: Extend the template ####
 
 1. Add a new column to the table of expenses. The column has to have an empty header.
 1. Add a button to each row that on click invokes the deleteExpense method of the component.
-
-  The relevant section of the template should look like this now:
-  ```html
-<table class="table" *ngIf="expenses && expenses.length">
-        <thead>
-            <tr>
-                <th>From</th>
-                <th>Date</th>
-                <th>Amount</th>
-                <th>For what</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let expense of expenses | expenseFilter:expenseFilter">
-                <td>{{ expense.name | uppercase }}</td>
-                <td>{{ expense.date | date:"yyyy-MM-dd" }}</td>
-                <td>{{ expense.amount | currency:"EUR":true }}</td>
-                <td>{{ expense.reason }}</td>
-                <td><a class="glyphicon glyphicon-remove delete" (click)="deleteExpense(expense)"></a></td>
-            </tr>
-        </tbody>
-</table>
-  ```
-
