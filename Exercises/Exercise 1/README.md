@@ -1,4 +1,4 @@
-## Exercise 1: Create a Module and a Compnent ##
+## Exercise 1: Create a Module and a Component ##
 
 This exercise will lead you through the process of creating a module and a component together with creating the required navigation infrastructure.
 
