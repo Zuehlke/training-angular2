@@ -9,7 +9,7 @@
 
     <div class="form-group">
         <label for="date" class="col-sm-1 control-label">Date</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <input [ngModel]="expense.date | date:'y-M-dd'" (ngModelChange)="expense.date = $event" name="date" type="date" class="form-control" id="date"  required placeholder="Date">
         </div>
     </div>
@@ -23,7 +23,7 @@
 
     <div class="form-group">
         <label for="amount" class="col-sm-1 control-label">Amount</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <div class="input-group">
                 <span class="input-group-addon">&euro;</span>
                 <input [(ngModel)]="expense.amount" required type="number" step="0.01" class="form-control" id="amount" name="amount" />
