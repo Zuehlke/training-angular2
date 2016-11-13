@@ -44,7 +44,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 #### 2. Extend the expense form ####
 
 1. Add a form-group to the expense form to handle the `text` property of an expense. Use a `<textarea>` element with two rows (`rows="2"`) to edit the text.
-2. Add a form-group to the expense form to handle the `amount` property of an expense. Use an `<input>` element with the type set to date (`type="date"`).
+2. Add a form-group to the expense form to handle the `amount` property of an expense. Use an `<input>` element with the type set to number (`type="number"`).
 3. Add the missing `<option>`s to the `<select>` element.
 
 #### 3. Extend the ExpenseController ####
