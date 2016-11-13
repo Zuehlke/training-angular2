@@ -1,6 +1,6 @@
-## Exercise 3: Result ##
+## Exercise 5: Starting Point ##
 
-This folder contains the application as it is after you have completed this exercise.
+This folder contains the application as it is before you start with this exercise.
 
 ### Before you start ###
 

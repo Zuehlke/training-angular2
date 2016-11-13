@@ -1,27 +1,19 @@
-## Example Application ##
-This is a simple example application demonstration how ASP.NET Core, Angular 2, TypeScript and WebPack (to name just these four) work together.
+## Exercise 2: Result ##
 
-### Before the first launch ###
-Before launching the application for the first time after cloning the repository make sure to rebuild the vendor scripts and install the typings.
+This folder contains the application as it is after you have completed this exercise.
 
-If you have not installed WebPack yet make sure to install it by opening a command prompt and running
+### Before you start ###
 
-	npm install -g webpack
-	
-If you have not installed typings yet make sure to install it by opening a command prompt and running
+Open the solution contained in the [Before][1] folder of this tutorial. After opening the solution for the first time, open a console window, switch to the [Zuehlke.ExpenseReporting][2] folder and run
 
-	npm install -g typings
+```bash
+npm install
+```
 
-After you have done this run
+followed by
 
-	webpack --config webpack.config.vendor.js
+```bash
+webpack --config webpack.config.vendor.js
+```
 
-in a command prompt located at the Zuehlke.ExpenseReporting folder.
-
-In case the application does not run properly try running
-
-    npm install
-
-in the same folder.
-
-You need to repeat this step if you want to add another third party library to the project. See [bit.ly/aspnetcoretp](http://bit.ly/aspnetcoretp) for details.
+to make sure all dependencies are loaded and the vendor scripts have been built and included properly.
