@@ -43,7 +43,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
       imports: [
         CommonModule
-      ],
+      ]
 })
 export class ExpenseModule { }
   ```
@@ -52,7 +52,7 @@ export class ExpenseModule { }
 
 #### 2. Create the ExpenseOverview component ####
 
-1. Add a folder named "components" to the modules folder.
+1. Add a folder named "components" to the module's folder.
 1. Add a file named "expense-overview.component.html" that contains some simple HTML like a heading or a single paragraph.
 1. Add a file named "expense-overview.component.ts" and implement a class named `ExpenseOverview` decorated with the `@Component()` decorator.
 1. Configure the component to use the expense-overview.component.html as its template.
