@@ -33,14 +33,6 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 1. Use the selector `<expense-form>` from the expense-form.component.ts to reference the expense form in the detail view.
 2. Use a property binding to bind the `expense` property of the detail view to the `expense` property of the expense form.
 
-  By now the panel body of the detail view should look like this:
-  ```html
-<div class="panel-body">
-      <div class="alert alert-danger" *ngIf="errorMessage" role="alert"><strong>Oh snap!</strong> {{errorMessage}}</div>
-      <expense-form [expense]="expense"></expense-form>
-</div>  
-  ```
-
 #### 2. Extend the expense form ####
 
 1. Add a form-group to the expense form to handle the `text` property of an expense. Use a `<textarea>` element with two rows (`rows="2"`) to edit the text.
@@ -56,52 +48,14 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
   * If the delete method throws an InvalidOperationException return `this.NotFound()`.
   * If the delete method throws an ArgumentNullException return `this.BadRequest()`.
 
-  The update method of the controller should look like this now:
-  ```csharp
-[HttpPut("{id}")]
-public IActionResult Put([FromBody]ExpenseRecord record)
-{
-        try
-        {
-            this.repository.Update(record);
-            return this.NoContent();
-        }
-        catch (ArgumentNullException)
-        {
-            return this.BadRequest();
-        }
-        catch (InvalidOperationException)
-        {
-            return this.NotFound();
-        }
-}
-  ```
-
 #### 4. Extend the ExpenseService ####
 
 1. Create a method named `updateExpense(expense: Expense)` that returns an `Observable<Response>`. Within this method invoke the `put()` method of the Http service using the URL /api/expenses/{id} and the expense passed into the method as body to update the specified expense.
-
-  The update method of the service should look like this now:
-  ```typescript
-updateExpense(expense: Expense): Observable<Response> {
-      return this.http.put(`${this.expenseUrl}/${expense.id}`, expense);
-}
-  ```
 
 #### 5. Add a save button ####
 
 1. Implement the `saveExpense()` method in the detail component to invoke the `updateExpense()` method of the `ExpenseService`.
 1. Call the `subscribe()` method to return to the expense overview or call the `handleError()` method to provide an error message to the user.
-
-  The save expense method of the detail component should look like this now:
-
-  ```typescript
-saveExpense(): void {
-      this.expenseService.updateExpense(this.expense)
-          .subscribe(() => { this.goBack() }, error => { this.handleError(error) });
-}
-  ```
-
 1. Surround the existing button in the detail view with a button-group (see [getbootstrap.com](http://www.getbootstrap.com) for help).
 1. Add a second button to the group. Mark this button as the primary button and change the icon to the save icon. Set the caption to "Save Expense".
 1. Add the `saveExpense()` method as a click handler to the newly created button.
