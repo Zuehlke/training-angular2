@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
 
 import { Expense } from '../model/expense';
 
@@ -12,52 +10,33 @@ import { Expense } from '../model/expense';
 export class ExpenseService {
 
     private expenseUrl = 'api/expenses';
-    private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http: Http) { }
 
     getExpenses(): Observable<Expense[]> {
         return this.http.get(this.expenseUrl)
-            .map(this.mapExpenses)
-            .catch(this.handleError);
+            .map(response => response.json() || []);
     }
 
     getExpense(id: string): Observable<Expense> {
-        return this.getExpenses()
-            .map((expenses: Expense[]) => expenses.find(p => p.id === id));
+        return this.http.get(`${this.expenseUrl}/${id}`)
+            .map(response => response.json());
+    }
+
+    updateExpense(expense: Expense): Observable<Response> {
+        return this.http.put(`${this.expenseUrl}/${expense.id}`, expense);
     }
 
     createExpense(expense: Expense): Observable<Response> {
         expense.id = this.generateGuid();
-        const dtoExpense = JSON.parse(JSON.stringify(expense));
-
-        return this.http.post(this.expenseUrl, dtoExpense, { headers: this.headers });
-    }
-
-    updateExpense(expense: Expense): Observable<Response> {
-        const url = `${this.expenseUrl}/${expense.id}`;
-  
-        const dtoExpense = JSON.parse(JSON.stringify(expense));
-
-        return this.http.put(url, dtoExpense, { headers: this.headers });
+        return this.http.post(this.expenseUrl, expense);
     }
 
     deleteExpense(expense: Expense): Observable<Response> {
-        const url = `${this.expenseUrl}/${expense.id}`;
-
-        return this.http.delete(url);
+        return this.http.delete(`${this.expenseUrl}/${expense.id}`);
     }
 
-    private mapExpenses(response: Response) : any {
-        return response.json() || [];
-    }
-
-    private handleError(error: Response) : Observable<any> {
-        console.error(error);
-        return Observable.throw(error);
-    }
-
-    private generateGuid() : string {
+    private generateGuid(): string {
         return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
             this.s4() + '-' + this.s4() + this.s4() + this.s4();
     }
@@ -67,5 +46,4 @@ export class ExpenseService {
             .toString(16)
             .substring(1);
     }
-
 }
