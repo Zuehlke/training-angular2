@@ -12,14 +12,12 @@ import { Expense } from '../model/expense';
 export class ExpenseService {
 
     private expenseUrl = 'api/expenses';
-    private headers = new Headers({ 'Content-Type': 'application/json' });
 
     constructor(private http: Http) { }
 
     getExpenses(): Observable<Expense[]> {
         return this.http.get(this.expenseUrl)
-            .map(this.mapExpenses)
-            .catch(this.handleError);
+            .map(response => response.json() || []);
     }
 
     getExpense(id: string): Observable<Expense> {
@@ -43,15 +41,6 @@ export class ExpenseService {
         const url = `${this.expenseUrl}/${expense.id}`;
 
         return this.http.delete(url);
-    }
-
-    private mapExpenses(response: Response) : any {
-        return response.json() || [];
-    }
-
-    private handleError(error: Response) : Observable<any> {
-        console.error(error);
-        return Observable.throw(error);
     }
 
     private generateGuid() : string {
