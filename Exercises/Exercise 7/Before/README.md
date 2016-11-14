@@ -1,6 +1,6 @@
-## Exercise 7: Result ##
+## Exercise 7: Starting Point ##
 
-This folder contains the application as it is after you have completed this exercise.
+This folder contains the application as it is before you start with this exercise.
 
 ### Before you start ###
 
