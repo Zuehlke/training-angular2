@@ -7,7 +7,6 @@ import { ExpenseAddComponent } from './components/expense-add.component';
 
 export const expenseRoutes: Routes = [
   { path: 'overview', component: ExpenseOverviewComponent },
-  { path: 'expense/add', component: ExpenseAddComponent },
   { path: 'expense/:id', component: ExpenseDetailComponent }
 ];
 

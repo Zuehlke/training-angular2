@@ -15,12 +15,7 @@ export class ExpenseAddComponent {
 
     constructor(private router: Router, private expenseService: ExpenseService) { }
 
-    createExpense(): void {
-        this.expenseService.createExpense(this.expense)
-            .subscribe(() => { this.goBack() }, error => { this.handleError(error) });
-    }
-
-    goBack(): void {
+   goBack(): void {
         this.router.navigate(['/overview']);
     }
 
