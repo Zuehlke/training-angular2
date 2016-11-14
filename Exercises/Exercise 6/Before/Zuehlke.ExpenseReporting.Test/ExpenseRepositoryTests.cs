@@ -74,7 +74,7 @@ namespace Zuehlke.ExpenseReporting.Test
                 Reason = ExpenseReason.Hotel,
                 Amount = 20m,
                 Text = "Cheap hotel in Mom's guest room.",
-                Date = "06.10.2016",
+                Date = 6.October(2016)
             };
             subject
                 .Invoking(x => x.Create(newRecord))
@@ -113,7 +113,7 @@ namespace Zuehlke.ExpenseReporting.Test
                 Reason = ExpenseReason.Hotel,
                 Amount = 20m,
                 Text = "Cheap hotel in Mom's guest room.",
-                Date = "06.10.2016",
+                Date = 6.October(2016)
             };
             subject
                 .Invoking(x => x.Create(newRecord))
@@ -127,8 +127,9 @@ namespace Zuehlke.ExpenseReporting.Test
         [Fact]
         public void CanDeleteRecord()
         {
-            // TODO
-            // Exercise 6
+
+            // TODO Exercise 6
+
         }
 
         /// <summary>
@@ -156,7 +157,7 @@ namespace Zuehlke.ExpenseReporting.Test
             var updatedRecord = new ExpenseRecord
             {
                 Id = Guid.Parse("00000000-0000-0000-0000-000000000001"),
-                Date = "12.10.2016",
+                Date = 12.October(2016),
                 Name = "Anakin Skywalker",
                 Reason = ExpenseReason.Taxi,
                 Text = "Taxi to Tatooine, visiting Mom",
@@ -196,7 +197,7 @@ namespace Zuehlke.ExpenseReporting.Test
             var updatedRecord = new ExpenseRecord
             {
                 Id = Guid.Parse("00000000-0000-0000-0000-000000000006"),
-                Date = "12.10.2016",
+                Date = 12.October(2016),
                 Name = "Anakin Skywalker",
                 Reason = ExpenseReason.Taxi,
                 Text = "Taxi to Tatooine, visiting Mom",
