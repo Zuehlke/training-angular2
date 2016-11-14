@@ -27,11 +27,6 @@ export class ExpenseService {
         return this.http.put(`${this.expenseUrl}/${expense.id}`, expense);
     }
 
-    createExpense(expense: Expense): Observable<Response> {
-        expense.id = this.generateGuid();
-        return this.http.post(this.expenseUrl, expense);
-    }
-
     deleteExpense(expense: Expense): Observable<Response> {
         return this.http.delete(`${this.expenseUrl}/${expense.id}`);
     }

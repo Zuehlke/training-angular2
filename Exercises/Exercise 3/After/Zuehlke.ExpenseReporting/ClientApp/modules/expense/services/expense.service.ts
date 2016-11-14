@@ -12,7 +12,7 @@ export class ExpenseService {
     private expenseUrl = 'api/expenses';
 
     constructor(private http: Http) { }
-
+    
     getExpenses(): Observable<Expense[]> {
         return this.http.get(this.expenseUrl)
             .map(response => response.json() || []);

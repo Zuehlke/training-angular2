@@ -55,33 +55,6 @@ namespace Zuehlke.ExpenseReporting.Controllers
         }
 
         /// <summary>
-        /// Adds the provided expense record to the database.
-        /// </summary>
-        /// <param name="record">The record to be added.</param>
-        /// <returns>
-        /// HTTP 201 containing the URI of the newly created resource if successful,
-        /// HTTP 409 if the provided expense record already exists, 
-        /// or HTTP 400 if no record was present in the body of the request
-        /// </returns>
-        [HttpPost]
-        public IActionResult Post([FromBody]ExpenseRecord record)
-        {
-            try
-            {
-                this.repository.Create(record);
-                return this.Created($"api/expenses/{record.Id}", null);
-            }
-            catch (ArgumentNullException)
-            {
-                return this.BadRequest();
-            }
-            catch (InvalidOperationException)
-            {
-                return new StatusCodeResult((int)HttpStatusCode.Conflict);
-            }
-        }
-
-        /// <summary>
         /// Updates the provided expense record in the database.
         /// </summary>
         /// <param name="record">The record to be added.</param>
