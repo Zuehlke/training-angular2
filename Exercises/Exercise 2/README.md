@@ -69,6 +69,7 @@ public class ExpenseController : Controller
 
   ```typescript
 import { Observable } from 'rxjs/Observable';
+import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
 import { Expense } from '../model/expense';
