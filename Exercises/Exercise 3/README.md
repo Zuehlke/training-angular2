@@ -29,7 +29,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 
 #### 1. Extend the ExpenseController ####
 
-1. Create a method named `Delete(Guid id)` returning an `IAsyncResult` and decorate this method using the `[HttpDelete({id})]` attribute.
+1. Create a method named `Delete(Guid id)` returning an `IAsyncResult` and decorate this method using the `[HttpDelete("{id}")]` attribute.
 1. Invoke the `Delete()` method of the repository passing the id of the expense record:
   * If the delete method returns fine return `this.NoContent(`).
   * If the delete method throws an InvalidOperationException return `this.NotFound()`.
