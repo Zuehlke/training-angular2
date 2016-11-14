@@ -22,11 +22,11 @@ namespace Zuehlke.ExpenseReporting.Data
         /// </summary>
         public ExpenseRepository()
         {
-            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), Date = "11.10.2016", Name = "Anakin Skywalker", Reason = ExpenseReason.Flight, Text = "Flight to Tatooine, visiting Mom", Amount = 122.99m });
-            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000002"), Date = "12.10.2016", Name = "Padme Amidala", Reason = ExpenseReason.Flight, Text = "Flight to Tatooine, visiting Annie's Mom", Amount = 122.99m });
-            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000003"), Date = "13.10.2016", Name = "Obi-Wan Kenobi", Reason = ExpenseReason.Other, Text = "New Lightsabre", Amount = 3999.99m });
-            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000004"), Date = "14.10.2016", Name = "The Dark Lord", Reason = ExpenseReason.Restaurant, Text = "I had the Penne a L'Arrabiata", Amount = 3.90m });
-            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000005"), Date = "15.10.2016", Name = "Jar Jar Binx", Reason = ExpenseReason.Restaurant, Text = "Apple", Amount = 0.2m });
+            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), Date = new DateTime(2016, 10, 11), Name = "Anakin Skywalker", Reason = ExpenseReason.Flight, Text = "Flight to Tatooine, visiting Mom", Amount = 122.99m });
+            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000002"), Date = new DateTime(2016, 10, 12), Name = "Padme Amidala", Reason = ExpenseReason.Flight, Text = "Flight to Tatooine, visiting Annie's Mom", Amount = 122.99m });
+            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000003"), Date = new DateTime(2016, 10, 13), Name = "Obi-Wan Kenobi", Reason = ExpenseReason.Other, Text = "New Lightsabre", Amount = 3999.99m });
+            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000004"), Date = new DateTime(2016, 10, 14), Name = "The Dark Lord", Reason = ExpenseReason.Restaurant, Text = "I had the Penne a L'Arrabiata", Amount = 3.90m });
+            this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000005"), Date = new DateTime(2016, 10, 15), Name = "Jar Jar Binx", Reason = ExpenseReason.Restaurant, Text = "Apple", Amount = 0.2m });
         }
 
         #endregion
