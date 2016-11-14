@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
-    zuehlkeLogo: string = require('../../assets/images/zuehlke_logo.jpg');
+    zuehlkeLogo: string = require('../assets/images/zuehlke_logo.jpg');
     pageTitle: string = 'Welcome to the Expenses Management Tool';
 
 }
