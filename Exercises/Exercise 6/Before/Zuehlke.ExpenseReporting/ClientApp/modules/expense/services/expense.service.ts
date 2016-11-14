@@ -29,17 +29,14 @@ export class ExpenseService {
 
     createExpense(expense: Expense): Observable<Response> {
         expense.id = this.generateGuid();
-        const dtoExpense = JSON.parse(JSON.stringify(expense));
-
-        return this.http.post(this.expenseUrl, dtoExpense, { headers: this.headers });
+        
+        return this.http.post(this.expenseUrl, expense);
     }
 
     updateExpense(expense: Expense): Observable<Response> {
         const url = `${this.expenseUrl}/${expense.id}`;
   
-        const dtoExpense = JSON.parse(JSON.stringify(expense));
-
-        return this.http.put(url, dtoExpense, { headers: this.headers });
+        return this.http.put(url, expense);
     }
 
     deleteExpense(expense: Expense): Observable<Response> {
