@@ -3,11 +3,11 @@
     <div class="panel-body">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-1">Filter by:</div>
-                <div class="col-md-2">
+                <div class="col-md-2">Filter by:</div>
+                <div class="col-md-3">
                     <input type="text" [(ngModel)]="expenseFilterInput" />
                 </div>
-                <div class="col-md-9" *ngIf="expenseFilterInput">
+                <div class="col-md-7" *ngIf="expenseFilterInput">
                     Filtered by: <strong>{{ expenseFilterInput }}</strong>
                 </div>
             </div>
