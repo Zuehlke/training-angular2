@@ -1,0 +1,48 @@
+<form class="form-horizontal" role="form" #expenseForm="ngForm">
+
+    <div class="form-group">
+        <label for="name" class="col-sm-1 control-label">Name</label>
+        <div class="col-sm-11">
+            <input [(ngModel)]="expense.name" type="text" class="form-control" id="name" name="name" required placeholder="Name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="date" class="col-sm-1 control-label">Date</label>
+        <div class="col-sm-4">
+            <input [ngModel]="expense.date | date:'y-M-dd'" (ngModelChange)="expense.date = $event" name="date" type="date" class="form-control" id="date" required placeholder="Date">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="text" class="col-sm-1 control-label">Text</label>
+        <div class="col-sm-11">
+            <textarea [(ngModel)]="expense.text" rows="2" required type="text" class="form-control" id="text" name="text" placeholder="Text"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="amount" class="col-sm-1 control-label">Amount</label>
+        <div class="col-sm-4">
+            <div class="input-group">
+                <span class="input-group-addon">&euro;</span>
+                <input [(ngModel)]="expense.amount" required type="number" step="0.01" class="form-control" id="amount" name="amount" />
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="reason" class="col-sm-1 control-label">Reason</label>
+        <div class="col-sm-2">
+            <select [(ngModel)]="expense.reason" class="form-control" id="reason" name="reason" required>
+                <option [selected]="expense.reason === 'Flight'" [value]="'Flight'">Flight</option>
+                <option [selected]="expense.reason === 'Train'" [value]="'Train'">Train</option>
+                <option [selected]="expense.reason === 'Bus'" [value]="'Bus'">Bus</option>
+                <option [selected]="expense.reason === 'Taxi'" [value]="'Taxi'">Taxi</option>
+                <option [selected]="expense.reason === 'Hotel'" [value]="'Hotel'">Hotel</option>
+                <option [selected]="expense.reason === 'Restaurant'" [value]="'Restaurant'">Restaurant</option>
+                <option [selected]="expense.reason === 'Other'" [value]="'Other'">Other</option>
+            </select>
+        </div>
+    </div>
+</form>
