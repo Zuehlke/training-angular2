@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Expense } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 @Component({
     template: require('./expense-add.component.html')

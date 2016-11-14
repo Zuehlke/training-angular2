@@ -1,5 +1,6 @@
 import { Component, OnInit }  from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 import { Expense } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
