@@ -6,7 +6,6 @@ This repository contains materials and source code for the workshop introducing 
 
 * In the [Application](Application) folder you can find the example application from the workshop in its final state.
 * The [Exercises](Exercises) folder contains the materials for the exercises made in this workshop.
-* The [Demos](Demos) folder contains material used by the trainers for demonstrating angular or ASP.NET Core features. You will find more explanations however when using the example application or the exercises.
 
 ### Additional Materials ###
 
