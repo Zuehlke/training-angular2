@@ -23,7 +23,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 1. Create a new Web App using the Azure portal.
 2. Use Visual Studio to deploy the application to Azure.
 
-+### Implementation Hints ###
+### Implementation Hints ###
 
 1. Open the Azure Portal (https://portal.azure.com) and sign in using the Microsoft ID assigned to your MSDN-subscription.
 2. Open the "App Services" section, then select "Web App" and click "Create".
