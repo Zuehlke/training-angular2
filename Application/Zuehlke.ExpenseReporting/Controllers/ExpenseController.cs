@@ -77,7 +77,7 @@ namespace Zuehlke.ExpenseReporting.Controllers
             }
             catch (InvalidOperationException)
             {
-                return new StatusCodeResult((int)HttpStatusCode.Conflict);
+                return this.StatusCode((int)HttpStatusCode.Conflict);
             }
         }
 
