@@ -39,7 +39,7 @@ and then
 
 1. Implement the `createExpense()` method in the add component to invoke the `createExpense(expense: Expense)` method of the `ExpenseService`.
 1. Call the `subscribe()` method to return to the expense overview or call the `handleError()` method to provide an error message to the user.
-1. Surround the existing button in the detail view with a button-group.
+1. Surround the existing button in the add view with a button-group.
 1. Add a second button to the group. Mark this button as the primary button and change the icon to the save icon. Set the caption to "Create Expense".
 1. Use the `createExpense()` method as a click handler for the newly created button.
 
