@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
 
 import { Expense } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
