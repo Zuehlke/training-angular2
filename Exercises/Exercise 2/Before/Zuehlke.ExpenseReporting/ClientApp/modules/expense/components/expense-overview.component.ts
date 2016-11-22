@@ -1,20 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { ExpenseService }  from '../services/expense.service';
-import { Expense }  from '../model/expense';
+import { Component }  from '@angular/core';
 
 @Component({
     template: require('./expense-overview.component.html'),
 })
-export class ExpenseOverviewComponent implements OnInit{
-
-    public expenses: Expense[];
-
-    constructor(private expenseService: ExpenseService) {
-    }
-
-    ngOnInit(): void {
-        this.expenseService.getExpenses()
-            .subscribe(exp => this.expenses = exp);
-    }
-};
+export class ExpenseOverviewComponent {
+}

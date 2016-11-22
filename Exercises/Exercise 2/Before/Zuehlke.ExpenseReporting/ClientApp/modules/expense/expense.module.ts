@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { expenseRouting } from './expense.routing';
 import { ExpenseOverviewComponent } from './components/expense-overview.component';
-import { ExpenseService } from './services/expense.service';
 
 @NgModule({
   imports: [
@@ -11,9 +10,6 @@ import { ExpenseService } from './services/expense.service';
   ],
   declarations: [
     ExpenseOverviewComponent,
-  ],
-  providers: [
-      ExpenseService
   ]
 })
 export class ExpenseModule { }
