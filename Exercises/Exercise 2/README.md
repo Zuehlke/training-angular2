@@ -33,7 +33,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 1. Add a class named `ExpenseController` that inherits from the `Microsoft.AspNetCore.Mvc.Controller` class to the Controller folder of the application.
 1. Add a `[Route(...)]` attribute to the class indicating the URL this controller can be addressed on.
 1. Create a field holding an `IExpenseRepository` and initialize that field using a constructor parameter.
-1. Create a method named `Get()` returning an `IAsyncResult` and decorate this method using the `[HttpGet]` attribute.
+1. Create a method named `Get()` returning an `IActionResult` and decorate this method using the `[HttpGet]` attribute.
 1. Invoke the `Ok()` method of the current class to return the results of the `All()` method of the expense repository.
 
   By now the ExpenseController class should look like this:
