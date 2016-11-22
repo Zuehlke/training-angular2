@@ -86,7 +86,7 @@ export class ExpenseOverviewComponent {
 
 #### 3. Configure the routing ####
 
-1. Add a file named "expense.routing.ts" to the module folder and export a list of routes containing a route to the new component.
+1. Add a file named "expense.routing.ts" to the module's folder and export a list of routes containing a route to the new component.
 1. Also link the new router to the router of the application.
 
   The routing information should look like this now:
