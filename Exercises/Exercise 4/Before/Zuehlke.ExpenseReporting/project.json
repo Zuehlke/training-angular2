@@ -39,10 +39,11 @@
 
   "buildOptions": {
     "emitEntryPoint": true,
+    "debugType": "portable",
     "preserveCompilationContext": true,
-	"compile": {
-		"exclude": ["node_modules"]
-	}
+    "compile": {
+      "exclude": [ "node_modules" ]
+    }
   },
 
   "runtimeOptions": {
