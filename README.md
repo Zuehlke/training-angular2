@@ -24,6 +24,8 @@ https://www.amazon.de/dp/1491927062/ref=cm_sw_em_r_mt_dp_1m3iybTCV244E
 
 * **Angular Tutorial**, tutorial for Angular 2, published by Google  
 https://angular.io/docs/ts/latest/tutorial 
+* **Rangle's Angular Training Book**, online book, published by Rangle  
+https://angular-2-training-book.rangle.io/
 * **Angular University Blog**, Blog about Angular.   
 http://blog.angular-university.io/
 * **Thoughtram**, Blog about Angular and other topics. Written by Angular contributors.   
