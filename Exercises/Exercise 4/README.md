@@ -43,7 +43,7 @@ to make sure all dependencies are loaded and the vendor scripts have been built 
 
 1. Create a method named `Put()` returning an `IActionResult` and decorate this method using the `[HttpPut("{id}")]` attribute.
 1. Extend the method to have a parameter of type `ExpenseRecord` that is decorated with the `[FromBody]` attribute.
-1. Invoke the `Update(Expense expense)` method of the repository passing the expense record that is to be updated:
+1. Invoke the `Update(ExpenseRecord expense)` method of the repository passing the expense record that is to be updated:
   * If the update method returns fine return `this.NoContent()`.
   * If the update method throws an InvalidOperationException return `this.NotFound()`.
   * If the update method throws an ArgumentNullException return `this.BadRequest()`.
