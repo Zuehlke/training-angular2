@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { Expense } from '../model/expense';
+import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
@@ -11,10 +11,10 @@ import 'rxjs/add/observable/throw';
 })
 export class ExpenseAddComponent {
 
-    expense: Expense = new Expense(null, null, null, null, 0, null);
+    expense: ExpenseRecord = new ExpenseRecord(null, null, null, new Date(Date.now()), 0, null);
     errorMessage: string;
 
-    constructor(private router: Router, private expenseService: ExpenseService) { }
+    constructor(private router: Router, private expenseService: ExpenseService) {}
 
     createExpense(): void {
         this.expenseService.createExpense(this.expense)
@@ -22,7 +22,7 @@ export class ExpenseAddComponent {
     }
 
     goBack(): void {
-        this.router.navigate(['/overview']);
+        this.router.navigate(['/expense']);
     }
 
     private handleError(error: Response): Observable<Response> {
