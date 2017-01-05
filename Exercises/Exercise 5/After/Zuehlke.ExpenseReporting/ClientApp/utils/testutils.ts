@@ -3,7 +3,7 @@ import { NavigationExtras } from "@angular/router";
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export class RouterStub {
-    navigate(url: string) : string { return url; }
+    navigate(url: string): string { return url; }
 }
 
 @Injectable()
@@ -15,7 +15,9 @@ export class ActivatedRouteStub {
 
     // Test parameters
     private theTestParams: {};
+
     get testParams() { return this.theTestParams; }
+
     set testParams(params: {}) {
         this.theTestParams = params;
         this.subject.next(params);

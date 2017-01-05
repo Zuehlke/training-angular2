@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { Expense } from '../model/expense';
+import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 
 @Component({
@@ -11,6 +11,7 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class ExpenseFormComponent {
 
-    @Input() expense: Expense;
+    @Input()
+    expense: ExpenseRecord;
 
 }
