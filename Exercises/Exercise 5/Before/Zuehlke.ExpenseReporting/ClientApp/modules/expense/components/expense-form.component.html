@@ -10,7 +10,7 @@
     <div class="form-group">
         <label for="date" class="col-sm-1 control-label">Date</label>
         <div class="col-sm-4">
-            <input [ngModel]="expense.date | date:'y-M-dd'" (ngModelChange)="expense.date = $event" name="date" type="date" class="form-control" id="date" required placeholder="Date">
+            <input [ngModel]="expense.date | date:'y-MM-dd'" (ngModelChange)="expense.date = $event" name="date" type="date" class="form-control" id="date" required placeholder="Date">
         </div>
     </div>
 
@@ -33,7 +33,7 @@
 
     <div class="form-group">
         <label for="reason" class="col-sm-1 control-label">Reason</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <select [(ngModel)]="expense.reason" class="form-control" id="reason" name="reason" required>
                 <option [selected]="expense.reason === 'Flight'" [value]="'Flight'">Flight</option>
                 <option [selected]="expense.reason === 'Train'" [value]="'Train'">Train</option>
