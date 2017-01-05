@@ -106,11 +106,11 @@
           }
         }
       },
-      "Microsoft.AspNetCore.AngularServices/1.0.0-beta-000019": {
+      "Microsoft.AspNetCore.AngularServices/1.0.0-beta-000021": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc.TagHelpers": "1.0.1",
-          "Microsoft.AspNetCore.SpaServices": "1.0.0-beta-000019"
+          "Microsoft.AspNetCore.SpaServices": "1.0.0-beta-000021"
         },
         "compile": {
           "lib/netstandard1.6/Microsoft.AspNetCore.AngularServices.dll": {}
@@ -648,29 +648,23 @@
           "lib/netstandard1.6/Microsoft.AspNetCore.Mvc.ViewFeatures.dll": {}
         }
       },
-      "Microsoft.AspNetCore.NodeServices/1.0.0-beta-000019": {
+      "Microsoft.AspNetCore.NodeServices/1.0.0-beta-000021": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Hosting.Abstractions": "1.0.0",
           "Microsoft.Extensions.Configuration.Json": "1.0.0",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "1.0.0",
           "Microsoft.Extensions.Logging.Console": "1.0.0",
-          "Microsoft.Extensions.PlatformAbstractions": "1.0.0",
+          "NETStandard.Library": "1.6.0",
           "Newtonsoft.Json": "9.0.1",
-          "System.Console": "4.0.0",
           "System.Diagnostics.Process": "4.1.0",
           "System.IO.Pipes": "4.0.0",
-          "System.Net.Http": "4.1.0",
-          "System.Net.Sockets": "4.1.0",
-          "System.Runtime.InteropServices.RuntimeInformation": "4.0.0",
-          "System.Text.RegularExpressions": "4.1.0",
-          "System.Threading.Tasks.Dataflow": "4.5.25"
+          "System.Threading.Tasks.Dataflow": "4.6.0"
         },
         "compile": {
-          "lib/netstandard1.3/Microsoft.AspNetCore.NodeServices.dll": {}
+          "lib/netstandard1.6/Microsoft.AspNetCore.NodeServices.dll": {}
         },
         "runtime": {
-          "lib/netstandard1.3/Microsoft.AspNetCore.NodeServices.dll": {}
+          "lib/netstandard1.6/Microsoft.AspNetCore.NodeServices.dll": {}
         }
       },
       "Microsoft.AspNetCore.Razor/1.0.0": {
@@ -794,11 +788,11 @@
           "lib/netstandard1.3/Microsoft.AspNetCore.Server.Kestrel.dll": {}
         }
       },
-      "Microsoft.AspNetCore.SpaServices/1.0.0-beta-000019": {
+      "Microsoft.AspNetCore.SpaServices/1.0.0-beta-000021": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Mvc": "1.0.1",
-          "Microsoft.AspNetCore.NodeServices": "1.0.0-beta-000019"
+          "Microsoft.AspNetCore.NodeServices": "1.0.0-beta-000021"
         },
         "compile": {
           "lib/netstandard1.6/Microsoft.AspNetCore.SpaServices.dll": {}
@@ -4135,15 +4129,17 @@
         "runtimes/win7-x86/native/libuv.dll"
       ]
     },
-    "Microsoft.AspNetCore.AngularServices/1.0.0-beta-000019": {
-      "sha512": "Zb5EIQ2nWznWFHS7ZvO2FRFoMnAD1KIwEc53hbVM5u02oJO+yiaBqm7aOtcTQgXAt1TzwVFIaNaTYOtdq89mfQ==",
+    "Microsoft.AspNetCore.AngularServices/1.0.0-beta-000021": {
+      "sha512": "+nqJS2hCf2mhZD5ivPnexQI4w8G9zjvFZs7j2SO4zZc5tw2D8UDC60xMrSs8JsLQ+oSD3shjy+Kfjzgc/yKpJg==",
       "type": "package",
-      "path": "Microsoft.AspNetCore.AngularServices/1.0.0-beta-000019",
+      "path": "Microsoft.AspNetCore.AngularServices/1.0.0-beta-000021",
       "files": [
-        "Microsoft.AspNetCore.AngularServices.1.0.0-beta-000019.nupkg.sha512",
+        "Microsoft.AspNetCore.AngularServices.1.0.0-beta-000021.nupkg.sha512",
         "Microsoft.AspNetCore.AngularServices.nuspec",
         "lib/net451/Microsoft.AspNetCore.AngularServices.dll",
-        "lib/netstandard1.6/Microsoft.AspNetCore.AngularServices.dll"
+        "lib/net451/Microsoft.AspNetCore.AngularServices.xml",
+        "lib/netstandard1.6/Microsoft.AspNetCore.AngularServices.dll",
+        "lib/netstandard1.6/Microsoft.AspNetCore.AngularServices.xml"
       ]
     },
     "Microsoft.AspNetCore.Antiforgery/1.0.1": {
@@ -4543,15 +4539,17 @@
         "lib/netstandard1.6/Microsoft.AspNetCore.Mvc.ViewFeatures.xml"
       ]
     },
-    "Microsoft.AspNetCore.NodeServices/1.0.0-beta-000019": {
-      "sha512": "UKvXTY0TU0u4FSMo/IMezqdpeE3ChcqV+H+dhCr8QK6eEhWrB22XA6DZ/3flgnuQI5hS0Wzy6ZU0GCucWt1nOQ==",
+    "Microsoft.AspNetCore.NodeServices/1.0.0-beta-000021": {
+      "sha512": "wj1iYE+8OmLzdJffaEMMqVoK0CXOqOCl3dywsqrzpjmeyp2dQLV1XsZHDi7BeE616AxEAJh5mUWVhKyeixgmLA==",
       "type": "package",
-      "path": "Microsoft.AspNetCore.NodeServices/1.0.0-beta-000019",
+      "path": "Microsoft.AspNetCore.NodeServices/1.0.0-beta-000021",
       "files": [
-        "Microsoft.AspNetCore.NodeServices.1.0.0-beta-000019.nupkg.sha512",
+        "Microsoft.AspNetCore.NodeServices.1.0.0-beta-000021.nupkg.sha512",
         "Microsoft.AspNetCore.NodeServices.nuspec",
         "lib/net451/Microsoft.AspNetCore.NodeServices.dll",
-        "lib/netstandard1.3/Microsoft.AspNetCore.NodeServices.dll"
+        "lib/net451/Microsoft.AspNetCore.NodeServices.xml",
+        "lib/netstandard1.6/Microsoft.AspNetCore.NodeServices.dll",
+        "lib/netstandard1.6/Microsoft.AspNetCore.NodeServices.xml"
       ]
     },
     "Microsoft.AspNetCore.Razor/1.0.0": {
@@ -4632,15 +4630,17 @@
         "lib/netstandard1.3/Microsoft.AspNetCore.Server.Kestrel.xml"
       ]
     },
-    "Microsoft.AspNetCore.SpaServices/1.0.0-beta-000019": {
-      "sha512": "YLY9l1zhZdbycBI/eGUaLAybTjLWF/lv+88cw0U1SVENKd/4G7Hjrsyg3L82jlQ/Me0og7EilP6a7ds75TLbDQ==",
+    "Microsoft.AspNetCore.SpaServices/1.0.0-beta-000021": {
+      "sha512": "dPTurQJtGC4ThQ7xqcit5gha5exm5ZXl8kM3cgQhkLnz28fCb99NV2DwlbytL08hnWcOMvB4K8PuXO2bqBLjUg==",
       "type": "package",
-      "path": "Microsoft.AspNetCore.SpaServices/1.0.0-beta-000019",
+      "path": "Microsoft.AspNetCore.SpaServices/1.0.0-beta-000021",
       "files": [
-        "Microsoft.AspNetCore.SpaServices.1.0.0-beta-000019.nupkg.sha512",
+        "Microsoft.AspNetCore.SpaServices.1.0.0-beta-000021.nupkg.sha512",
         "Microsoft.AspNetCore.SpaServices.nuspec",
         "lib/net451/Microsoft.AspNetCore.SpaServices.dll",
-        "lib/netstandard1.6/Microsoft.AspNetCore.SpaServices.dll"
+        "lib/net451/Microsoft.AspNetCore.SpaServices.xml",
+        "lib/netstandard1.6/Microsoft.AspNetCore.SpaServices.dll",
+        "lib/netstandard1.6/Microsoft.AspNetCore.SpaServices.xml"
       ]
     },
     "Microsoft.AspNetCore.StaticFiles/1.0.0": {
