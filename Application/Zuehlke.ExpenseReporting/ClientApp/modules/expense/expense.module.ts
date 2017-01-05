@@ -12,7 +12,9 @@ import { ExpenseService } from './services/expense.service';
 
 @NgModule({
     imports: [
-        FormsModule, CommonModule, expenseRouting
+        FormsModule,
+        CommonModule,
+        expenseRouting
     ],
     declarations: [
         ExpenseOverviewComponent,
