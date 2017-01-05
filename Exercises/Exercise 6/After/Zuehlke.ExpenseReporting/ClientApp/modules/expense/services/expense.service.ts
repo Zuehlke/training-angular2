@@ -1,49 +1,42 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http, Response } from '@angular/http';
+import { Http, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/observable/throw';
 
-import { Expense } from '../model/expense';
+import { ExpenseRecord } from '../model/expense';
 
 @Injectable()
 export class ExpenseService {
 
     private expenseUrl = 'api/expenses';
 
-    constructor(private http: Http) { }
+    constructor(private http: Http) {}
 
-    getExpenses(): Observable<Expense[]> {
+    getExpenses(): Observable<ExpenseRecord[]> {
         return this.http.get(this.expenseUrl)
             .map(response => response.json() || []);
     }
 
-    getExpense(id: string): Observable<Expense> {
-        return this.getExpenses()
-            .map((expenses: Expense[]) => expenses.find(p => p.id === id));
+    getExpense(id: string): Observable<ExpenseRecord> {
+        return this.http.get(`${this.expenseUrl}/${id}`)
+            .map(response => response.json());
     }
 
-    createExpense(expense: Expense): Observable<Response> {
-        expense.id = this.generateGuid();
+    updateExpense(expense: ExpenseRecord): Observable<Response> {
+        return this.http.put(`${this.expenseUrl}/${expense.id}`, expense);
+    }
 
+    createExpense(expense: ExpenseRecord): Observable<Response> {
+        expense.id = this.generateGuid();
         return this.http.post(this.expenseUrl, expense);
     }
 
-    updateExpense(expense: Expense): Observable<Response> {
-        const url = `${this.expenseUrl}/${expense.id}`;
-
-        return this.http.put(url, expense);
+    deleteExpense(expense: ExpenseRecord): Observable<Response> {
+        return this.http.delete(`${this.expenseUrl}/${expense.id}`);
     }
 
-    deleteExpense(expense: Expense): Observable<Response> {
-        const url = `${this.expenseUrl}/${expense.id}`;
-
-        return this.http.delete(url);
-    }
-
-    private generateGuid() : string {
+    private generateGuid(): string {
         return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
             this.s4() + '-' + this.s4() + this.s4() + this.s4();
     }
@@ -53,5 +46,4 @@ export class ExpenseService {
             .toString(16)
             .substring(1);
     }
-
 }
