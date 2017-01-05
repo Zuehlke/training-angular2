@@ -1,7 +1,7 @@
-import { Component, OnInit }  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Expense } from '../model/expense';
+import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 
 @Component({
@@ -10,23 +10,23 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class ExpenseOverviewComponent implements OnInit {
 
-    expenses: Expense[];
+    expenses: ExpenseRecord[];
     errorMessage: string;
 
-    constructor(private expenseService: ExpenseService) { }
+    constructor(private expenseService: ExpenseService) {}
 
     ngOnInit(): void {
         this.expenseService.getExpenses()
             .subscribe(expenses => this.expenses = expenses, error => this.errorMessage = error);
     }
 
-    deleteExpense(expense: Expense) : void {
+    deleteExpense(expense: ExpenseRecord): void {
         this.expenseService.deleteExpense(expense)
             .subscribe(() => { this.expenses = this.expenses.filter(exp => exp.id !== expense.id) },
-            error =>  { this.handleError(error, expense) });
+                error => { this.handleError(error, expense) });
     }
 
-    private handleError(error, expense: Expense) : Observable<any> {
+    private handleError(error, expense: ExpenseRecord): Observable<any> {
         console.error('Error deleting expense with id: ' + expense.id);
         return Observable.throw(error);
     }

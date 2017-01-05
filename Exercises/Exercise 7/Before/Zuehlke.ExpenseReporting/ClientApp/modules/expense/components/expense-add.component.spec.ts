@@ -11,7 +11,7 @@ import { RouterStub } from '../../../utils/testutils';
 import { ExpenseAddComponent } from './expense-add.component';
 import { ExpenseFormComponent } from './expense-form.component';
 import { ExpenseService } from '../services/expense.service';
-import { Expense, Reason } from '../model/expense';
+import { ExpenseRecord, ExpenseReason } from '../model/expense';
 
 describe('ExpenseDetailComponent', () => {
 
@@ -19,7 +19,7 @@ describe('ExpenseDetailComponent', () => {
     let fixture: ComponentFixture<ExpenseAddComponent>;
     let expenseService: ExpenseService;
 
-    const newExpense = new Expense(null, 'Palpatine', Reason.Hotel, new Date('1999/1/12'), 54.00, 'Reasoning about the dark side of the force');
+    const newExpense = new ExpenseRecord(null, 'Palpatine', ExpenseReason.Hotel, new Date('1999/1/12'), 54.00, 'Reasoning about the dark side of the force');
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -46,7 +46,7 @@ describe('ExpenseDetailComponent', () => {
         backButton.triggerEventHandler('click', null); //click back button
 
         const routerArguments = spy.calls.first().args[0]; //check that router was called with overview route
-        expect(routerArguments).toEqual(['/overview']); 
+        expect(routerArguments).toEqual(['/expense']);
     }));
 
     it('should create a new expense if the save button was clicked', async(inject([Router], (router: Router) => {
@@ -63,10 +63,8 @@ describe('ExpenseDetailComponent', () => {
             expect(expenseService.updateExpense).not.toHaveBeenCalled();
 
             const routerArguments = spy.calls.first().args[0]; //check that router was called with overview route
-            expect(routerArguments).toEqual(['/overview']);
+            expect(routerArguments).toEqual(['/expense']);
         });
     })));
 
 });
-
-
