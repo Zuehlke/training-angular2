@@ -28,6 +28,7 @@ export class ExpenseOverviewComponent implements OnInit {
 
     private handleError(error, expense: ExpenseRecord): Observable<any> {
         console.error('Error deleting expense with id: ' + expense.id);
+        this.errorMessage = `The remote server returned HTTP ${error.status}: ${error.statusText}`;
         return Observable.throw(error);
     }
 }
