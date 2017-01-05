@@ -12,7 +12,7 @@ This repository contains materials and source code for the workshop introducing 
 - [Table of Contents](#table-of-contents)
 - [Before you Start](#before-you-start)
     - [Installation Prerequisites](#installation-prerequisites)
-    - [Running an Example Project](#running-an-example-project)
+    - [Running an Example Project or Exercise](#running-an-example-project-or-exercise)
 - [Additional Materials](#additional-materials)
     - [Books](#books)
     - [Blogs, Websites and Articles](#blogs-websites-and-articles)
@@ -42,7 +42,7 @@ Additionally you will need to install webpack and typings globally by opening a 
 npm install -g webpack typings
 ```
 
-### Running an Example Project ###
+### Running an Example Project or Exercise ###
 
 This repository contains a whole bunch of Visual Studio solutions, both for the exercise and for the example application. To get one of the solutions running you need to execute these steps:
 

@@ -2,22 +2,6 @@
 
 In this exercise you will write unit tests in order to test the behaviour of the application.
 
-### Before you start ###
-
-Open the solution contained in the [Before][1] folder of this tutorial. After opening the solution for the first time, open a console window, switch to the [Zuehlke.ExpenseReporting][2] folder and run
-
-```bash
-npm install
-```
-
-followed by
-
-```bash
-webpack --config webpack.config.vendor.js
-```
-
-to make sure all dependencies are loaded and the vendor scripts have been built and included properly.
-
 ### Tasks ###
 
 1. Add a unit test that tests that an expense record can be deleted in the backend.

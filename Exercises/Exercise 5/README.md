@@ -2,17 +2,6 @@
 
 In this exercise, we reuse the existing form component and use it to add a new expense. For that, we also have to implement the add functionality in the backend.
 
-### Preparations ###
-
-Make sure after the checkout that you go to the `Zuehlke.ExpenseReporting` directory and run
-
-	npm install
-
-and then
-
-	webpack --config webpack.config.vendor.js
-
-
 ### Tasks ###
 
 1. Extend the `ExpenseController` to support creating a new expense.

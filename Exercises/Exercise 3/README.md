@@ -2,22 +2,6 @@
 
 In this exercise you will extend the application to support the deletion of an expense record.
 
-### Before you start ###
-
-Open the solution contained in the [Before][1] folder of this tutorial. After opening the solution for the first time, open a console window, switch to the [Zuehlke.ExpenseReporting][2] folder and run
-
-```bash
-npm install
-```
-
-followed by
-
-```bash
-webpack --config webpack.config.vendor.js
-```
-
-to make sure all dependencies are loaded and the vendor scripts have been built and included properly.
-
 ### Tasks ###
 
 1. Extend the ExpenseController to delete an expense when its being invoked using the HTTP verb DELETE. Make sure the method returns HTTP 204 on successful deletion and HTTP 404 if the expense record was not found in the database.
