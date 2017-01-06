@@ -1,18 +1,24 @@
 <div class="panel panel-primary">
     <div class="panel-heading">Expenses Overview</div>
+    
     <div class="panel-body">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-1">Filter by:</div>
-                <div class="col-md-2">
-                    <input type="text" [(ngModel)]="expenseFilterInput" />
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label for="filterInputTextField" class="col-sm-1 control-label">Filter by:</label>
+                    <div class="col-sm-3">
+                        <input type="text" class="form-control" id="filterInputTextField" name="filterInput" [(ngModel)]="expenseFilterInput" placeholder="Name">
+                    </div>
+                    <div class="col-sm-8 help-block" *ngIf="expenseFilterInput">Filtered by: <strong>{{ expenseFilterInput }}</strong>
+                    </div>
                 </div>
-                <div class="col-md-9" *ngIf="expenseFilterInput">
-                    Filtered by: <strong>{{ expenseFilterInput }}</strong>
-                </div>
+            </div>
+            <div class="alert alert-danger" *ngIf="errorMessage" role="alert">
+                <strong>Oh snap!</strong> {{errorMessage}}
             </div>
         </div>
     </div>
+
     <table class="table" *ngIf="expenses && expenses.length">
         <thead>
             <tr>
@@ -31,7 +37,9 @@
                 <td>{{ expense.date | date:"dd/MM/yyyy" }}</td>
                 <td>{{ expense.amount | currency:"EUR":true }}</td>
                 <td>{{ expense.reason }}</td>
-                <td><a class="glyphicon glyphicon-remove delete" (click)="deleteExpense(expense); $event.stopPropagation()"></a></td>
+                <td>
+                    <a class="glyphicon glyphicon-remove delete" (click)="deleteExpense(expense); $event.stopPropagation()"></a>
+                </td>
             </tr>
         </tbody>
     </table>

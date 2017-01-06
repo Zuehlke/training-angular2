@@ -10,18 +10,20 @@ import { ExpenseFilterPipe } from './pipes/expense-filter.pipe';
 import { ExpenseService } from './services/expense.service';
 
 @NgModule({
-  imports: [
-      FormsModule, CommonModule, expenseRouting
-  ],
-  declarations: [
-    ExpenseOverviewComponent,
-    ExpenseDetailComponent,
-    ExpenseFormComponent,
-    ExpenseFilterPipe
-  ],
-  providers: [
-    ExpenseService
-  ]
+    imports: [
+        FormsModule,
+        CommonModule,
+        expenseRouting
+    ],
+    declarations: [
+        ExpenseOverviewComponent,
+        ExpenseDetailComponent,
+        ExpenseFormComponent,
+        ExpenseFilterPipe
+    ],
+    providers: [
+        ExpenseService
+    ]
 })
-export class ExpenseModule { }
-
+export class ExpenseModule {
+}

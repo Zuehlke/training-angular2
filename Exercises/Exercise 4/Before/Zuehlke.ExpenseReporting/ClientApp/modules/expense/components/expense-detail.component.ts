@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 
-import { Expense } from '../model/expense';
+import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 
 @Component({
@@ -13,7 +13,7 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class ExpenseDetailComponent implements OnInit, OnDestroy {
 
-    expense: Expense;
+    expense: ExpenseRecord;
     private sub: Subscription;
     errorMessage: string;
 
@@ -34,12 +34,12 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
 
 
     goBack(): void {
-        this.router.navigate(['/overview']);
+        this.router.navigate(['/expense']);
     }
 
     private getExpense(id: string): void {
         this.expenseService.getExpense(id)
-            .subscribe(expense => this.expense = expense, error => {this.handleError(error)});
+            .subscribe(expense => this.expense = expense, error => { this.handleError(error) });
     }
 
     private handleError(error: Response): Observable<Response> {

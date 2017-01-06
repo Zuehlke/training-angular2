@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
-import { Expense, Reason } from '../model/expense';
+import { ExpenseRecord, ExpenseReason } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 
 @Component({
@@ -11,14 +11,15 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class ExpenseFormComponent {
 
-    @Input() expense: Expense;
+    @Input()
+    expense: ExpenseRecord;
 
 
     get reasons() {
         let theReasons = [];
-        for (var property in Reason) {
-            if (Reason.hasOwnProperty(property) && !isNaN(parseInt(property))) {
-                theReasons.push(Reason[property]);
+        for (var property in ExpenseReason) {
+            if (ExpenseReason.hasOwnProperty(property) && !isNaN(parseInt(property))) {
+                theReasons.push(ExpenseReason[property]);
             }
         }
 
