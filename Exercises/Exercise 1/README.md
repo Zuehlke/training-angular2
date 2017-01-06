@@ -43,7 +43,7 @@ export class ExpenseModule { }
   Your component declaration should look like this now:
 
   ```typescript
-import { Component }  from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
       template: require('./expense-overview.component.html')
@@ -62,7 +62,7 @@ export class ExpenseOverviewComponent {
         CommonModule
     ],
     declarations: [
-      ExpenseOverviewComponent
+        ExpenseOverviewComponent
     ]
   })
   ```
@@ -75,13 +75,13 @@ export class ExpenseOverviewComponent {
   The routing information should look like this now:
 
   ```typescript
-import { ModuleWithProviders }  from '@angular/core';
+import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 
 import { ExpenseOverviewComponent } from './components/expense-overview.component';
 
 export const expenseRoutes: Routes = [
-      { path: 'overview', component: ExpenseOverviewComponent }
+      { path: 'expense', component: ExpenseOverviewComponent }
 ];
 
 export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expenseRoutes);
@@ -97,21 +97,21 @@ export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expense
         CommonModule, expenseRouting
     ],
     declarations: [
-      ExpenseOverviewComponent
+        ExpenseOverviewComponent
     ]
   })
   ```
 
 #### 4. Add a menu item ####
 
-1. Add a new menu item linking to the `'/overview'` route to the navigation menu in the navmenu.component.html in the components folder of the app module.
+1. Add a new menu item linking to the `'/expense'` route to the navigation menu in the navmenu.component.html in the components folder of the app module.
 
   The newly created menu item should look like this now:
 
   ```html
 <li [routerLinkActive]="['link-active']">
-      <a [routerLink]="['/overview']">
-        <span class='glyphicon glyphicon-th-list'></span> Overview
+      <a [routerLink]="['/expense']">
+        <span class='glyphicon glyphicon-th-list'></span> Expenses
       </a>
 </li>
   ```

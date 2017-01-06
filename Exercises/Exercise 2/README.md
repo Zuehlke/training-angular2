@@ -45,7 +45,7 @@ public class ExpenseController : Controller
 1. Add a file named "expense.service.ts" and implement a class named `ExpenseService` decorated with the `@Injectable()` decorator.
 1. Define a field named `expenseUrl` of type `string` an initialize it with "/api/expenses".
 1. Insert a constructor taking Angular's Http service as a parameter and initializing a private field from it.
-1. Create a method named `getExpenses()` that returns an `Observable<Expense[]>`. Within this method invoke the `get()` method of the Http service to retrieve a list of expense records from the service.
+1. Create a method named `getExpenses()` that returns an `Observable<ExpenseRecord[]>`. Within this method invoke the `get()` method of the Http service to retrieve a list of expense records from the service.
 1. Call the `map()` method to extract the array of expense records from the response or return an empty array if the response has no content.
 
   The `ExpenseService` class should look like this now:
@@ -56,7 +56,7 @@ import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 
-import { Expense } from '../model/expense';
+import { ExpenseRecord } from '../model/expense';
 
 @Injectable()
 export class ExpenseService {
@@ -65,7 +65,7 @@ export class ExpenseService {
 
       constructor(private http: Http) { }
 
-      getExpenses(): Observable<Expense[]> {
+      getExpenses(): Observable<ExpenseRecord[]> {
           return this.http.get(this.expenseUrl)
               .map(response => response.json() || []);
       }
@@ -82,17 +82,17 @@ export class ExpenseService {
         CommonModule
     ],
     declarations: [
-      ExpenseOverviewComponent
+        ExpenseOverviewComponent
     ],
     providers: [
-      ExpenseService
+        ExpenseService
     ]
   })
   ```
 
 #### 3. Load the data ####
 
-1. Add a public field named "expenses" of the type `Expense[]` to the `ExpenseOverview` component.
+1. Add a public field named "expenses" of the type `ExpenseRecord[]` to the `ExpenseOverview` component.
 1. Let the `ExpenseOverview` component implement the `OnInit` interface.
 1. Insert a constructor taking the `ExpenseService` as a parameter and initializing a private field from it.
 1. Implement the `ngOnInit()` method to invoke the `getExpenses()` method of the `ExpenseService`.
@@ -103,7 +103,7 @@ export class ExpenseService {
 import { Component, OnInit }  from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Expense } from '../model/expense';
+import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 
 @Component({
@@ -111,7 +111,7 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class ExpenseOverviewComponent implements OnInit {
 
-      expenses: Expense[];
+      expenses: ExpenseRecord[];
 
       constructor(private expenseService: ExpenseService) { }
 

@@ -34,7 +34,7 @@ In this exercise you will extend the application to support viewing and editing 
 
 #### 4. Extend the ExpenseService ####
 
-1. Create a method named `updateExpense(expense: Expense)` that returns an `Observable<Response>`. Within this method invoke the `put()` method of the Http service using the URL /api/expenses/{id} and the expense passed into the method as body to update the specified expense.
+1. Create a method named `updateExpense(expense: ExpenseRecord)` that returns an `Observable<Response>`. Within this method invoke the `put()` method of the Http service using the URL /api/expenses/{id} and the expense passed into the method as body to update the specified expense.
 
 #### 5. Add a save button ####
 
