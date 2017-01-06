@@ -32,7 +32,7 @@
         <div class="col-sm-4">
             <div class="input-group">
                 <span class="input-group-addon">&euro;</span>
-                <input [(ngModel)]="expense.amount" name="amount" required type="number" step="0.01" ngClass="['']" class="form-control" id="amount" #amount="ngModel"/>
+                <input [(ngModel)]="expense.amount" name="amount" required type="number" step="0.01" class="form-control" id="amount" #amount="ngModel"/>
             </div>
             <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-remove': !amount.valid && !amount.pristine}" aria-hidden="true"></span>
             <span *ngIf="!amount.valid && !amount.pristine" class="help-block">Amount is required</span>
@@ -43,13 +43,7 @@
         <label for="reason" class="col-sm-1 control-label">Reason</label>
         <div class="col-sm-4">
             <select [(ngModel)]="expense.reason" class="form-control" id="reason" name="reason" required>
-                <option [selected]="expense.reason === 'Flight'" [value]="'Flight'">Flight</option>
-                <option [selected]="expense.reason === 'Train'" [value]="'Train'">Train</option>
-                <option [selected]="expense.reason === 'Bus'" [value]="'Bus'">Bus</option>
-                <option [selected]="expense.reason === 'Taxi'" [value]="'Taxi'">Taxi</option>
-                <option [selected]="expense.reason === 'Hotel'" [value]="'Hotel'">Hotel</option>
-                <option [selected]="expense.reason === 'Restaurant'" [value]="'Restaurant'">Restaurant</option>
-                <option [selected]="expense.reason === 'Other'" [value]="'Other'">Other</option>
+                <option *ngFor="let reason of reasons" [selected]="expense.reason === reason" [value]="reason">{{reason}}</option>
             </select>
         </div>
     </div>

@@ -10,19 +10,11 @@ import { ExpenseService } from '../services/expense.service';
 export class ExpenseOverviewComponent implements OnInit {
 
     expenses: ExpenseRecord[];
-    errorMessage: string;
 
     constructor(private expenseService: ExpenseService) {}
 
     ngOnInit(): void {
         this.expenseService.getExpenses()
-            .subscribe(expenses => this.expenses = expenses, error => this.errorMessage = error);
-    }
-
-
-    private handleError(error, expense: ExpenseRecord): Observable<any> {
-        console.error('Error deleting expense with id: ' + expense.id);
-        this.errorMessage = `The remote server returned HTTP ${error.status}: ${error.statusText}`;
-        return Observable.throw(error);
+            .subscribe(expenses => this.expenses = expenses);
     }
 }

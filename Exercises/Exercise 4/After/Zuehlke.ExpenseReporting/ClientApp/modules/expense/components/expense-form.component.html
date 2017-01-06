@@ -33,7 +33,7 @@
 
     <div class="form-group">
         <label for="reason" class="col-sm-1 control-label">Reason</label>
-        <div class="col-sm-2">
+        <div class="col-sm-4">
             <select [(ngModel)]="expense.reason" class="form-control" id="reason" name="reason" required>
                 <option *ngFor="let reason of reasons" [selected]="expense.reason === reason" [value]="reason">{{reason}}</option>
             </select>

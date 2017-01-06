@@ -14,17 +14,13 @@ export class ExpenseFormComponent {
     @Input()
     expense: ExpenseRecord;
 
-
     get reasons() {
-        let theReasons = [];
+        let availableReasons = [];
         for (var property in ExpenseReason) {
             if (ExpenseReason.hasOwnProperty(property) && !isNaN(parseInt(property))) {
-                theReasons.push(ExpenseReason[property]);
+                availableReasons.push(ExpenseReason[property]);
             }
         }
-
-        return theReasons;
+        return availableReasons;
     }
 }
-
-
