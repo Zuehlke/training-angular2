@@ -13,6 +13,7 @@ This repository contains materials and source code for the workshop introducing 
 - [Before you Start](#before-you-start)
     - [Installation Prerequisites](#installation-prerequisites)
     - [Running an Example Project or Exercise](#running-an-example-project-or-exercise)
+    - [Running Unit- or E2E-Tests](#running-unit--or-e2e-tests)
 - [Additional Materials](#additional-materials)
     - [Books](#books)
     - [Blogs, Websites and Articles](#blogs-websites-and-articles)
@@ -36,10 +37,10 @@ To develop the applications you will need to have one of the following setups av
 1) You can work with [**Visual Studio 2015 Update 3**](http://bit.ly/vs2015update3 ) with having [TypeScript 2.0 for Visual Studio](http://bit.ly/TS2forVS2015) and the [ASP.NET Core Template Pack](http://bit.ly/aspnetcoretp) installed.
 2) Or you can use [**Visual Studio Code**](https://code.visualstudio.com/) having the [C# for Visual Studio Code](https://github.com/OmniSharp/omnisharp-vscode) extension installed.
 
-Additionally you will need to install webpack and typings globally by opening a console and running
+Additionally you will need to install a set of tools to run and test t he application globally. Open a console and run
 
 ```bash
-npm install -g webpack typings
+npm install -g webpack typings karma jasmine protractor webdriver-manager
 ```
 
 ### Running an Example Project or Exercise ###
@@ -61,6 +62,27 @@ webpack --config webpack.config.vendor.js
 to bundle the 3rd party scripts and styles for your application.
 
 If your application still refuses to load properly you might need to repeat the `npm install` command.
+
+### Running Unit- or E2E-Tests ###
+
+To run unit-tests open a console at the Zuehlke.ExpenseReporting folder of the solution you want to test and run
+
+```bash
+npm test
+``` 
+
+To run the e2e UI tests open a console at the Zuehlke.ExpenseReporting folder of the solution you want to test and run
+
+```bash
+protractor
+```
+If you experience trouble running the e2e-tests try running
+
+```bash
+webdriver-manager update
+```
+
+to ensure that you have a running version of the selenium server.
 
 ## Additional Materials ##
 
