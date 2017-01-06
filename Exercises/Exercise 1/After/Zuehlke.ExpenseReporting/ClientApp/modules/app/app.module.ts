@@ -4,7 +4,6 @@ import { UniversalModule } from 'angular2-universal';
 import { AppComponent } from './components/app.component'
 import { NavMenuComponent } from './components/navmenu.component';
 import { HomeComponent } from './components/home.component';
-
 import { ExpenseModule } from '../expense/expense.module';
 
 @NgModule({
@@ -12,7 +11,7 @@ import { ExpenseModule } from '../expense/expense.module';
     declarations: [AppComponent, NavMenuComponent, HomeComponent],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
-        ExpenseModule,
+        ExpenseModule, 
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

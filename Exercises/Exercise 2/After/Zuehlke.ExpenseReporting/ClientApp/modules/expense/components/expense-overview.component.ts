@@ -1,7 +1,7 @@
-import { Component, OnInit }  from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
-import { Expense } from '../model/expense';
+import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class ExpenseOverviewComponent implements OnInit {
 
-    expenses: Expense[];
+    expenses: ExpenseRecord[];
 
     constructor(private expenseService: ExpenseService) { }
 
