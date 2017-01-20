@@ -37,7 +37,7 @@ To develop the applications you will need to have one of the following setups av
 1) You can work with [**Visual Studio 2015 Update 3**](http://bit.ly/vs2015update3 ) with having [TypeScript 2.0 for Visual Studio](http://bit.ly/TS2forVS2015) and the [ASP.NET Core Template Pack](http://bit.ly/aspnetcoretp) installed.
 2) Or you can use [**Visual Studio Code**](https://code.visualstudio.com/) having the [C# for Visual Studio Code](https://github.com/OmniSharp/omnisharp-vscode) extension installed.
 
-Additionally you will need to install a set of tools to run and test t he application globally. Open a console and run
+Additionally you will need to install a set of tools to run and test the application globally. Open a console and run
 
 ```bash
 npm install -g webpack typings karma jasmine protractor webdriver-manager
