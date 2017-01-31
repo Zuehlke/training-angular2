@@ -45,6 +45,7 @@ describe('ExpenseDetailComponent', () => {
 
     it('should load the correct expense', async(() => {
         activatedRoute.testParams = { id: expense1.id };
+		spyOn(expenseService, 'getExpense').and.returnValue(new BehaviorSubject(expense1).asObservable());
 
         fixture.detectChanges();
 
@@ -59,6 +60,7 @@ describe('ExpenseDetailComponent', () => {
     }));
 
     it('should navigate to overview when back button is clicked', inject([Router], (router: Router) => {
+		expenseDetailComponent.expense = expense1;
         fixture.detectChanges();
 
         const spy = spyOn(router, 'navigate');
