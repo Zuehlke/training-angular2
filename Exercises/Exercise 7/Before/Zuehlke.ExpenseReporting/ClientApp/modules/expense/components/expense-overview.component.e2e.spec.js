@@ -4,7 +4,7 @@
         browser.get('/home');
         expect(browser.getTitle()).toEqual('Angular 2 Workshop');
 
-        browser.get('/overview');
+        browser.get('/expense');
 
         expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toEqual('ANAKIN SKYWALKER');
     });

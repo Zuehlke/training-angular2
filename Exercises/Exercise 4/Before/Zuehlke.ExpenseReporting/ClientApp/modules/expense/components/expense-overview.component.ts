@@ -6,7 +6,7 @@ import { ExpenseService } from '../services/expense.service';
 
 @Component({
     template: require('./expense-overview.component.html'),
-    styles: require('./expense-overview.component.css'),
+    styles: [require('./expense-overview.component.css')],
 })
 export class ExpenseOverviewComponent implements OnInit {
 
