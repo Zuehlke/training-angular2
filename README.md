@@ -41,7 +41,7 @@ To develop the applications you will need to have one of the following setups av
 Additionally you will need to install a set of tools to run and test the application globally. Open a console and run
 
 ```bash
-npm install -g webpack typings karma jasmine protractor webdriver-manager
+npm install -g webpack karma jasmine protractor webdriver-manager
 ```
 
 ### Running an Example Project or Exercise ###
