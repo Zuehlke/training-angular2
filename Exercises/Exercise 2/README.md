@@ -79,7 +79,8 @@ export class ExpenseService {
   ```typescript
   @NgModule({
     imports: [
-        CommonModule
+        CommonModule,
+        expenseRouting
     ],
     declarations: [
         ExpenseOverviewComponent

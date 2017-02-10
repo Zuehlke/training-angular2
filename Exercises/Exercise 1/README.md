@@ -35,7 +35,7 @@ export class ExpenseModule { }
 
 #### 2. Create the ExpenseOverview component ####
 
-1. Add a folder named "components" to the module's folder.
+1. Add a folder named "components" to the epense module folder.
 1. Add a file named "expense-overview.component.html" that contains some simple HTML like a heading or a single paragraph.
 1. Add a file named "expense-overview.component.ts" and implement a class named `ExpenseOverview` decorated with the `@Component()` decorator.
 1. Configure the component to use the expense-overview.component.html as its template.
@@ -69,7 +69,7 @@ export class ExpenseOverviewComponent {
 
 #### 3. Configure the routing ####
 
-1. Add a file named "expense.routing.ts" to the module's folder and export a list of routes containing a route to the new component.
+1. Add a file named "expense.routing.ts" to the expense module folder and export a list of routes containing a route to the new component.
 1. Also link the new router to the router of the application.
 
   The routing information should look like this now:

@@ -9,14 +9,15 @@ This repository contains materials and source code for the workshop introducing 
 
 <!-- TOC -->
 
-- [Table of Contents](#table-of-contents)
-- [Before you Start](#before-you-start)
-    - [Installation Prerequisites](#installation-prerequisites)
-    - [Running an Example Project or Exercise](#running-an-example-project-or-exercise)
-    - [Running Unit- or E2E-Tests](#running-unit--or-e2e-tests)
-- [Additional Materials](#additional-materials)
-    - [Books](#books)
-    - [Blogs, Websites and Articles](#blogs-websites-and-articles)
+- [Angular 2 Training](#angular-2-training)
+    - [Table of Contents](#table-of-contents)
+    - [Before you Start](#before-you-start)
+        - [Installation Prerequisites](#installation-prerequisites)
+        - [Running an Example Project or Exercise](#running-an-example-project-or-exercise)
+        - [Running Unit- or E2E-Tests](#running-unit--or-e2e-tests)
+    - [Additional Materials](#additional-materials)
+        - [Books](#books)
+        - [Blogs, Websites and Articles](#blogs-websites-and-articles)
 
 <!-- /TOC -->
 
@@ -60,6 +61,14 @@ webpack --config webpack.config.vendor.js
 ```
 
 to bundle the 3rd party scripts and styles for your application.
+
+If you are using Visual Studio code you also need to run
+
+```
+dotnet restore
+```
+
+to restore the NuGet packages used by the application.
 
 If your application still refuses to load properly you might need to repeat the `npm install` command.
 
