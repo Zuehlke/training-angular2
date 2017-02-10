@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/Zuehlke/training-angular2.git"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "test": "./node_modules/.bin/karma start"
   },

@@ -1,13 +1,13 @@
 {
   "name": "Angular2Workshop",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "A simple application with an Angular 2 app and a Asp.Net Core Backend",
   "author": "Markus Rehrs <markus.rehrs@zuehlke.com>, Stefan Benz <stefan.benz@zuehlke.com>",
   "repository": {
     "type": "git",
     "url": "https://github.com/Zuehlke/training-angular2.git"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "scripts": {
     "test": "./node_modules/.bin/karma start"
   },
