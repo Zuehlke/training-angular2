@@ -1,4 +1,6 @@
 ﻿import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
+
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +28,13 @@ describe('ExpenseDetailComponent', () => {
 
     const activatedRoute = new ActivatedRouteStub();
 
+    beforeAll(()=>{
+        TestBed.resetTestEnvironment();
+        TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+    });
+
     beforeEach(() => {
+        
         TestBed.configureTestingModule({
             imports: [FormsModule, RouterTestingModule, HttpModule],
             declarations: [ExpenseDetailComponent, ExpenseFormComponent],
