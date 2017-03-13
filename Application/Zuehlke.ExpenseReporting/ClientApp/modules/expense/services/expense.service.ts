@@ -3,6 +3,7 @@ import { Http, Response } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 import { ExpenseRecord } from '../model/expense';
 
@@ -13,27 +14,32 @@ export class ExpenseService {
 
     constructor(private http: Http) {}
 
-    getExpenses(): Observable<ExpenseRecord[]> {
+    getExpenses(): Promise<ExpenseRecord[]> {
         return this.http.get(this.expenseUrl)
-            .map(response => response.json() || []);
+                        .map(response => response.json() || [])
+                        .toPromise();
     }
 
-    getExpense(id: string): Observable<ExpenseRecord> {
+    getExpense(id: string): Promise<ExpenseRecord> {
         return this.http.get(`${this.expenseUrl}/${id}`)
-            .map(response => response.json());
+                        .map(response => response.json())
+                        .toPromise();
     }
 
-    updateExpense(expense: ExpenseRecord): Observable<Response> {
-        return this.http.put(`${this.expenseUrl}/${expense.id}`, expense);
+    updateExpense(expense: ExpenseRecord): Promise<any> {
+        return this.http.put(`${this.expenseUrl}/${expense.id}`, expense)
+                        .toPromise();
     }
 
-    createExpense(expense: ExpenseRecord): Observable<Response> {
+    createExpense(expense: ExpenseRecord): Promise<any> {
         expense.id = this.generateGuid();
-        return this.http.post(this.expenseUrl, expense);
+        return this.http.post(this.expenseUrl, expense)
+                        .toPromise();
     }
 
-    deleteExpense(expense: ExpenseRecord): Observable<Response> {
-        return this.http.delete(`${this.expenseUrl}/${expense.id}`);
+    deleteExpense(expense: ExpenseRecord): Promise<any> {
+        return this.http.delete(`${this.expenseUrl}/${expense.id}`)
+                        .toPromise();
     }
 
     private generateGuid(): string {

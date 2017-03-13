@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { Response } from '@angular/http';
 
 import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
@@ -15,20 +16,27 @@ export class ExpenseOverviewComponent implements OnInit {
 
     constructor(private expenseService: ExpenseService) {}
 
-    ngOnInit(): void {
-        this.expenseService.getExpenses()
-            .subscribe(expenses => this.expenses = expenses, error => this.errorMessage = error);
+    async ngOnInit(): Promise<any> {
+        try {
+            this.expenses = await this.expenseService.getExpenses();
+        } catch (response) {
+            this.handleError(response, null);
+        }
     }
 
-    deleteExpense(expense: ExpenseRecord): void {
-        this.expenseService.deleteExpense(expense)
-            .subscribe(() => { this.expenses = this.expenses.filter(exp => exp.id !== expense.id) },
-                error => { this.handleError(error, expense) });
+    async deleteExpense(expense: ExpenseRecord): Promise<any> {
+        try {
+            await this.expenseService.deleteExpense(expense);
+            this.expenses = this.expenses.filter(exp => exp.id !== expense.id);
+        } catch (response) {
+            this.handleError(response, expense);
+        }
     }
 
-    private handleError(error, expense: ExpenseRecord): Observable<any> {
-        console.error('Error deleting expense with id: ' + expense.id);
-        this.errorMessage = `The remote server returned HTTP ${error.status}: ${error.statusText}`;
-        return Observable.throw(error);
+    private handleError(response: Response, expense: ExpenseRecord) {
+        if (expense) {
+            console.error('Error deleting expense with id: ' + expense.id);
+        }
+        this.errorMessage = `The remote server returned HTTP ${response.status}: ${response.statusText}`;
     }
 }

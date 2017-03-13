@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
 
 import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
@@ -13,9 +12,7 @@ export class ExpenseOverviewComponent implements OnInit {
 
     constructor(private expenseService: ExpenseService) { }
 
-    ngOnInit(): void {
-        this.expenseService
-            .getExpenses()
-            .subscribe(expenses => this.expenses = expenses);
+    async ngOnInit(): Promise<any> {
+        this.expenses = await this.expenseService.getExpenses();
     }
 }
