@@ -1,4 +1,5 @@
 ﻿import { ComponentFixture, TestBed, async, fakeAsync, tick } from '@angular/core/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
@@ -23,6 +24,11 @@ describe('ExpenseOverviewComponent', () => {
     let expenseService: ExpenseService;
     let expenseServiceSpy: jasmine.Spy;
 
+    beforeAll(()=>{
+        TestBed.resetTestEnvironment();
+        TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+    });	
+	
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule, RouterTestingModule, HttpModule],
