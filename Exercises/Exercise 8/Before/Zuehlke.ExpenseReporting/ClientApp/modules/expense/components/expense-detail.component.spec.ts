@@ -1,4 +1,5 @@
 ﻿import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +27,12 @@ describe('ExpenseDetailComponent', () => {
 
     const activatedRoute = new ActivatedRouteStub();
 
+    beforeAll(()=>{
+        TestBed.resetTestEnvironment();
+        TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+    });	
+
+	
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule, RouterTestingModule, HttpModule],
@@ -46,8 +53,8 @@ describe('ExpenseDetailComponent', () => {
     it('should load the correct expense', async(() => {
         activatedRoute.testParams = { id: expense1.id };
 		spyOn(expenseService, 'getExpense').and.returnValue(new BehaviorSubject(expense1).asObservable());
-        
-		fixture.detectChanges();
+
+        fixture.detectChanges();
 
         fixture.whenStable().then(() => { // wait for async getExpenses
             fixture.detectChanges(); // update view with expsense
@@ -60,8 +67,8 @@ describe('ExpenseDetailComponent', () => {
     }));
 
     it('should navigate to overview when back button is clicked', inject([Router], (router: Router) => {
-        expenseDetailComponent.expense = expense1;
-		fixture.detectChanges();
+		expenseDetailComponent.expense = expense1;
+        fixture.detectChanges();
 
         const spy = spyOn(router, 'navigate');
 

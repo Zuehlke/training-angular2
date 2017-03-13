@@ -1,4 +1,4 @@
-/// <reference path="../../../../typings/globals/jasmine/index.d.ts" />
+/// <reference path="../../../../node_modules/@types/jasmine/index.d.ts" />
 
 import { AppComponent} from './app.component';
 

@@ -1,4 +1,5 @@
 ﻿import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
+import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -20,6 +21,11 @@ describe('ExpenseDetailComponent', () => {
     let expenseService: ExpenseService;
 
     const newExpense = new ExpenseRecord(null, 'Palpatine', ExpenseReason.Hotel, new Date('1999/1/12'), 54.00, 'Reasoning about the dark side of the force');
+
+    beforeAll(()=>{
+        TestBed.resetTestEnvironment();
+        TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+    });	
 
     beforeEach(() => {
         TestBed.configureTestingModule({
