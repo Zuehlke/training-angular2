@@ -34,12 +34,12 @@ In this exercise you will extend the application to support viewing and editing 
 
 #### 4. Extend the ExpenseService ####
 
-1. Create a method named `updateExpense(expense: ExpenseRecord)` that returns an `Observable<Response>`. Within this method invoke the `put()` method of the Http service using the URL /api/expenses/{id} and the expense passed into the method as body to update the specified expense.
+1. Create a method named `updateExpense(expense: ExpenseRecord)` that returns a `Promise<Response>`. Within this method invoke the `put()` method of the Http service using the URL /api/expenses/{id} and the expense passed into the method as body to update the specified expense.
 
 #### 5. Add a save button ####
 
 1. Implement the `saveExpense()` method in the detail component to invoke the `updateExpense()` method of the `ExpenseService`.
-1. Call the `subscribe()` method to return to the expense overview using the `goBack()` methdod,  or call the `handleError()` method if an error occured to provide an error message to the user.
+1. Use the `await` keyword to wait for the update to complete then return to the overview using the `goBack()` methdod,  or call the `handleError()` method if an error occured to provide an error message to the user.
 1. Surround the existing button in the detail view with a button-group (see [getbootstrap.com](http://www.getbootstrap.com) for help).
 1. Add a second button to the group. Mark this button as the primary button and change the icon to the save icon. Set the caption to "Save Expense".
 1. Add the `saveExpense()` method as a click handler to the newly created button.

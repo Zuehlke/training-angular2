@@ -20,13 +20,12 @@ In this exercise you will extend the application to support the deletion of an e
 
 #### 2. Extend the ExpenseService ####
 
-1. Create a method named `deleteExpense(expense: ExpenseRecord)` that returns an `Observable<Response>`. Within this method invoke the `delete()` method of the Http service using the URL /api/expenses/{id} to remove the specified expense from the database.
-
+1. Create a method named `deleteExpense(expense: ExpenseRecord)` that returns a `Promise<Response>`. Within this method invoke the `delete()` method of the Http service using the URL /api/expenses/{id} to remove the specified expense from the database.
 
 #### 3: Extend the ExpenseOverview component ####
 
 1. Implement the `deleteExpense(expense: ExpenseRecord)` method to invoke the `deleteExpense()` method of the `ExpenseService`.
-1. Call the `subscribe()` method to filter the list of expenses to exclude the one you have just deleted.
+1. Await the call using the `await` keyword to filter the list of expenses to exclude the one you have just deleted.
 
 #### 4: Extend the template ####
 
