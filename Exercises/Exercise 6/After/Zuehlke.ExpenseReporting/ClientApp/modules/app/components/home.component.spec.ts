@@ -4,14 +4,17 @@ import { By } from '@angular/platform-browser';
 
 import { HomeComponent } from './home.component';
 
-TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-
 describe('HomeComponent', () => {
 
     let homeComponent: HomeComponent;
     let fixture: ComponentFixture<HomeComponent>;
     let pageTitle: HTMLElement;
 
+    beforeAll(()=>{
+        TestBed.resetTestEnvironment();
+        TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
+    });	
+	
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [HomeComponent] // declare the test component
