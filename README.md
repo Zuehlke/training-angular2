@@ -29,13 +29,13 @@ This section contains information about the installation prerequisites and the s
 
 The following tools are required to get the example applications running:
 
-- [.NET Core 1.0.1](http://bit.ly/netcore101)
-- [Node.js version 4 or newer](http://nodejs.org)
+- [.NET Core SDK 1.1.1](http://bit.ly/dotnetcore111)
+- [Node.js version 6 or newer](http://nodejs.org)
 - [Git](http://git-scm.com)
 
 To develop the applications you will need to have one of the following setups available:
 
-1) You can work with [**Visual Studio 2015 Update 3**](http://bit.ly/vs2015update3 ) with having [TypeScript 2.0 for Visual Studio](http://bit.ly/TS2forVS2015) and the [ASP.NET Core Template Pack](http://bit.ly/aspnetcoretp) installed.
+1) You can work with [**Visual Studio 2017**](http://bit.ly/2017vs)
 2) Or you can use [**Visual Studio Code**](https://code.visualstudio.com/) having the [C# for Visual Studio Code](https://github.com/OmniSharp/omnisharp-vscode) extension installed.
 
 Additionally you will need to install a set of tools to run and test the application globally. Open a console and run
@@ -118,6 +118,10 @@ http://blog.angular-university.io/
 http://blog.thoughtram.io
 * **Webpack - the missing Guide**, article, written by Guy Mograbi, November 2016   
 http://www.eloquentwebapp.com/webpack-missing-guide
+* **The Ultimate Guide to API Design**, article, written by Erich Reich, February 2017  
+https://blog.qmo.io/ultimate-guide-to-api-design/
+* **ASP.NET Core RESTful Web API versioning made easy**, article, written by Scott Hanselman, November 2016  
+https://www.hanselman.com/blog/ASPNETCoreRESTfulWebAPIVersioningMadeEasy.aspx
 * **Designing with Exceptions**, article, written by Jonathan Allen, September 2016  
 http://www.infoq.com/articles/Exceptions-API-Design
 
