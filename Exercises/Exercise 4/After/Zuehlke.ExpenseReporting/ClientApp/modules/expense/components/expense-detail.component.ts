@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
 
 import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
@@ -30,6 +29,15 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
         this.sub.unsubscribe();
     }
 
+    async saveExpense(): Promise<any> {
+        try {
+            await this.expenseService.updateExpense(this.expense);
+            this.goBack();
+        } catch (response) {
+            this.handleError(response);
+        }
+    }
+
     goBack(): void {
         this.router.navigate(['/expense']);
     }
@@ -42,20 +50,7 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
         }
     }
 
-    async saveExpense(): Promise<any> {
-        try {
-            this.expenseService.updateExpense(this.expense);
-            this.goBack();
-        } catch (response) {
-            this.handleError(response);
-        }
+    private handleError(response: Response): void {
+        this.errorMessage = `The remote server returned HTTP ${response.status}: ${response.statusText}`;
     }
-
-    private handleError(error: Response) {
-        console.error('Error with expense: ' + this.expense, error);
-        this.errorMessage = `The remote server returned HTTP ${error.status}: ${error.statusText}`;
-    }
-
-
-
 }

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -16,23 +15,23 @@ export class ExpenseService {
 
     getExpenses(): Promise<ExpenseRecord[]> {
         return this.http.get(this.expenseUrl)
-            .map(response => response.json() || [])
-            .toPromise();
+                        .map(response => response.json() || [])
+                        .toPromise();
     }
 
     getExpense(id: string): Promise<ExpenseRecord> {
         return this.http.get(`${this.expenseUrl}/${id}`)
-            .map(response => response.json())
-            .toPromise();
+                        .map(response => response.json())
+                        .toPromise();
     }
 
-    updateExpense(expense: ExpenseRecord): Promise<any> {
+    updateExpense(expense: ExpenseRecord): Promise<Response> {
         return this.http.put(`${this.expenseUrl}/${expense.id}`, expense)
-            .toPromise();
+                        .toPromise();
     }
 
-    deleteExpense(expense: ExpenseRecord): Promise<any> {
+    deleteExpense(expense: ExpenseRecord): Promise<Response> {
         return this.http.delete(`${this.expenseUrl}/${expense.id}`)
-            .toPromise();
+                        .toPromise();
     }
 }

@@ -15,7 +15,7 @@ export class ExpenseService {
 
     getExpenses(): Promise<ExpenseRecord[]> {
         return this.http.get(this.expenseUrl)
-            .map(response => response.json() || [])
-            .toPromise();
+                        .map(response => response.json() || [])
+                        .toPromise();
     }
 }

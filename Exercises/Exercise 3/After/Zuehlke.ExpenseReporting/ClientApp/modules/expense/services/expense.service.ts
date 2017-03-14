@@ -15,12 +15,12 @@ export class ExpenseService {
 
     getExpenses(): Promise<ExpenseRecord[]> {
         return this.http.get(this.expenseUrl)
-            .map(response => response.json() || [])
-            .toPromise();
+                        .map(response => response.json() || [])
+                        .toPromise();
     }
 
-    deleteExpense(expense: ExpenseRecord): Promise<any> {
+    deleteExpense(expense: ExpenseRecord): Promise<Response> {
         return this.http.delete(`${this.expenseUrl}/${expense.id}`)
-            .toPromise();
+                        .toPromise();
     }
 }

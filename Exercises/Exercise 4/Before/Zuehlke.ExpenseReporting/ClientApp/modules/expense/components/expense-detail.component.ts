@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Response } from '@angular/http';
 import { Subscription } from 'rxjs/Subscription';
-import { Observable } from 'rxjs/Observable';
 
 import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
@@ -16,7 +15,7 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
     private sub: Subscription;
     errorMessage: string;
 
-    constructor(private route: ActivatedRoute, private router: Router, private expenseService: ExpenseService) {}
+    constructor(private route: ActivatedRoute, private router: Router, private expenseService: ExpenseService) { }
 
     ngOnInit(): void {
         this.sub = this.route.params.subscribe(
@@ -42,9 +41,7 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
         }
     }
 
-    private handleError(error: Response) {
-        console.error('Error with expense: ' + this.expense, error);
-        this.errorMessage = `The remote server returned HTTP ${error.status}: ${error.statusText}`;
+    private handleError(response: Response): void {
+        this.errorMessage = `The remote server returned HTTP ${response.status}: ${response.statusText}`;
     }
-
 }

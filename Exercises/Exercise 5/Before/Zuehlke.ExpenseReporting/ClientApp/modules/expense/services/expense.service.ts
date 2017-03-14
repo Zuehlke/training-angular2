@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
 
 import { ExpenseRecord } from '../model/expense';
 
@@ -13,32 +13,25 @@ export class ExpenseService {
 
     constructor(private http: Http) {}
 
-    getExpenses(): Observable<ExpenseRecord[]> {
+    getExpenses(): Promise<ExpenseRecord[]> {
         return this.http.get(this.expenseUrl)
-            .map(response => response.json() || []);
+                        .map(response => response.json() || [])
+                        .toPromise();
     }
 
-    getExpense(id: string): Observable<ExpenseRecord> {
+    getExpense(id: string): Promise<ExpenseRecord> {
         return this.http.get(`${this.expenseUrl}/${id}`)
-            .map(response => response.json());
+                        .map(response => response.json())
+                        .toPromise();
     }
 
-    updateExpense(expense: ExpenseRecord): Observable<Response> {
-        return this.http.put(`${this.expenseUrl}/${expense.id}`, expense);
+    updateExpense(expense: ExpenseRecord): Promise<Response> {
+        return this.http.put(`${this.expenseUrl}/${expense.id}`, expense)
+                        .toPromise();
     }
 
-    deleteExpense(expense: ExpenseRecord): Observable<Response> {
-        return this.http.delete(`${this.expenseUrl}/${expense.id}`);
-    }
-
-    private generateGuid(): string {
-        return this.s4() + this.s4() + '-' + this.s4() + '-' + this.s4() + '-' +
-            this.s4() + '-' + this.s4() + this.s4() + this.s4();
-    }
-
-    private s4(): string {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
+    deleteExpense(expense: ExpenseRecord): Promise<Response> {
+        return this.http.delete(`${this.expenseUrl}/${expense.id}`)
+                        .toPromise();
     }
 }
