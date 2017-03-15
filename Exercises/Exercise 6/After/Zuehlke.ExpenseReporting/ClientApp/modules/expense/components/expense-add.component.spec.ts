@@ -39,8 +39,8 @@ describe('ExpenseDetailComponent', () => {
 
         // Expense service actually injected into the component
         expenseService = fixture.debugElement.injector.get(ExpenseService);
-        spyOn(expenseService, 'updateExpense').and.returnValue(new BehaviorSubject({}).asObservable());
-        spyOn(expenseService, 'createExpense').and.returnValue(new BehaviorSubject({}).asObservable());
+        spyOn(expenseService, 'updateExpense').and.returnValue(Promise.resolve({}));
+        spyOn(expenseService, 'createExpense').and.returnValue(Promise.resolve({}));
     });
 
     it('should navigate to overview when back button is clicked', inject([Router], (router: Router) => {

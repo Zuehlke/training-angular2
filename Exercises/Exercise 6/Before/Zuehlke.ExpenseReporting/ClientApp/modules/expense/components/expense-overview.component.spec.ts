@@ -41,8 +41,8 @@ describe('ExpenseOverviewComponent', () => {
 
         // Expense service actually injected into the component
         expenseService = fixture.debugElement.injector.get(ExpenseService);
-        expenseServiceSpy = spyOn(expenseService, 'getExpenses').and.returnValue(new BehaviorSubject(testExpenses).asObservable());
-        expenseServiceSpy = spyOn(expenseService, 'deleteExpense').and.returnValue(new BehaviorSubject({}).asObservable());
+        expenseServiceSpy = spyOn(expenseService, 'getExpenses').and.returnValue(Promise.resolve(testExpenses));
+        expenseServiceSpy = spyOn(expenseService, 'deleteExpense').and.returnValue(Promise.resolve({}));
     });
 
     it('should not show expenses before OnInit', () => {

@@ -44,14 +44,14 @@ describe('ExpenseDetailComponent', () => {
 
         // Expense service actually injected into the component
         expenseService = fixture.debugElement.injector.get(ExpenseService);
-        spyOn(expenseService, 'getExpenses').and.returnValue(new BehaviorSubject(testExpenses).asObservable());
-        spyOn(expenseService, 'updateExpense').and.returnValue(new BehaviorSubject({}).asObservable());
-        spyOn(expenseService, 'createExpense').and.returnValue(new BehaviorSubject({}).asObservable());
+        spyOn(expenseService, 'getExpenses').and.returnValue(Promise.resolve(testExpenses));
+        spyOn(expenseService, 'updateExpense').and.returnValue(Promise.resolve({}));
+        spyOn(expenseService, 'createExpense').and.returnValue(Promise.resolve({}));
     });
 
     it('should load the correct expense', async(() => {
         activatedRoute.testParams = { id: expense1.id };
-		spyOn(expenseService, 'getExpense').and.returnValue(new BehaviorSubject(expense1).asObservable());
+		spyOn(expenseService, 'getExpense').and.returnValue(Promise.resolve(expense1));
 
         fixture.detectChanges();
 
