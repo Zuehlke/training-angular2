@@ -1,4 +1,6 @@
-﻿import { ComponentFixture, TestBed, async, inject } from '@angular/core/testing';
+﻿/// <reference path="../../../../node_modules/@types/jasmine/index.d.ts" />
+
+import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
@@ -14,7 +16,7 @@ import { ExpenseFormComponent } from './expense-form.component';
 import { ExpenseService } from '../services/expense.service';
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
 
-describe('ExpenseDetailComponent', () => {
+describe('The ExpenseDetailComponent', () => {
 
     let expenseAddComponent: ExpenseAddComponent;
     let fixture: ComponentFixture<ExpenseAddComponent>;
@@ -25,8 +27,8 @@ describe('ExpenseDetailComponent', () => {
     beforeAll(()=>{
         TestBed.resetTestEnvironment();
         TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
-    });	
-	
+    });
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [FormsModule, RouterTestingModule, HttpModule],
@@ -37,40 +39,37 @@ describe('ExpenseDetailComponent', () => {
         fixture = TestBed.createComponent(ExpenseAddComponent);
         expenseAddComponent = fixture.componentInstance;
 
-        // Expense service actually injected into the component
         expenseService = fixture.debugElement.injector.get(ExpenseService);
-        spyOn(expenseService, 'updateExpense').and.returnValue(new BehaviorSubject({}).asObservable());
-        spyOn(expenseService, 'createExpense').and.returnValue(new BehaviorSubject({}).asObservable());
     });
 
     it('should navigate to overview when back button is clicked', inject([Router], (router: Router) => {
+        const routerSpy = spyOn(router, 'navigate');
         fixture.detectChanges();
 
-        const spy = spyOn(router, 'navigate');
-
         const backButton = fixture.debugElement.query(By.css('.btn-default'));
-        backButton.triggerEventHandler('click', null); //click back button
+        backButton.triggerEventHandler('click', null);
 
-        const routerArguments = spy.calls.first().args[0]; //check that router was called with overview route
+        const routerArguments = routerSpy.calls.first().args[0];
         expect(routerArguments).toEqual(['/expense']);
     }));
 
-    it('should create a new expense if the save button was clicked', async(inject([Router], (router: Router) => {
-        const spy = spyOn(router, 'navigate');
+    it('should create a new expense if the save button was clicked', inject([Router], async (router: Router) => {
+        spyOn(expenseService, 'updateExpense').and.returnValue(Promise.resolve());
+        spyOn(expenseService, 'createExpense').and.returnValue(Promise.resolve());
+        const routerSpy = spyOn(router, 'navigate');
+        
         expenseAddComponent.expense = newExpense;
         fixture.detectChanges();
 
         const saveButton = fixture.debugElement.query(By.css('.btn-primary'));
         saveButton.triggerEventHandler('click', null); //trigger a save
 
-        fixture.whenStable().then(() => {
-            expect(expenseService.createExpense).toHaveBeenCalledTimes(1);
-            expect(expenseService.createExpense).toHaveBeenCalledWith(newExpense);
-            expect(expenseService.updateExpense).not.toHaveBeenCalled();
+        await fixture.whenStable();
+        expect(expenseService.createExpense).toHaveBeenCalledTimes(1);
+        expect(expenseService.createExpense).toHaveBeenCalledWith(newExpense);
+        expect(expenseService.updateExpense).not.toHaveBeenCalled();
 
-            const routerArguments = spy.calls.first().args[0]; //check that router was called with overview route
-            expect(routerArguments).toEqual(['/expense']);
-        });
-    })));
-
+        const routerArguments = routerSpy.calls.first().args[0]; //check that router was called with overview route
+        expect(routerArguments).toEqual(['/expense']);
+    }));
 });
