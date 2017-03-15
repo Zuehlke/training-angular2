@@ -24,7 +24,7 @@ describe('ExpenseOverviewComponent', () => {
     let expenseService: ExpenseService;
     let expenseServiceSpy: jasmine.Spy;
 
-    beforeAll(()=>{
+    beforeAll(() => {
         TestBed.resetTestEnvironment();
         TestBed.initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());
     });
@@ -41,8 +41,8 @@ describe('ExpenseOverviewComponent', () => {
 
         // Expense service actually injected into the component
         expenseService = fixture.debugElement.injector.get(ExpenseService);
-        expenseServiceSpy = spyOn(expenseService, 'getExpenses').and.returnValue(new BehaviorSubject(testExpenses).asObservable());
-        expenseServiceSpy = spyOn(expenseService, 'deleteExpense').and.returnValue(new BehaviorSubject({}).asObservable());
+        expenseServiceSpy = spyOn(expenseService, 'getExpenses').and.returnValue(Promise.resolve(testExpenses));
+        expenseServiceSpy = spyOn(expenseService, 'deleteExpense').and.returnValue(Promise.resolve({}));
     });
 
     it('should not show expenses before OnInit', () => {
@@ -72,13 +72,15 @@ describe('ExpenseOverviewComponent', () => {
             firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent')); //trigger a delete
 
             fixture.detectChanges(); //update view
+            fixture.whenStable().then(() => {
+                fixture.detectChanges();
+                expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1); //check that deleteExpense from the expense service was called
+                expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1); //check that deleteExpense from the expense service was called with Anakin's expense
 
-            expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1); //check that deleteExpense from the expense service was called
-            expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1); //check that deleteExpense from the expense service was called with Anakin's expense
-
-            const tableBody = fixture.debugElement.query(By.css('tbody')); //check for table to not contain Anakin Skywalker anymore
-            expect(tableBody.nativeElement.children.length).toEqual(1);
-            expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('YODA');
+                const tableBody = fixture.debugElement.query(By.css('tbody')); //check for table to not contain Anakin Skywalker anymore
+                expect(tableBody.nativeElement.children.length).toEqual(1);
+                expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('YODA');
+            });
         });
     }));
 
