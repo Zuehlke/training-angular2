@@ -15,6 +15,8 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
     private sub: Subscription;
     errorMessage: string;
 
+    isFormValidOrPristine: boolean;
+
     constructor(private route: ActivatedRoute, private router: Router, private expenseService: ExpenseService) { }
 
     ngOnInit(): void {
@@ -30,6 +32,9 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
     }
 
     async saveExpense(): Promise<any> {
+        if (!this.isFormValidOrPristine) {
+            return Promise.resolve();
+        }
         try {
             await this.expenseService.updateExpense(this.expense);
             this.goBack();

@@ -11,11 +11,10 @@ export const expenseRoutes: Routes = [
     {
         path: 'expense',
         canActivate: [LoginGuard],
-        canDeactivate: [FormGuard],
         children: [
             { path: '', component: ExpenseOverviewComponent },
-            { path: 'add', component: ExpenseAddComponent },
-            { path: ':id', component: ExpenseDetailComponent }
+            { path: 'add', component: ExpenseAddComponent, canDeactivate: [FormGuard] },
+            { path: ':id', component: ExpenseDetailComponent, canDeactivate: [FormGuard] }
         ]
     }
 ];

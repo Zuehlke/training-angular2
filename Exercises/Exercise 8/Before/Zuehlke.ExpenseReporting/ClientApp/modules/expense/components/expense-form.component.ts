@@ -1,24 +1,44 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
-import { FormGroup } from "@angular/forms";
+import { FormGroup, FormBuilder } from "@angular/forms";
 
 @Component({
     selector: 'expense-form',
     template: require('./expense-form.component.html')
 })
-export class ExpenseFormComponent {
+export class ExpenseFormComponent implements OnInit {
 
     @Input()
     expense: ExpenseRecord;
 
-    expenseFormGroup = new FormGroup({});
+    constructor(private formBuilder: FormBuilder) { }
 
-    get isFormSaved(): boolean {
-        return this.expenseFormGroup.valid || this.expenseFormGroup.pristine;
+    @ViewChild("expenseForm")
+    expenseForm: any;
+
+    ngOnInit() {
+        this.expenseForm.control.valueChanges.subscribe(() => {
+            this.isFormValidOrPristine = this.expenseForm.valid || this.expenseForm.pristine;
+        });
+    }
+
+    private isFormValidOrPristineValue = true;
+
+    @Output()
+    isFormValidOrPristineChange = new EventEmitter<boolean>();
+
+    @Input()
+    get isFormValidOrPristine(): boolean {
+        return this.isFormValidOrPristineValue;
+    }
+
+    set isFormValidOrPristine(val) {
+        this.isFormValidOrPristineValue = val;
+        this.isFormValidOrPristineChange.emit(this.isFormValidOrPristineValue);
     }
 
     get reasons() {
