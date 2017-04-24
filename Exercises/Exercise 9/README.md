@@ -1,4 +1,4 @@
-## Exercise 8: Deploy App to Azure ##
+## Exercise 9: Deploy App to Azure ##
 
 In this exercise you will deploy your app to Microsoft Azure.
 

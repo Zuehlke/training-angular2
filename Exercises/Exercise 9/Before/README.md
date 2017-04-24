@@ -1,3 +1,3 @@
-## Exercise 8: Starting Point ##
+## Exercise 9: Starting Point ##
 
 This folder contains the application as it is before you start with this exercise.
