@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
+import { FormGroup } from "@angular/forms";
 
 @Component({
     selector: 'expense-form',
@@ -13,6 +14,15 @@ export class ExpenseFormComponent {
 
     @Input()
     expense: ExpenseRecord;
+
+    // @ViewChild("expenseForm")
+    // expenseForm: ElementRef;
+
+    expenseFormGroup: FormGroup;
+
+    get isFormSaved(): boolean {
+        return this.expenseFormGroup.valid || this.expenseFormGroup.pristine;
+    }
 
     get reasons() {
         let availableReasons = [];

@@ -1,3 +1,4 @@
+import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
@@ -24,6 +25,9 @@ import { ExpenseModule } from '../expense/expense.module';
             { path: 'home', component: HomeComponent },
             { path: '**', redirectTo: 'home' }
         ])
+    ],
+    providers: [
+        AuthService
     ]
 })
 export class AppModule {
