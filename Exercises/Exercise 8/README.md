@@ -1,23 +1,15 @@
-## Exercise 9: Deploy App to Azure ##
+## Exercise 8: Add Guards to control the navigation ##
 
-In this exercise you will deploy your app to Microsoft Azure.
+In this exercise you will ensure that only a user who is logged in can navigate to the expense-module. Also, navigating away from an expense that is either dirty or invalid will be prevented.
 
 ### Tasks ###
  
-1. Create a new Web App using the Azure portal.
-2. Use Visual Studio to deploy the application to Azure.
+1. Add a LoginGuard to the expense module that uses the AuthService to determine whether the user can navigate to the list of expenses. Also make sure that a user who is not logged in is redirected to the `/home` route. 
+1. Add a FormGuard to the expense module that prevents the user from navigating away from the expense-detail.component if the contents of the form are either dirty or invalid.
 
 ### Implementation Hints ###
 
-1. Open the Azure Portal (https://portal.azure.com) and sign in using the Microsoft ID assigned to your MSDN-subscription.
-2. Open the "App Services" section, then select "Web App" and click "Create".
-3. Fill in the form:
-	* Provide a unique app name. Make sure to use only alphanumeric characters and dashes, as this name will be used as the URL of your application.
-	* Select a Subscription. Most likely your MSDN subscription will be preselected.
-	* Create a new Resource Group. Again, use only alphanumeric characters and dashes for the name.
-	* Create a new App-Service plan. Yet again, use only alphanumeric characters and dashes for the name. Also make sure to select the "Free" pricing tier. You might need to click "view all" to be able to select the "Free" tier.
-4. Click create to get your app up and running. Once the webapp is running open [http://{your-appname-goes-here}.azurewebsites.net]()
-5. Open the Visual Studio solution contained in the "Before" folder of this excercise.
-6. Right-click the Angular2Application1 project and select publish.
-7. Chose Microsoft Azure App Service. Then find and select the web app we created in the previous steps.
-8. Click "OK" and "Publish". Your website will be opened shortly.
+1. You can find documentation for Guards in the [Thoughtram Blog](https://blog.thoughtram.io/angular/2016/07/18/guards-in-angular-2.html)
+1. Use the `isAuthorized`-property of the `AuthService` class (./app/services/auth.service) to determine wether a user is logged in
+1. Use the `isFormValidOrPristine`-property of the `ExpenseDetailComponent`-class to determine if the user can navigate away from an expense record.
+1. You can inject the current instance of the `ExpenseDetailComponent` into your guard.
