@@ -2,10 +2,19 @@
     <div class="panel-heading text-center">{{ pageTitle }}</div>
     <div class="panel-body">
         <div class="row">
-            <img src="{{ zuehlkeLogo }}" class="img-responsive center-block" style="max-height: 200px; padding-bottom: 20px"/>
+            <div class="col-sm-12 text-center">
+                <img src="{{ zuehlkeLogo }}" class="img-responsive center-block" style="max-height: 200px; padding-bottom: 20px" />
+            </div>
         </div>
         <div class="row">
-            <h3 class="text-center">Expense Reporting</h3>
+            <div class="col-sm-12 text-center">
+                <h3>Expense Reporting</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <a *ngIf="!isLoggedIn" class="btn btn-lg btn-danger" (click)="login()"><i class="glyphicon glyphicon-log-in"></i> Click here to log in using <strong>The Force</strong></a>
+            </div>
         </div>
     </div>
 </div>
