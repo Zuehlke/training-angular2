@@ -26,7 +26,7 @@ import { ExpenseModule } from '../expense/expense.module';
             { path: '**', redirectTo: 'home' }
         ])
     ],
-    providers: [
+    providers:[
         AuthService
     ]
 })

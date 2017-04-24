@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,7 +7,18 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+    constructor(private authService: AuthService){
+    }
+
     zuehlkeLogo: string = require('../assets/images/zuehlke_logo.jpg');
     pageTitle: string = 'Welcome to the Expenses Management Tool';
+
+    get isLoggedIn() : Boolean {
+        return this.authService.isAuthorized;
+    } 
+
+    login(): void {
+        this.authService.fakeLogin();
+    }
 
 }
