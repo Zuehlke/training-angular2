@@ -1,2 +1,3 @@
-## Exercise 8: Result ##
-This folder contains the application as it is after you have completed this exercise.
+## Exercise 8: Starting Point ##
+
+This folder contains the application as it is before you start with this exercise.
