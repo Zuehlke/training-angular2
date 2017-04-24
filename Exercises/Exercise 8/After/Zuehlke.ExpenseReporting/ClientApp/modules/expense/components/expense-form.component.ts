@@ -18,7 +18,7 @@ export class ExpenseFormComponent {
     // @ViewChild("expenseForm")
     // expenseForm: ElementRef;
 
-    expenseFormGroup: FormGroup;
+    expenseFormGroup = new FormGroup({});
 
     get isFormSaved(): boolean {
         return this.expenseFormGroup.valid || this.expenseFormGroup.pristine;

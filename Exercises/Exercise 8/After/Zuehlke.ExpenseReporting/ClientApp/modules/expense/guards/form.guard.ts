@@ -7,6 +7,9 @@ import { Injectable } from '@angular/core';
 export class FormGuard implements CanDeactivate<ExpenseFormComponent> {
 
     canDeactivate(component: ExpenseFormComponent) {
+        if (!component) {
+            return true;
+        }
         return component.isFormSaved;
     }
 
