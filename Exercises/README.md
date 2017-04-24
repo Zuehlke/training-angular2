@@ -9,4 +9,5 @@ This folder contains the instructions and materials for the exercises used in th
 - In **Exercise 5**, we reuse the existing form component and use it to add a new expense. For that, we also have to implement the add functionality in the backend.
 - In **Exercise 6** you will write unit tests in order to test the behaviour of the application.
 - In **Exercise 7** you will extend the form component to feature some basic validation.
-- In **Exercise 8** you will deploy your app to Microsoft Azure.
+- In **Exercise 8** we add Guards to the application navigation to prevent navigation if the user is not logged in or if there are unsaved changes.
+- In **Exercise 9** you will deploy your app to Microsoft Azure.
