@@ -14,7 +14,6 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy, IExpenseDetail
 
     expense: ExpenseRecord;
     private sub: Subscription;
-    errorMessage: string;
 
     isFormValidOrPristine: boolean;
 
@@ -36,12 +35,8 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy, IExpenseDetail
         if (!this.isFormValidOrPristine) {
             return Promise.resolve();
         }
-        try {
-            await this.expenseService.updateExpense(this.expense);
-            this.goBack();
-        } catch (response) {
-            this.handleError(response);
-        }
+        await this.expenseService.updateExpense(this.expense);
+        this.goBack();
     }
 
     goBack(): void {
@@ -49,14 +44,7 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy, IExpenseDetail
     }
 
     private async getExpense(id: string): Promise<any> {
-        try {
-            this.expense = await this.expenseService.getExpense(id);
-        } catch (response) {
-            this.handleError(response);
-        }
+        this.expense = await this.expenseService.getExpense(id);
     }
 
-    private handleError(response: Response): void {
-        this.errorMessage = `The remote server returned HTTP ${response.status}: ${response.statusText}`;
-    }
 }

@@ -7,14 +7,14 @@ import { ExpenseDetailComponent } from "../components/expense-detail.component";
 @Injectable()
 export class FormGuard implements CanDeactivate<IExpenseDetail> {
 
-    constructor(private notify:NotificationService){
+    constructor(private notify: NotificationService) {
     }
 
     canDeactivate(component: IExpenseDetail) {
         if (!component) {
             return true;
         }
-        if (!component.isFormValidOrPristine){
+        if (!component.isFormValidOrPristine) {
             this.notify.warning("Please ensure the data on this form is valid before navigating away!");
         }
         return component.isFormValidOrPristine;
