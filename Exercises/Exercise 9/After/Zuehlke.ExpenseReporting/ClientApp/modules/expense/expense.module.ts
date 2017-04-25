@@ -1,0 +1,36 @@
+import { FormGuard } from './guards/form.guard';
+import { LoginGuard } from './guards/login.guard';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
+import { expenseRouting } from './expense.routing';
+import { ExpenseOverviewComponent } from './components/expense-overview.component';
+import { ExpenseDetailComponent } from './components/expense-detail.component';
+import { ExpenseAddComponent } from './components/expense-add.component';
+import { ExpenseFormComponent } from './components/expense-form.component';
+import { ExpenseFilterPipe } from './pipes/expense-filter.pipe';
+import { ExpenseService } from './services/expense.service';
+
+@NgModule({
+    imports: [
+        FormsModule,
+        ReactiveFormsModule,
+        CommonModule,
+        expenseRouting
+    ],
+    declarations: [
+        ExpenseOverviewComponent,
+        ExpenseDetailComponent,
+        ExpenseFormComponent,
+        ExpenseAddComponent,
+        ExpenseFilterPipe
+    ],
+    providers: [
+        ExpenseService,
+        LoginGuard,
+        FormGuard
+    ]
+})
+export class ExpenseModule {
+}
