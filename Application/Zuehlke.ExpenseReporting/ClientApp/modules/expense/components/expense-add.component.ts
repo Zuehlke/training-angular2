@@ -1,36 +1,27 @@
+import { IExpenseDetail } from './expense-detail.interface';
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
 import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
-import { Observable } from 'rxjs/Observable';
 
 @Component({
     template: require('./expense-add.component.html')
 })
-export class ExpenseAddComponent {
+export class ExpenseAddComponent implements IExpenseDetail {
 
     expense: ExpenseRecord = new ExpenseRecord(null, null, null, new Date(Date.now()), 0, null);
-    errorMessage: string;
 
-    constructor(private router: Router, private expenseService: ExpenseService) {}
+    isFormValidOrPristine: boolean;
+
+    constructor(private router: Router, private expenseService: ExpenseService) { }
 
     async createExpense(): Promise<any> {
-        try {
-            await this.expenseService.createExpense(this.expense);
-            this.goBack();
-        } catch (response) {
-            this.handleError(response);
-        }
+        await this.expenseService.createExpense(this.expense);
+        this.goBack();
     }
-
 
     goBack(): void {
         this.router.navigate(['/expense']);
-    }
-
-    private handleError(response: Response) {
-        console.error('Error with expense with id: ' + this.expense.id);
-        this.errorMessage = `The remote server returned HTTP ${response.status}: ${response.statusText}`;
     }
 }

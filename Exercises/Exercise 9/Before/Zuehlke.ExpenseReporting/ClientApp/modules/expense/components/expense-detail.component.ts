@@ -5,15 +5,15 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
+import { IExpenseDetail } from './expense-detail.interface';
 
 @Component({
     template: require('./expense-detail.component.html')
 })
-export class ExpenseDetailComponent implements OnInit, OnDestroy {
+export class ExpenseDetailComponent implements OnInit, OnDestroy, IExpenseDetail {
 
     expense: ExpenseRecord;
     private sub: Subscription;
-    errorMessage: string;
 
     isFormValidOrPristine: boolean;
 
@@ -35,12 +35,8 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
         if (!this.isFormValidOrPristine) {
             return Promise.resolve();
         }
-        try {
-            await this.expenseService.updateExpense(this.expense);
-            this.goBack();
-        } catch (response) {
-            this.handleError(response);
-        }
+        await this.expenseService.updateExpense(this.expense);
+        this.goBack();
     }
 
     goBack(): void {
@@ -48,14 +44,7 @@ export class ExpenseDetailComponent implements OnInit, OnDestroy {
     }
 
     private async getExpense(id: string): Promise<any> {
-        try {
-            this.expense = await this.expenseService.getExpense(id);
-        } catch (response) {
-            this.handleError(response);
-        }
+        this.expense = await this.expenseService.getExpense(id);
     }
 
-    private handleError(response: Response): void {
-        this.errorMessage = `The remote server returned HTTP ${response.status}: ${response.statusText}`;
-    }
 }

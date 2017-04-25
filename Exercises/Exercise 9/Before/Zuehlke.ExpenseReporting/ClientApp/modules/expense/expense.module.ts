@@ -1,3 +1,5 @@
+import { FormGuard } from './guards/form.guard';
+import { LoginGuard } from './guards/login.guard';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -25,7 +27,9 @@ import { ExpenseService } from './services/expense.service';
         ExpenseFilterPipe
     ],
     providers: [
-        ExpenseService
+        ExpenseService,
+        LoginGuard,
+        FormGuard
     ]
 })
 export class ExpenseModule {

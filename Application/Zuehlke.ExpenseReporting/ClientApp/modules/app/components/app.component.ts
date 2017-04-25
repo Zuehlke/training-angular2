@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { NotificationService } from './../services/notification.service';
+import { Component, ViewContainerRef } from '@angular/core';
 
 @Component({
     selector: 'app',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
     styles: [require('./app.component.css')]
 })
 export class AppComponent {
+    constructor(notificationService:NotificationService, viewContainerRef:ViewContainerRef){
+        notificationService.setNotificationRoot(viewContainerRef);
+    }
 }

@@ -1,5 +1,7 @@
+import { FormGuard } from './guards/form.guard';
+import { LoginGuard } from './guards/login.guard';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { expenseRouting } from './expense.routing';
@@ -13,6 +15,7 @@ import { ExpenseService } from './services/expense.service';
 @NgModule({
     imports: [
         FormsModule,
+        ReactiveFormsModule,
         CommonModule,
         expenseRouting
     ],
@@ -24,7 +27,9 @@ import { ExpenseService } from './services/expense.service';
         ExpenseFilterPipe
     ],
     providers: [
-        ExpenseService
+        ExpenseService,
+        LoginGuard,
+        FormGuard
     ]
 })
 export class ExpenseModule {

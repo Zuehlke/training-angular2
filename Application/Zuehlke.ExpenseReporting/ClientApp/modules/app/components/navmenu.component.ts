@@ -1,3 +1,4 @@
+import { AuthService } from './../services/auth.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,4 +7,15 @@ import { Component } from '@angular/core';
     styles: [require('./navmenu.component.css')]
 })
 export class NavMenuComponent {
+
+    constructor(private authService: AuthService) {
+    }
+
+    get isLoggedIn(): Boolean {
+        return this.authService.isAuthorized;
+    }
+
+    logout(): void {
+        this.authService.fakeLogout();
+    }
 }

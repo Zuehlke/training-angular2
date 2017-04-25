@@ -28,7 +28,7 @@ namespace Zuehlke.ExpenseReporting.Data
         /// Gets or sets the reason for the expense.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
-        public ExpenseReason? Reason { get; set; }
+        public ExpenseReason Reason { get; set; }
 
         /// <summary>
         /// Gets or sets the amount of the expense.

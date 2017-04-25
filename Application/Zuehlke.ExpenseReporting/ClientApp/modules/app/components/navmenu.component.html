@@ -22,6 +22,11 @@
                         <span class='glyphicon glyphicon-th-list'></span> Expenses
                     </a>
                 </li>
+                <li *ngIf="isLoggedIn">
+                    <a (click)="logout()" href="">
+                        <span class='glyphicon glyphicon-log-out'></span> Mischief Managed
+                    </a>
+                </li>
             </ul>
         </div>
     </div>

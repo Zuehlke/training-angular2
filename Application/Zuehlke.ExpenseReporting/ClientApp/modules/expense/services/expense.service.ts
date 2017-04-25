@@ -1,7 +1,7 @@
+import { NotificationService } from './../../app/services/notification.service';
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 
-import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 
@@ -12,40 +12,74 @@ export class ExpenseService {
 
     private expenseUrl = 'api/expenses';
 
-    constructor(private http: Http) {}
+    constructor(private http: Http, private notify: NotificationService) { }
 
     getExpenses(): Promise<ExpenseRecord[]> {
         return this.http.get(this.expenseUrl)
-                        .map(response => response.json() || [])
-                        .toPromise();
+            .map(response => response.json() || [])
+            .toPromise();
     }
 
     getExpense(id: string): Promise<ExpenseRecord> {
         return this.http.get(`${this.expenseUrl}/${id}`)
-                        .map(response => response.json())
-                        .toPromise();
+            .map(response => response.json())
+            .toPromise();
     }
 
-    updateExpense(expense: ExpenseRecord): Promise<any> {
-        return this.http.put(`${this.expenseUrl}/${expense.id}`, expense)
-                        .toPromise();
+    async updateExpense(expense: ExpenseRecord): Promise<Response> {
+        var result: Response;
+        try {
+            result = await this.http
+                .put(`${this.expenseUrl}/${expense.id}`, expense)
+                .toPromise();
+            this.notify.success(`Expense ${expense.id} updated successfully.`);
+        } catch (response) {
+            this.handleError(`Error updating expense ${expense.id}.`, response);
+        }
+        return result;
     }
 
-    createExpense(expense: ExpenseRecord): Promise<any> {
-        expense.id = this.generateGuid();
-        return this.http.post(this.expenseUrl, expense)
-                        .toPromise();
+    async createExpense(expense: ExpenseRecord): Promise<Response> {
+        var result: Response;
+        try {
+            expense.id = this.generateGuid();
+            result = await this.http
+                .post(this.expenseUrl, expense)
+                .toPromise();
+            this.notify.success(`Expense ${expense.id} created successfully.`);
+        } catch (response) {
+            if (response.status === 409) {
+                this.notify.warning(`An expense with id ${expense.id} already exists.`);
+            } else {
+                this.handleError(`Error creating expense ${expense.id}.`, response);
+            }
+            result = response;
+        }
+        return result;
     }
 
-    deleteExpense(expense: ExpenseRecord): Promise<any> {
-        return this.http.delete(`${this.expenseUrl}/${expense.id}`)
-                        .toPromise();
+    async deleteExpense(expense: ExpenseRecord): Promise<Response> {
+        var result: Response;
+        try {
+            result = await this.http
+                .delete(`${this.expenseUrl}/${expense.id}`)
+                .toPromise();
+            this.notify.success(`Expense ${expense.id} deleted successfully.`);
+        } catch (response) {
+            this.handleError(`Error deleting expense ${expense.id}.`, response);
+            result = response;
+        }
+        return result;
+    }
+
+    private handleError(message: string, response: Response) {
+        this.notify.error(`${message}: The remote server returned HTTP ${response.status}: ${response.statusText}`);
     }
 
     private generateGuid(): string {
         return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-			var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-			return v.toString(16);
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
         });
     }
 }

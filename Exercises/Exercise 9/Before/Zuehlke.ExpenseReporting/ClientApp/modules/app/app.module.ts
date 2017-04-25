@@ -1,3 +1,4 @@
+import { NotificationService } from './services/notification.service';
 import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -27,7 +28,8 @@ import { ExpenseModule } from '../expense/expense.module';
         ])
     ],
     providers:[
-        AuthService
+        AuthService,
+        NotificationService
     ]
 })
 export class AppModule {
