@@ -1,7 +1,9 @@
+import { NotificationService } from './services/notification.service';
 import { AuthService } from './services/auth.service';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { UniversalModule } from 'angular2-universal';
+import {ToastModule} from 'ng2-toastr';
 import { AppComponent } from './components/app.component'
 import { NavMenuComponent } from './components/navmenu.component';
 import { HomeComponent } from './components/home.component';
@@ -19,6 +21,7 @@ import { ExpenseModule } from '../expense/expense.module';
     ],
     imports: [
         UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
+        ToastModule.forRoot(),
         ExpenseModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -27,7 +30,8 @@ import { ExpenseModule } from '../expense/expense.module';
         ])
     ],
     providers:[
-        AuthService
+        AuthService,
+        NotificationService
     ]
 })
 export class AppModule {

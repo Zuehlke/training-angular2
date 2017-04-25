@@ -1,3 +1,4 @@
+import { IExpenseDetail } from './expense-detail.interface';
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
@@ -7,10 +8,12 @@ import { ExpenseService } from '../services/expense.service';
 @Component({
     template: require('./expense-add.component.html')
 })
-export class ExpenseAddComponent {
+export class ExpenseAddComponent implements IExpenseDetail {
 
     expense: ExpenseRecord = new ExpenseRecord(null, null, null, new Date(Date.now()), 0, null);
     errorMessage: string;
+
+    isFormValidOrPristine: boolean;
 
     constructor(private router: Router, private expenseService: ExpenseService) {}
 

@@ -22,9 +22,8 @@
                         <span class='glyphicon glyphicon-th-list'></span> Expenses
                     </a>
                 </li>
-                <li class="divider" *ngIf="isLoggedIn"></li>
                 <li *ngIf="isLoggedIn">
-                    <a (click)="logout()">
+                    <a (click)="logout()" href="">
                         <span class='glyphicon glyphicon-log-out'></span> Mischief Managed
                     </a>
                 </li>

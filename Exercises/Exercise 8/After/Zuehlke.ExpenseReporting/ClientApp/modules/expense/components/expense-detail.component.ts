@@ -5,11 +5,12 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { ExpenseRecord } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
+import { IExpenseDetail } from './expense-detail.interface';
 
 @Component({
     template: require('./expense-detail.component.html')
 })
-export class ExpenseDetailComponent implements OnInit, OnDestroy {
+export class ExpenseDetailComponent implements OnInit, OnDestroy, IExpenseDetail {
 
     expense: ExpenseRecord;
     private sub: Subscription;
