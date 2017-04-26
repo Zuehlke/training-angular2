@@ -67,7 +67,7 @@ export class ExpenseService {
 
       getExpenses(): Observable<ExpenseRecord[]> {
           return this.http.get(this.expenseUrl)
-              .map(response => response.json() || [])
+              .map(response => response.json() || []);
       }
 }
   ```
@@ -116,8 +116,8 @@ export class ExpenseOverviewComponent implements OnInit {
       constructor(private expenseService: ExpenseService) { }
 
       ngOnInit(): void {
-          this.expenses = this.expenseService.getExpenses()
-                              .subscribe(expenses => this.expenses = expenses);
+          this.expenseService.getExpenses()
+                             .subscribe(expenses => this.expenses = expenses);
       }
 }
 
