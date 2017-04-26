@@ -45,9 +45,8 @@ public class ExpenseController : Controller
 1. Add a file named "expense.service.ts" and implement a class named `ExpenseService` decorated with the `@Injectable()` decorator.
 1. Define a field named `expenseUrl` of type `string` an initialize it with "/api/expenses".
 1. Insert a constructor taking Angular's Http service as a parameter and initializing a private field from it.
-1. Create a method named `getExpenses()` that returns a `Promise<ExpenseRecord[]>`. Within this method invoke the `get()` method of the Http service to retrieve a list of expense records from the service.
+1. Create a method named `getExpenses()` that returns an `Observable<ExpenseRecord[]>`. Within this method invoke the `get()` method of the Http service to retrieve a list of expense records from the service.
 1. Call the `map()` method to extract the array of expense records from the response or return an empty array if the response has no content.
-1. Call the `toPromise()` method to convert the observable into a promise.
 
   The `ExpenseService` class should look like this now:
 
@@ -56,7 +55,6 @@ import { Observable } from 'rxjs/Observable';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
 
 import { ExpenseRecord } from '../model/expense';
 
@@ -67,10 +65,9 @@ export class ExpenseService {
 
       constructor(private http: Http) { }
 
-      getExpenses(): Promise<ExpenseRecord[]> {
+      getExpenses(): Observable<ExpenseRecord[]> {
           return this.http.get(this.expenseUrl)
               .map(response => response.json() || [])
-              .toPromise();
       }
 }
   ```
@@ -100,7 +97,7 @@ export class ExpenseService {
 1. Let the `ExpenseOverview` component implement the `OnInit` interface.
 1. Insert a constructor taking the `ExpenseService` as a parameter and initializing a private field from it.
 1. Implement the `ngOnInit()` method to invoke the `getExpenses()` method of the `ExpenseService`.
-1. Use the `await` operator to wait for the result and set the expenses field of the class.
+1. Subscribe to the observable to wait for the result and set the expenses field of the class.
 
   By now the `ExpenseOverview` component should look like this:
   ```typescript
@@ -118,8 +115,9 @@ export class ExpenseOverviewComponent implements OnInit {
 
       constructor(private expenseService: ExpenseService) { }
 
-      async ngOnInit(): Promise<any> {
-          this.expenses = await this.expenseService.getExpenses();
+      ngOnInit(): void {
+          this.expenses = this.expenseService.getExpenses()
+                              .subscribe(expenses => this.expenses = expenses);
       }
 }
 
