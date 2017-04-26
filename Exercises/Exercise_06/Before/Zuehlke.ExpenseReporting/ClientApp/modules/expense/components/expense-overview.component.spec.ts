@@ -62,6 +62,9 @@ describe('The ExpenseOverviewComponent', () => {
         await fixture.whenStable();
 
         expect(expenseService.getExpenses).toHaveBeenCalledTimes(1);
+        
+        fixture.detectChanges();
+        await fixture.whenStable();
 
         const tableBody = fixture.debugElement.query(By.css('tbody'));
         expect(tableBody.nativeElement.children.length).toEqual(2);

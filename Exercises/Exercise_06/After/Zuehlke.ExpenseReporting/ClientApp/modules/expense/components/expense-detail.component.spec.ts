@@ -53,6 +53,9 @@ describe('The ExpenseDetailComponent', () => {
         await fixture.whenStable();
 
         expect(expenseDetailComponent.expense).toEqual(expense1);
+        
+        fixture.detectChanges();
+        await fixture.whenStable();
 
         const title = fixture.debugElement.query(By.css('.panel-heading')).nativeElement;
         expect(title.textContent).toEqual('Receipt from ' + expense1.name);
@@ -63,16 +66,18 @@ describe('The ExpenseDetailComponent', () => {
         expenseDetailComponent.expense = expense1;
 
         fixture.detectChanges();
-
+     
         const backButton = fixture.debugElement.query(By.css('.btn-default'));
         backButton.triggerEventHandler('click', null);
-
+        
         const routerArguments = routerSpy.calls.first().args[0];
         expect(routerArguments).toEqual(['/expense']);
     }));
 
     it('should update an expense if the save button was clicked', inject([Router], async (router: Router) => {
         const routerSpy = spyOn(router, 'navigate');
+        const updateSpy = spyOn(expenseService, "updateExpense");
+        const createSpy = spyOn(expenseService, "createExpense");
         expenseDetailComponent.expense = expense1;
 
         fixture.detectChanges();
@@ -80,11 +85,13 @@ describe('The ExpenseDetailComponent', () => {
         const saveButton = fixture.debugElement.query(By.css('.btn-primary'));
         saveButton.triggerEventHandler('click', null); //trigger a save
 
+        fixture.detectChanges();
         await fixture.whenStable();
         
-        expect(expenseService.updateExpense).toHaveBeenCalledTimes(1);
-        expect(expenseService.updateExpense).toHaveBeenCalledWith(expense1);
-        expect(expenseService.createExpense).not.toHaveBeenCalled();
+        expect(updateSpy).toHaveBeenCalledTimes(1);
+        expect(updateSpy).toHaveBeenCalledWith(expense1);
+
+        expect(createSpy).not.toHaveBeenCalled();
 
         const routerArguments = routerSpy.calls.first().args[0]; //check that router was called with overview route
         expect(routerArguments).toEqual(['/expense']);

@@ -62,6 +62,9 @@ describe('The ExpenseOverviewComponent', () => {
         await fixture.whenStable();
 
         expect(expenseService.getExpenses).toHaveBeenCalledTimes(1);
+        
+        fixture.detectChanges();
+        await fixture.whenStable();
 
         const tableBody = fixture.debugElement.query(By.css('tbody'));
         expect(tableBody.nativeElement.children.length).toEqual(2);
@@ -75,24 +78,6 @@ describe('The ExpenseOverviewComponent', () => {
         
         fixture.detectChanges();
         await fixture.whenStable();
-
-        const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a'));
-        firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent'));
-
-        fixture.detectChanges();
-        await fixture.whenStable();
-
-        expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1);
-        expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1);
-
-        const tableBody = fixture.debugElement.query(By.css('tbody'));
-        expect(tableBody.nativeElement.children.length).toEqual(1);
-        expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('YODA');
-    });
-
-    it('should remove one entry when it is deleted', async () => {
-        spyOn(expenseService, 'getExpenses').and.returnValue(Promise.resolve(testExpenses));
-        spyOn(expenseService, 'deleteExpense').and.returnValue(Promise.resolve());
         
         fixture.detectChanges();
         await fixture.whenStable();
@@ -105,6 +90,36 @@ describe('The ExpenseOverviewComponent', () => {
 
         expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1);
         expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1);
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const tableBody = fixture.debugElement.query(By.css('tbody'));
+        expect(tableBody.nativeElement.children.length).toEqual(1);
+        expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('YODA');
+    });
+
+    it('should remove one entry when it is deleted', async () => {
+        spyOn(expenseService, 'getExpenses').and.returnValue(Promise.resolve(testExpenses));
+        spyOn(expenseService, 'deleteExpense').and.returnValue(Promise.resolve());
+        
+        fixture.detectChanges();
+        await fixture.whenStable();
+        
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a'));
+        firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent'));
+
+        fixture.detectChanges();
+        await fixture.whenStable();
+
+        expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1);
+        expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1);
+        
+        fixture.detectChanges();
+        await fixture.whenStable();
 
         expect(expenseOverviewComponent.expenses.length).toEqual(1);
         expect(expenseOverviewComponent.expenses[0].name).toBe('Yoda');
