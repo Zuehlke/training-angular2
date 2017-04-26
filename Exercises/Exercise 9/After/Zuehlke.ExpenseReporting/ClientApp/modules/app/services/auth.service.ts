@@ -1,11 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { NotificationService } from './notification.service';
+import { isBrowser } from 'angular2-universal';
 
 @Injectable()
 export class AuthService {
 
-    isAuthorized: Boolean;
+    set isAuthorized(val: boolean) {
+        if (isBrowser) {
+            sessionStorage.setItem("isAuthorized", val + "");
+        }
+    }
+
+    get isAuthorized(): boolean {
+        if (isBrowser) {
+            return sessionStorage.getItem("isAuthorized") === "true";
+        }
+        return false;
+    }
 
     constructor(private router: Router, private notify: NotificationService) {
     }
