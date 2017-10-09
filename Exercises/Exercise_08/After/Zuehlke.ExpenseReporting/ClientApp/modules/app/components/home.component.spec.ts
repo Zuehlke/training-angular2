@@ -5,12 +5,17 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 import { By } from '@angular/platform-browser';
 
 import { HomeComponent } from './home.component';
+import { AuthService } from '../services/auth.service';
+
+import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRouteStub, RouterStub } from '../../../utils/testutils';
 
 describe('The HomeComponent', () => {
 
     let homeComponent: HomeComponent;
     let fixture: ComponentFixture<HomeComponent>;
     let pageTitle: HTMLElement;
+    let authService: AuthService;
 
     beforeAll(()=>{
         TestBed.resetTestEnvironment();
@@ -19,7 +24,8 @@ describe('The HomeComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [HomeComponent]
+            declarations: [HomeComponent],
+            providers: [AuthService, { provide: Router, useClass: RouterStub }]
         });
 
         fixture = TestBed.createComponent(HomeComponent);

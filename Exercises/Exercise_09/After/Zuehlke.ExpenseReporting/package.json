@@ -2,7 +2,7 @@
   "name": "test",
   "version": "0.0.0",
   "scripts": {
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js --single-run"
   },
   "dependencies": {
     "@angular/common": "^2.4.5",
