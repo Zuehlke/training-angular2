@@ -6,6 +6,12 @@ import { By } from '@angular/platform-browser';
 
 import { HomeComponent } from './home.component';
 
+import { Router } from '@angular/router';
+import { RouterStub } from '../../../utils/testutils';
+
+import { NotificationService } from '../services/notification.service';
+import { AuthService } from '../services/auth.service';
+
 describe('The HomeComponent', () => {
 
     let homeComponent: HomeComponent;
@@ -19,7 +25,8 @@ describe('The HomeComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [HomeComponent]
+            declarations: [HomeComponent],
+            providers: [{provide: Router, class: RouterStub}, AuthService, NotificationService]
         });
 
         fixture = TestBed.createComponent(HomeComponent);
