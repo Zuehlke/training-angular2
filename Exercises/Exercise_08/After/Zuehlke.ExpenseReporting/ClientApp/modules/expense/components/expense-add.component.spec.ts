@@ -16,7 +16,7 @@ import { ExpenseFormComponent } from './expense-form.component';
 import { ExpenseService } from '../services/expense.service';
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
 
-describe('The ExpenseDetailComponent', () => {
+describe('The ExpenseAddComponent', () => {
 
     let expenseAddComponent: ExpenseAddComponent;
     let fixture: ComponentFixture<ExpenseAddComponent>;
