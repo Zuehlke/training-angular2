@@ -5,7 +5,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { By } from '@angular/platform-browser';
 
@@ -15,6 +15,9 @@ import { ExpenseDetailComponent } from './expense-detail.component';
 import { ExpenseFormComponent } from './expense-form.component';
 import { ExpenseService } from '../services/expense.service';
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
+
+import { NotificationService } from './../../app/services/notification.service';
+import { ToastModule } from 'ng2-toastr'; 
 
 describe('The ExpenseDetailComponent', () => {
 
@@ -34,9 +37,9 @@ describe('The ExpenseDetailComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule, RouterTestingModule, HttpModule],
+            imports: [FormsModule, RouterTestingModule, HttpModule, ToastModule.forRoot()],            
             declarations: [ExpenseDetailComponent, ExpenseFormComponent],
-            providers: [ExpenseService, { provide: ActivatedRoute, useValue: activatedRoute }, { provide: Router, useClass: RouterStub }]
+            providers: [NotificationService, ExpenseService, FormBuilder, { provide: ActivatedRoute, useValue: activatedRoute }, { provide: Router, useClass: RouterStub }]            
         });
 
         fixture = TestBed.createComponent(ExpenseDetailComponent);
@@ -45,10 +48,13 @@ describe('The ExpenseDetailComponent', () => {
         expenseService = fixture.debugElement.injector.get(ExpenseService);
     });
 
-    it('should load the correct expense', async () => {
+    beforeEach(() => {
         spyOn(expenseService, 'getExpense').and.returnValue(Promise.resolve(expense1));
         activatedRoute.testParams = { id: expense1.id };
+    });
 
+
+    it('should load the correct expense', async () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -66,6 +72,7 @@ describe('The ExpenseDetailComponent', () => {
         expenseDetailComponent.expense = expense1;
 
         fixture.detectChanges();
+        await fixture.whenStable();        
      
         const backButton = fixture.debugElement.query(By.css('.btn-default'));
         backButton.triggerEventHandler('click', null);
@@ -81,6 +88,7 @@ describe('The ExpenseDetailComponent', () => {
         expenseDetailComponent.expense = expense1;
 
         fixture.detectChanges();
+        await fixture.whenStable();        
 
         const saveButton = fixture.debugElement.query(By.css('.btn-primary'));
         saveButton.triggerEventHandler('click', null); //trigger a save
