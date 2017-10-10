@@ -33,18 +33,25 @@
     };
 
     let toastWrapper = {
-        confirmSuccess: action => {
+        confirm: function (action, type) {
             let waitForAngularEnabledBefore = browser.waitForAngularEnabled();
             browser.waitForAngularEnabled(false);
             
             action();
 
-            expect(element(by.css('.toast-success')).getText()).toBeDefined();
+            expect(element(by.css('.toast-' + type)).getText()).toBeDefined();
             element(by.css('.toast-close-button')).click();
 
             browser.waitForAngularEnabled(waitForAngularEnabledBefore);
         }
-    }
+    };
+
+    toastWrapper.confirmSuccess = action => {
+        toastWrapper.confirm(action, 'success');
+    };
+    toastWrapper.confirmWarning = action => {
+        toastWrapper.confirm(action, 'warning');
+    };
 
     beforeEach(session.login);
 
@@ -73,7 +80,7 @@
         describe('list', function () {
     
             it('should have Anakin Skywalker as first entry', function () {
-                expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toEqual('ANAKIN SKYWALKER');
+                expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toMatch(/ANAKIN SKYWALKER.*/);
             });
     
             it('should show more than one entry', function () {
@@ -93,10 +100,35 @@
             });
 
             describe('edit', function () {
+
+                it('should validate name input', function () {
+                    let nameInput = element(by.name('name'));
+                    let newName = "Anakin Skywalker" + Math.round(new Date().getTime()/1000);
+
+                    // clear all input
+                    nameInput.clear().then(function () {
+                        // trigger keyevents to trigger input validation
+                        nameInput.sendKeys('a\b');
+                    });
+
+                    let erroneousFormGroup = element(by.css('.form-group.has-error'));
+                    expect(erroneousFormGroup.isDisplayed()).toBe(true);
+                    expect(erroneousFormGroup.element(by.cssContainingText('.help-block', 'Name is required')).isPresent()).toBeTruthy();
+                
+                    toastWrapper.confirmWarning(() => {
+                        element(by.linkText('Back to Overview')).click();
+                    });
+
+                    nameInput.sendKeys('any');
+                    element(by.linkText('Back to Overview')).click();
+
+                    // back on list view
+                    expect(element(by.css('.panel-heading')).getText()).toBe('Expenses Overview');
+                });
                 
                 it('should update the resource', function () {
                     let nameInput = element(by.name('name'));
-                    let newName = nameInput.getAttribute('value') + Math.round(new Date().getTime()/1000);
+                    let newName = "Anakin Skywalker" + Math.round(new Date().getTime()/1000);
 
                     nameInput.clear().then(function () {
                         nameInput.sendKeys(newName);
