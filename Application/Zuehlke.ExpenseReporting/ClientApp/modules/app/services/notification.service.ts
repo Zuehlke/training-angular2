@@ -16,7 +16,7 @@ export class NotificationService {
         this.toastr.error(message, "ERROR");
     }
     success(message: string): void {
-        this.toastr.success(message, "SUCCESS");
+        this.toastr.success(message, "SUCCESS", {showCloseButton: true});
     }
 
     setNotificationRoot(viewContainerRef: ViewContainerRef){
