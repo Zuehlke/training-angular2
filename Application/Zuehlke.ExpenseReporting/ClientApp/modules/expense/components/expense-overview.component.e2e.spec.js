@@ -32,6 +32,20 @@
         }
     };
 
+    let toastWrapper = {
+        confirmSuccess: action => {
+            let waitForAngularEnabledBefore = browser.waitForAngularEnabled();
+            browser.waitForAngularEnabled(false);
+            
+            action();
+
+            expect(element(by.css('.toast-success')).getText()).toBeDefined();
+            element(by.css('.toast-close-button')).click();
+
+            browser.waitForAngularEnabled(waitForAngularEnabledBefore);
+        }
+    }
+
     beforeEach(session.login);
 
     afterEach(session.logout);
@@ -71,11 +85,32 @@
         describe('details', function () {
 
             beforeEach(function navigateToDetails() {
-                element(by.linkText('ANAKIN SKYWALKER')).click();
+                element(by.partialLinkText('ANAKIN SKYWALKER')).click();
             });
     
             it('should show the details form', function () {
                 expect(element(by.cssContainingText('.panel-heading', 'Receipt from Anakin Skywalker')).isPresent()).toBeTruthy();
+            });
+
+            describe('edit', function () {
+                
+                it('should update the resource', function () {
+                    let nameInput = element(by.name('name'));
+                    let newName = nameInput.getAttribute('value') + Math.round(new Date().getTime()/1000);
+
+                    nameInput.clear().then(function () {
+                        nameInput.sendKeys(newName);
+                    });
+                    
+                    // expect success message, toast magic again
+                    toastWrapper.confirmSuccess(() => {
+                        element(by.linkText('Save expense')).click();
+                    });
+
+                    expect(element(by.css('.panel-heading')).getText()).toBe('Expenses Overview');
+                    expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toEqual(newName.toUpperCase());
+                });
+
             });
         });
 
@@ -97,17 +132,46 @@
                 element(by.cssContainingText('option', 'Flight')).click();
 
 
-                // expect success message, toast magic again
-                let waitForAngularEnabledBefore = browser.waitForAngularEnabled();
-                browser.waitForAngularEnabled(false);
-                element(by.linkText('Create expense')).click();
-
-                expect(element(by.css('.toast-success')).getText()).toBeDefined();
-                element(by.css('.toast-close-button')).click();
-
-                browser.waitForAngularEnabled(waitForAngularEnabledBefore);
+                toastWrapper.confirmSuccess(() => {
+                    element(by.linkText('Create expense')).click();
+                });
 
                 expect(element(by.css('.panel-heading')).getText()).toBe('Expenses Overview');
+            });
+        });
+
+        describe('delete', function () {
+            const NAME_TO_DELETE = "DELETE_ME";
+
+            beforeEach(function createToBeDeleted() {
+                element(by.linkText('Add new expense')).click();
+
+                expect(element(by.cssContainingText('.panel-heading', 'Add new Receipt')).isPresent()).toBeTruthy();
+
+                element(by.name('name')).sendKeys(NAME_TO_DELETE);
+                element(by.name('text')).sendKeys('Dummy to be deleted');
+                element(by.name('amount')).sendKeys('1000');
+                element(by.cssContainingText('option', 'Flight')).click();
+
+                toastWrapper.confirmSuccess(() => {
+                    element(by.linkText('Create expense')).click();
+                });
+
+                // verify new element in the list
+                let row = element(by.cssContainingText('tr', NAME_TO_DELETE));
+                expect(row.isPresent()).toBeTruthy();
+                
+                // click delete link
+                toastWrapper.confirmSuccess(() => {
+                    row.element(by.css('.delete')).click();
+                });
+            });
+
+            it('should remove the entry from the list', function () {
+                // expect(true).toBeFalsy();
+                element.all(by.cssContainingText('tr', NAME_TO_DELETE)).then(function(items) {
+                    expect(items.length).toBe(0);
+                });
             });
         });
     });
