@@ -1,0 +1,6 @@
+a.delete {
+  cursor: pointer;
+}
+a.delete:hover {
+    text-decoration: none;
+}
