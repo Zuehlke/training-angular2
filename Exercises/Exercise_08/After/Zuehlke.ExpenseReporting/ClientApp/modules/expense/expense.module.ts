@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
-import { expenseRouting } from './expense.routing';
+import { ExpenseRoutingModule } from './expense.routing';
 import { ExpenseOverviewComponent } from './components/expense-overview.component';
 import { ExpenseDetailComponent } from './components/expense-detail.component';
 import { ExpenseAddComponent } from './components/expense-add.component';
@@ -17,7 +17,7 @@ import { ExpenseService } from './services/expense.service';
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        expenseRouting
+        ExpenseRoutingModule
     ],
     declarations: [
         ExpenseOverviewComponent,

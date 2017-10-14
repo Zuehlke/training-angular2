@@ -2,7 +2,7 @@ import { IExpenseDetail } from './expense-detail.interface';
 import { Component, OnInit } from '@angular/core';
 import { Response } from '@angular/http';
 import { Router } from '@angular/router';
-import { ExpenseRecord } from '../model/expense';
+import { ExpenseRecord, ExpenseReason } from '../model/expense';
 import { ExpenseService } from '../services/expense.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ExpenseService } from '../services/expense.service';
 })
 export class ExpenseAddComponent implements IExpenseDetail {
 
-    expense: ExpenseRecord = new ExpenseRecord(null, null, null, new Date(Date.now()), 0, null);
+    expense: ExpenseRecord = new ExpenseRecord("", "", ExpenseReason.Flight, new Date(Date.now()), 0, "");
 
     isFormValidOrPristine: boolean;
 

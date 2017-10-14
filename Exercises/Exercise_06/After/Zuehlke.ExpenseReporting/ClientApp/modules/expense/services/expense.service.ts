@@ -25,20 +25,43 @@ export class ExpenseService {
                         .toPromise();
     }
 
-    updateExpense(expense: ExpenseRecord): Promise<Response> {
-        return this.http.put(`${this.expenseUrl}/${expense.id}`, expense)
-                        .toPromise();
+    async updateExpense(expense: ExpenseRecord): Promise<Response> {
+        var result: Response;
+        try {
+            result = await this.http
+                .put(`${this.expenseUrl}/${expense.id}`, expense)
+                .toPromise();
+            
+            return result;
+        } catch (response) {
+            result = response;
+        }
+        return result;
     }
 
-    createExpense(expense: ExpenseRecord): Promise<Response> {
-        expense.id = this.generateGuid();
-        return this.http.post(this.expenseUrl, expense)
-                        .toPromise();
+    async createExpense(expense: ExpenseRecord): Promise<Response> {
+        var result: Response;
+        try {
+            expense.id = this.generateGuid();
+            result = await this.http
+                .post(this.expenseUrl, expense)
+                .toPromise();
+        } catch (response) {
+            result = response;
+        }
+        return result;
     }
 
-    deleteExpense(expense: ExpenseRecord): Promise<Response> {
-        return this.http.delete(`${this.expenseUrl}/${expense.id}`)
-                        .toPromise();
+    async deleteExpense(expense: ExpenseRecord): Promise<Response> {
+        var result: Response;
+        try {
+            result = await this.http
+                .delete(`${this.expenseUrl}/${expense.id}`)
+                .toPromise();
+        } catch (response) {
+            result = response;
+        }
+        return result;
     }
 
     private generateGuid(): string {
