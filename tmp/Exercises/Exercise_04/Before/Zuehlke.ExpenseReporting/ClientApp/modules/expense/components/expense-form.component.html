@@ -1,0 +1,32 @@
+<form class="form-horizontal" role="form" #expenseForm="ngForm">
+
+    <div class="form-group">
+        <label for="name" class="col-sm-1 control-label">Name</label>
+        <div class="col-sm-11">
+            <input [(ngModel)]="expense.name" type="text" class="form-control" id="name" name="name" required placeholder="Name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="date" class="col-sm-1 control-label">Date</label>
+        <div class="col-sm-4">
+            <input [ngModel]="expense.date | date:'y-MM-dd'" (ngModelChange)="expense.date = $event" name="date" type="date" class="form-control" id="date" required placeholder="Date">
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="form-group">
+        <label for="reason" class="col-sm-1 control-label">Reason</label>
+        <div class="col-sm-4">
+            <select [(ngModel)]="expense.reason" class="form-control" id="reason" name="reason" required>
+                <option [selected]="expense.reason === 'Flight'" [value]="'Flight'">Flight</option>
+
+
+            </select>
+        </div>
+    </div>
+</form>
