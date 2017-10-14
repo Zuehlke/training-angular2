@@ -1,0 +1,88 @@
+diff -Nr -X ./ignore_patterns Exercises/Exercise_05/After/README.md Exercises/Exercise_05/Before/README.md
+1c1
+< ## Exercise 5: Result ##
+---
+> ## Exercise 5: Starting Point ##
+3c3
+< This folder contains the application as it is after you have completed this exercise.
+\ No newline at end of file
+---
+> This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_05/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.html Exercises/Exercise_05/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.html
+10,13c10
+<         <div class="btn-group">
+<             <a class="btn btn-default" (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> Back to Overview</a>
+<             <a class="btn btn-primary" (click)="createExpense()"><i class="glyphicon glyphicon-save"></i> Create expense</a>
+<         </div>
+---
+>         <a class="btn btn-default" (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> Back to Overview</a>
+diff -Nr -X ./ignore_patterns Exercises/Exercise_05/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.ts Exercises/Exercise_05/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.ts
+17,25d16
+<     async createExpense(): Promise<any> {
+<         try {
+<             await this.expenseService.createExpense(this.expense);
+<             this.goBack();
+<         } catch(response){
+<              this.handleError(response) ;
+<         }
+<     }
+< 
+diff -Nr -X ./ignore_patterns Exercises/Exercise_05/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.html Exercises/Exercise_05/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.html
+46d45
+<         <a class="btn btn-primary" [routerLink]="['/expense/add']"><span class="glyphicon glyphicon-plus"></span> Add new expense</a>
+diff -Nr -X ./ignore_patterns Exercises/Exercise_05/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/expense.routing.ts Exercises/Exercise_05/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/expense.routing.ts
+13d12
+<             { path: 'add', component: ExpenseAddComponent },
+diff -Nr -X ./ignore_patterns Exercises/Exercise_05/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/services/expense.service.ts Exercises/Exercise_05/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/services/expense.service.ts
+33,38d32
+<     createExpense(expense: ExpenseRecord): Promise<Response> {
+<         expense.id = this.generateGuid();
+<         return this.http.post(this.expenseUrl, expense)
+<                         .toPromise();
+<     }
+< 
+43,44c37,38
+< 
+<     private generateGuid(): string {
+---
+> 	
+> 	private generateGuid(): string {
+diff -Nr -X ./ignore_patterns Exercises/Exercise_05/After/Zuehlke.ExpenseReporting/ClientApp/utils/testutils.ts Exercises/Exercise_05/Before/Zuehlke.ExpenseReporting/ClientApp/utils/testutils.ts
+6c6
+<     navigate(url: string): string { return url; }
+---
+>     navigate(url: string) : string { return url; }
+18d17
+< 
+20d18
+< 
+diff -Nr -X ./ignore_patterns Exercises/Exercise_05/After/Zuehlke.ExpenseReporting/Controllers/ExpenseController.cs Exercises/Exercise_05/Before/Zuehlke.ExpenseReporting/Controllers/ExpenseController.cs
+58,84d57
+<         /// Adds the provided expense record to the database.
+<         /// </summary>
+<         /// <param name="record">The record to be added.</param>
+<         /// <returns>
+<         /// HTTP 201 containing the URI of the newly created resource if successful,
+<         /// HTTP 409 if the provided expense record already exists, 
+<         /// or HTTP 400 if no record was present in the body of the request
+<         /// </returns>
+<         [HttpPost]
+<         public IActionResult Post([FromBody]ExpenseRecord record)
+<         {
+<             try
+<             {
+<                 this.repository.Create(record);
+<                 return this.Created($"api/expenses/{record.Id}", null);
+<             }
+<             catch (ArgumentNullException)
+<             {
+<                 return this.BadRequest();
+<             }
+<             catch (InvalidOperationException)
+<             {
+<                 return this.StatusCode((int)HttpStatusCode.Conflict);
+<             }
+<         }
+< 
+<         /// <summary>

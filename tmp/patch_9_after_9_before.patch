@@ -1,0 +1,89 @@
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/README.md Exercises/Exercise_09/Before/README.md
+1,2c1,3
+< ## Exercise 9: Result ##
+< This folder contains the application as it is after you have completed this exercise.
+\ No newline at end of file
+---
+> ## Exercise 9: Starting Point ##
+> 
+> This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/app.module.ts Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/app.module.ts
+6d5
+< import {ToastModule} from 'ng2-toastr';
+24d22
+<         ToastModule.forRoot(),
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/app.component.ts Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/app.component.ts
+1,2c1
+< import { NotificationService } from './../services/notification.service';
+< import { Component, ViewContainerRef } from '@angular/core';
+---
+> import { Component } from '@angular/core';
+10,12d8
+<     constructor(notificationService:NotificationService, viewContainerRef:ViewContainerRef){
+<         notificationService.setNotificationRoot(viewContainerRef);
+<     }
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.spec.ts Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.spec.ts
+14d13
+< import {ToastModule} from 'ng2-toastr';
+30d28
+<             imports: [ToastModule.forRoot()],
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/services/notification.service.ts Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/services/notification.service.ts
+2d1
+< import { ToastsManager } from 'ng2-toastr';
+6,7d4
+<     constructor(private toastr: ToastsManager) {
+<     }
+10c7
+<         this.toastr.info(message, "INFO");
+---
+>         alert(`INFO: ${message}`);
+13c10
+<         this.toastr.warning(message, "WARNING");
+---
+>         alert(`WARNING: ${message}`);
+16c13
+<         this.toastr.error(message, "ERROR");
+---
+>         alert(`ERROR: ${message}`);
+19,23c16
+<         this.toastr.success(message, "SUCCESS");
+<     }
+< 
+<     setNotificationRoot(viewContainerRef: ViewContainerRef){
+<         this.toastr.setRootViewContainerRef(viewContainerRef);
+---
+>         alert(`SUCCESS: ${message}`);
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.spec.ts Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.spec.ts
+20d19
+< import { ToastModule } from 'ng2-toastr'; 
+22c21
+< describe('The ExpenseDetailComponent', () => {
+---
+> describe('The ExpenseAddComponent', () => {
+37c36
+<             imports: [FormsModule, RouterTestingModule, HttpModule, ToastModule.forRoot()],
+---
+>             imports: [FormsModule, RouterTestingModule, HttpModule],
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.spec.ts Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.spec.ts
+20d19
+< import { ToastModule } from 'ng2-toastr'; 
+40c39
+<             imports: [FormsModule, RouterTestingModule, HttpModule, ToastModule.forRoot()],
+---
+>             imports: [FormsModule, RouterTestingModule, HttpModule],
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.spec.ts Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.spec.ts
+17d16
+< import { ToastModule, ToastsManager } from 'ng2-toastr'; 
+39,40c38
+<                 HttpModule,
+<                 ToastModule.forRoot()
+---
+>                 HttpModule
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/package.json Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/package.json
+38d37
+<     "ng2-toastr": "^1.6.0",
+diff -Nr -X ./ignore_patterns Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/webpack.config.vendor.js Exercises/Exercise_09/Before/Zuehlke.ExpenseReporting/webpack.config.vendor.js
+35,36d34
+<                 'ng2-toastr',
+<                 'ng2-toastr/ng2-toastr.css',

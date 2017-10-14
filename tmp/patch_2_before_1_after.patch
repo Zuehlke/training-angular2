@@ -1,0 +1,384 @@
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/README.md Exercises/Exercise_01/After/README.md
+1c1
+< ## Exercise 2: Starting Point ##
+---
+> ## Exercise 1: Result ##
+3c3
+< This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+---
+> This folder contains the application as it is after you have completed this exercise.
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.html Exercises/Exercise_01/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.html
+1,21c1
+< <div class="panel panel-primary">
+<     <div class="panel-heading">Expenses Overview</div>
+<     <table class="table">
+<         <thead>
+<             <tr>
+<                 <th>From</th>
+<                 <th>Date</th>
+<                 <th>Amount</th>
+<                 <th>For what</th>
+<             </tr>
+<         </thead>
+<         <tbody>
+<             <tr>
+<                 <td>specific name</td>
+<                 <td>specific date</td>
+<                 <td>specific amount</td>
+<                 <td>specific reason</td>
+<             </tr>
+<         </tbody>
+<     </table>
+< </div>
+\ No newline at end of file
+---
+> <h1>Expense Overview</h1>
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.ts Exercises/Exercise_01/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.ts
+4c4
+<     template: require('./expense-overview.component.html'),
+---
+>     template: require('./expense-overview.component.html')
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/model/expense.ts Exercises/Exercise_01/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/model/expense.ts
+1,13d0
+< export class ExpenseRecord {
+<     constructor(public id: string, public name: string, public reason: ExpenseReason, public date: Date, public amount: number, public text: string) {}
+< }
+< 
+< export enum ExpenseReason {
+<     Flight,
+<     Train,
+<     Bus,
+<     Taxi,
+<     Hotel,
+<     Restaurant,
+<     Other
+< }
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/Zuehlke.ExpenseReporting/Data/ExpenseReason.cs Exercises/Exercise_01/After/Zuehlke.ExpenseReporting/Data/ExpenseReason.cs
+1,16d0
+< ﻿namespace Zuehlke.ExpenseReporting.Data
+< {
+<     /// <summary>
+<     /// Provides possible reasons for expense reports.
+<     /// </summary>
+<     public enum ExpenseReason
+<     {
+<         Flight,
+<         Train,
+<         Bus,
+<         Taxi,
+<         Hotel,
+<         Restaurant,
+<         Other
+<     }
+< }
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/Zuehlke.ExpenseReporting/Data/ExpenseRecord.cs Exercises/Exercise_01/After/Zuehlke.ExpenseReporting/Data/ExpenseRecord.cs
+1,111d0
+< using System;
+< using Newtonsoft.Json;
+< using Newtonsoft.Json.Converters;
+< 
+< namespace Zuehlke.ExpenseReporting.Data
+< {
+<     /// <summary>
+<     /// Provides information to a single expense record.
+<     /// </summary>
+<     public class ExpenseRecord : IEquatable<ExpenseRecord>
+<     {
+<         /// <summary>
+<         /// Gets or sets the unique id of the expense record.
+<         /// </summary>
+<         public Guid Id { get; set; }
+< 
+<         /// <summary>
+<         /// Gets or sets the date the expense was made.
+<         /// </summary>
+<         public DateTime Date { get; set; }
+< 
+<         /// <summary>
+<         /// Gets or sets the name of the person creating the report.
+<         /// </summary>
+<         public string Name { get; set; }
+< 
+<         /// <summary>
+<         /// Gets or sets the reason for the expense.
+<         /// </summary>
+<         [JsonConverter(typeof(StringEnumConverter))]
+<         public ExpenseReason Reason { get; set; }
+< 
+<         /// <summary>
+<         /// Gets or sets the amount of the expense.
+<         /// </summary>
+<         public decimal Amount { get; set; }
+< 
+<         /// <summary>
+<         /// Gets or sets additional information.
+<         /// </summary>
+<         public string Text { get; set; }
+< 
+<         /// <summary>
+<         /// Indicates whether the current object is equal to another object of the same type.
+<         /// </summary>
+<         /// <param name="other">An object to compare with this object.</param>
+<         /// <returns><c>true</c> if the current object is equal to the other parameter; otherwise, <c>false</c>.</returns>
+<         public bool Equals(ExpenseRecord other)
+<         {
+<             if (ReferenceEquals(null, other))
+<             {
+<                 return false;
+<             }
+<             if (ReferenceEquals(this, other))
+<             {
+<                 return true;
+<             }
+<             return this.Id.Equals((object)other.Id) && Equals(this.Date, other.Date) && Equals(this.Name, other.Name) && this.Reason == other.Reason && this.Amount == other.Amount && Equals(this.Text, other.Text);
+<         }
+< 
+<         /// <summary>
+<         /// Determines whether the specified object is equal to the current object.
+<         /// </summary>
+<         /// <param name="obj">The object to compare with the current object.</param>
+<         /// <returns><c>true</c> if the specified object is equal to the current object; otherwise, <c>false</c>.</returns>
+<         public override bool Equals(object obj)
+<         {
+<             if (ReferenceEquals(null, obj))
+<             {
+<                 return false;
+<             }
+<             if (ReferenceEquals(this, obj))
+<             {
+<                 return true;
+<             }
+<             if (obj.GetType() != this.GetType())
+<             {
+<                 return false;
+<             }
+<             return this.Equals((ExpenseRecord)obj);
+<         }
+< 
+<         /// <summary>
+<         /// Serves as the default hash function.
+<         /// </summary>
+<         /// <returns>A hash code for the current object.</returns>
+<         public override int GetHashCode()
+<         {
+<             unchecked
+<             {
+<                 var hashCode = this.Id.GetHashCode();
+<                 hashCode = (hashCode * 397) ^ this.Date.GetHashCode();
+<                 hashCode = (hashCode * 397) ^ (this.Name?.GetHashCode() ?? 0);
+<                 hashCode = (hashCode * 397) ^ (int)this.Reason;
+<                 hashCode = (hashCode * 397) ^ this.Amount.GetHashCode();
+<                 hashCode = (hashCode * 397) ^ (this.Text?.GetHashCode() ?? 0);
+<                 return hashCode;
+<             }
+<         }
+< 
+<         public static bool operator ==(ExpenseRecord left, ExpenseRecord right)
+<         {
+<             return Equals(left, right);
+<         }
+< 
+<         public static bool operator !=(ExpenseRecord left, ExpenseRecord right)
+<         {
+<             return !Equals(left, right);
+<         }
+<     }
+< }
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/Zuehlke.ExpenseReporting/Data/ExpenseRepository.cs Exercises/Exercise_01/After/Zuehlke.ExpenseReporting/Data/ExpenseRepository.cs
+1,131d0
+< ﻿using System;
+< using System.Collections.Generic;
+< using System.Linq;
+< 
+< namespace Zuehlke.ExpenseReporting.Data
+< {
+<     /// <summary>
+<     /// Provides the interface to access the database holding the expense records.
+<     /// </summary>
+<     public class ExpenseRepository : IExpenseRepository
+<     {
+<         #region Fields
+< 
+<         private readonly List<ExpenseRecord> database = new List<ExpenseRecord>();
+< 
+<         #endregion
+< 
+<         #region Constructors and Destructors
+< 
+<         /// <summary>
+<         /// Initializes a new instance of <see cref="ExpenseRepository"/>.
+<         /// </summary>
+<         public ExpenseRepository()
+<         {
+<             this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000001"), Date = new DateTime(2016, 10, 11), Name = "Anakin Skywalker", Reason = ExpenseReason.Flight, Text = "Flight to Tatooine, visiting Mom", Amount = 122.99m });
+<             this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000002"), Date = new DateTime(2016, 10, 12), Name = "Padme Amidala", Reason = ExpenseReason.Flight, Text = "Flight to Tatooine, visiting Annie's Mom", Amount = 122.99m });
+<             this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000003"), Date = new DateTime(2016, 10, 13), Name = "Obi-Wan Kenobi", Reason = ExpenseReason.Other, Text = "New Lightsabre", Amount = 3999.99m });
+<             this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000004"), Date = new DateTime(2016, 10, 14), Name = "The Dark Lord", Reason = ExpenseReason.Restaurant, Text = "I had the Penne a L'Arrabiata", Amount = 3.90m });
+<             this.database.Add(new ExpenseRecord { Id = Guid.Parse("00000000-0000-0000-0000-000000000005"), Date = new DateTime(2016, 10, 15), Name = "Jar Jar Binx", Reason = ExpenseReason.Restaurant, Text = "Apple", Amount = 0.2m });
+<         }
+< 
+<         #endregion
+< 
+<         #region Public Methods and Operators
+< 
+<         /// <summary>
+<         /// Gets all expense records that are stored in the database.
+<         /// </summary>
+<         /// <returns>An <see cref="IEnumerable{T}"/> holding the expense records stored in the database.</returns>
+<         public IEnumerable<ExpenseRecord> All()
+<         {
+<             lock (this.database)
+<             {
+<                 return this.database;
+<             }
+<         }
+< 
+<         /// <summary>
+<         /// Gets a specific expense record identified by its unique id.
+<         /// </summary>
+<         /// <param name="id">Unique id of the requested expense record.</param>
+<         /// <returns>The expense record holding the specified id or null if no such record was found.</returns>
+<         public ExpenseRecord FindById(Guid id)
+<         {
+<             lock (this.database)
+<             {
+<                 return this.database.FirstOrDefault(x => x.Id.Equals(id));
+<             }
+<         }
+< 
+<         /// <summary>
+<         /// Adds the provided expense record to the database.
+<         /// </summary>
+<         /// <param name="record">The record to be added.</param>
+<         /// <exception cref="ArgumentNullException">Thrown if no record has been provided.</exception>
+<         /// <exception cref="InvalidOperationException">Thrown if the record to be added already exists in the database.</exception>
+<         public void Create(ExpenseRecord record)
+<         {
+<             if (record == null)
+<             {
+<                 throw new ArgumentNullException(nameof(record));
+<             }
+<             lock (this.database)
+<             {
+<                 if (this.FindById(record.Id) != null)
+<                 {
+<                     throw new InvalidOperationException($"An expense record with ID {record.Id} already exists in the database!");
+<                 }
+<                 this.database.Add(record);
+<             }
+<         }
+< 
+<         /// <summary>
+<         /// Updates the provided expense record in the database.
+<         /// </summary>
+<         /// <param name="record">The record to be added.</param>
+<         /// <exception cref="ArgumentNullException">Thrown if no record has been provided.</exception>
+<         /// <exception cref="InvalidOperationException">Thrown if the record to be modified does not exist in the database.</exception>
+<         public void Update(ExpenseRecord record)
+<         {
+<             if (record == null)
+<             {
+<                 throw new ArgumentNullException(nameof(record));
+<             }
+<             lock (this.database)
+<             {
+<                 var oldRecord = this.FindById(record.Id);
+<                 if (oldRecord == null)
+<                 {
+<                     throw new InvalidOperationException($"An expense record with ID {record.Id} does not exist in the database!");
+<                 }
+< 
+<                 oldRecord.Amount = record.Amount;
+<                 oldRecord.Date = record.Date;
+<                 oldRecord.Name = record.Name;
+<                 oldRecord.Reason = record.Reason;
+<                 oldRecord.Text = record.Text;
+<             }
+<         }
+< 
+<         /// <summary>
+<         /// Removes the expense record with the specified id from the database.
+<         /// </summary>
+<         /// <param name="id">Unique id of the record to be deleted</param>
+<         /// <exception cref="InvalidOperationException">Thrown if the record to be deleted does not exist in the database.</exception>
+<         public void Delete(Guid id)
+<         {
+<             lock (this.database)
+<             {
+<                 var record = this.FindById(id);
+<                 if (record == null)
+<                 {
+<                     throw new InvalidOperationException($"An expense record with ID {id} does not exist in the database!");
+<                 }
+<                 this.database.Remove(record);
+<             }
+<         }
+< 
+<         #endregion
+<     }
+< }
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/Zuehlke.ExpenseReporting/Data/IExpenseRepository.cs Exercises/Exercise_01/After/Zuehlke.ExpenseReporting/Data/IExpenseRepository.cs
+1,50d0
+< ﻿using System;
+< using System.Collections.Generic;
+< 
+< namespace Zuehlke.ExpenseReporting.Data
+< {
+<     /// <summary>
+<     /// Defines the interface for the data access layer for expenses.
+<     /// </summary>
+<     public interface IExpenseRepository
+<     {
+<         #region Public Methods and Operators
+< 
+<         /// <summary>
+<         /// Gets all expense records that are stored in the database.
+<         /// </summary>
+<         /// <returns>An <see cref="IEnumerable{T}"/> holding the expense records stored in the database.</returns>
+<         IEnumerable<ExpenseRecord> All();
+< 
+<         /// <summary>
+<         /// Gets a specific expense record identified by its unique id.
+<         /// </summary>
+<         /// <param name="id">Unique id of the requested expense record.</param>
+<         /// <returns>The expense record holding the specified id or null if no such record was found.</returns>
+<         ExpenseRecord FindById(Guid id);
+< 
+<         /// <summary>
+<         /// Adds the provided expense record to the database.
+<         /// </summary>
+<         /// <param name="record">The record to be added.</param>
+<         /// <exception cref="ArgumentNullException">Thrown if no record has been provided.</exception>
+<         /// <exception cref="InvalidOperationException">Thrown if the record to be added already exists in the database.</exception>
+<         void Create(ExpenseRecord record);
+< 
+<         /// <summary>
+<         /// Updates the provided expense record in the database.
+<         /// </summary>
+<         /// <param name="record">The record to be added.</param>
+<         /// <exception cref="ArgumentNullException">Thrown if no record has been provided.</exception>
+<         /// <exception cref="InvalidOperationException">Thrown if the record to be modified does not exist in the database.</exception>
+<         void Update(ExpenseRecord record);
+< 
+<         /// <summary>
+<         /// Removes the expense record with the specified id from the database.
+<         /// </summary>
+<         /// <param name="id">Unique id of the record to be deleted</param>
+<         void Delete(Guid id);
+< 
+<         #endregion
+<     }
+< }
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_02/Before/Zuehlke.ExpenseReporting/Startup.cs Exercises/Exercise_01/After/Zuehlke.ExpenseReporting/Startup.cs
+7d6
+< using Zuehlke.ExpenseReporting.Data;
+30d28
+<             services.AddSingleton<IExpenseRepository, ExpenseRepository>();

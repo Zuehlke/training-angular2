@@ -1,0 +1,34 @@
+diff -Nr -X ./ignore_patterns Exercises/Exercise_10/Before/README.md Exercises/Exercise_09/After/README.md
+1,3c1,2
+< ## Exercise 10: Starting Point ##
+< 
+< This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+---
+> ## Exercise 9: Result ##
+> This folder contains the application as it is after you have completed this exercise.
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_10/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.spec.ts Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.spec.ts
+22c22
+< describe('The ExpenseAddComponent', () => {
+---
+> describe('The ExpenseDetailComponent', () => {
+diff -Nr -X ./ignore_patterns Exercises/Exercise_10/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.spec.ts Exercises/Exercise_09/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.spec.ts
+40c40
+<             imports: [FormsModule, RouterTestingModule, HttpModule, ToastModule.forRoot()],            
+---
+>             imports: [FormsModule, RouterTestingModule, HttpModule, ToastModule.forRoot()],
+42c42
+<             providers: [NotificationService, ExpenseService, FormBuilder, { provide: ActivatedRoute, useValue: activatedRoute }, { provide: Router, useClass: RouterStub }]            
+---
+>             providers: [NotificationService, ExpenseService, FormBuilder, { provide: ActivatedRoute, useValue: activatedRoute }, { provide: Router, useClass: RouterStub }]
+56d55
+< 
+75c74
+<         await fixture.whenStable();        
+---
+>         await fixture.whenStable();
+91c90
+<         await fixture.whenStable();        
+---
+>         await fixture.whenStable();

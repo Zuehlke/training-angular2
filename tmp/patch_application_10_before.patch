@@ -1,0 +1,293 @@
+diff -Nr -X ./ignore_patterns Application/README.md Exercises/Exercise_10/Before/README.md
+1,2c1
+< ## Example Application ##
+< This is a simple example application demonstration how ASP.NET Core, Angular 2, TypeScript and WebPack (to name just these four) work together.
+---
+> ## Exercise 10: Starting Point ##
+4c3
+< This example application is based on the Angular template as created by the ASP.NET Core Template Pack. See [bit.ly/aspnetcoretp](http://bit.ly/aspnetcoretp) for details.
+\ No newline at end of file
+---
+> This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Application/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.spec.ts Exercises/Exercise_10/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.spec.ts
+9d8
+< 
+15c14
+< import { ToastModule } from 'ng2-toastr';
+---
+> import {ToastModule} from 'ng2-toastr';
+diff -Nr -X ./ignore_patterns Application/Zuehlke.ExpenseReporting/ClientApp/modules/app/services/notification.service.ts Exercises/Exercise_10/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/services/notification.service.ts
+10c10
+<         this.toastr.info(message, "INFO", {showCloseButton: true});
+---
+>         this.toastr.info(message, "INFO");
+13c13
+<         this.toastr.warning(message, "WARNING", {showCloseButton: true});
+---
+>         this.toastr.warning(message, "WARNING");
+16c16
+<         this.toastr.error(message, "ERROR", {showCloseButton: true});
+---
+>         this.toastr.error(message, "ERROR");
+19c19
+<         this.toastr.success(message, "SUCCESS", {showCloseButton: true});
+---
+>         this.toastr.success(message, "SUCCESS");
+diff -Nr -X ./ignore_patterns Application/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.spec.ts Exercises/Exercise_10/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.spec.ts
+55a56
+> 
+74,75c75,76
+<         await fixture.whenStable();
+< 
+---
+>         await fixture.whenStable();        
+>      
+78c79
+< 
+---
+>         
+90c91
+<         await fixture.whenStable();
+---
+>         await fixture.whenStable();        
+99a101
+> 
+diff -Nr -X ./ignore_patterns Application/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.e2e.spec.js Exercises/Exercise_10/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.e2e.spec.js
+2a3,5
+>     it('should should have Anakin Skywalker as first entry', function () {
+>         browser.get('/home');
+>         expect(browser.getTitle()).toEqual('Angular 2 Workshop');
+4,15c7
+<     let session = {
+<         login: () => {
+<             // GIVEN user is logged in
+<             browser.get('/');
+<             let waitForAngularEnabledBefore = browser.waitForAngularEnabled();
+<             browser.waitForAngularEnabled(false);
+<             /*
+<             as there is a fancy success toast shown for 5 seconds (using $timeout), the tests will also _wait_ until the toast disappears
+<             therefore: disable waitForAngular temporarily and make toast disappear by clicking close button
+<             */
+<             element(by.partialLinkText('Click here to log in')).click();
+<             element(by.css('.toast-close-button')).click();
+---
+>         browser.get('/expense');
+17,208c9
+<             /*
+<             login and toast stuff done, back to previous behavior
+<             */
+<             browser.waitForAngularEnabled(waitForAngularEnabledBefore);
+<         },
+<         logout: () => {
+<             element(by.partialLinkText('Mischief')).click();
+<         }
+<     };
+< 
+<     let verifyRoute = {
+<         is: (expectedRoute) => {
+<             var EC = protractor.ExpectedConditions;
+<             // Waits for the URL to contain 'foo'.
+<             browser.wait(EC.urlContains(expectedRoute), 100);
+<         }
+<     };
+< 
+<     let toastWrapper = {
+<         confirm: function (action, type) {
+<             let waitForAngularEnabledBefore = browser.waitForAngularEnabled();
+<             browser.waitForAngularEnabled(false);
+<             
+<             action();
+< 
+<             expect(element(by.css('.toast-' + type)).getText()).toBeDefined();
+<             element(by.css('.toast-close-button')).click();
+< 
+<             browser.waitForAngularEnabled(waitForAngularEnabledBefore);
+<         }
+<     };
+< 
+<     toastWrapper.confirmSuccess = action => {
+<         toastWrapper.confirm(action, 'success');
+<     };
+<     toastWrapper.confirmWarning = action => {
+<         toastWrapper.confirm(action, 'warning');
+<     };
+< 
+<     beforeEach(session.login);
+< 
+<     afterEach(session.logout);
+< 
+<     describe('Landingpage', function () {
+<         it('should show the landing page with title', function () {
+<             expect(browser.getTitle()).toEqual('Angular 2 Workshop');
+<         });
+<     });
+< 
+<     describe('Home page', function () {
+<         it('should activate the home page after login', function () {
+<             verifyRoute.is('home');
+<         });
+<     });
+< 
+<     describe('Expense', function () {
+< 
+<         beforeEach(function navigateToExpenses() {
+<             element(by.linkText('Expenses')).click();
+< 
+<             verifyRoute.is('expense');
+<         });
+< 
+<         describe('list', function () {
+<     
+<             it('should have Anakin Skywalker as first entry', function () {
+<                 expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toMatch(/ANAKIN SKYWALKER.*/);
+<             });
+<     
+<             it('should show more than one entry', function () {
+<                 let rows = element.all(by.css('.table')).all(by.css('tr'));
+<                 expect(rows.size).not.toBeLessThan(2);
+<             });
+<         });
+<     
+<         describe('details', function () {
+< 
+<             beforeEach(function navigateToDetails() {
+<                 element(by.partialLinkText('ANAKIN SKYWALKER')).click();
+<             });
+<     
+<             it('should show the details form', function () {
+<                 expect(element(by.cssContainingText('.panel-heading', 'Receipt from Anakin Skywalker')).isPresent()).toBeTruthy();
+<             });
+< 
+<             describe('edit', function () {
+< 
+<                 it('should validate name input', function () {
+<                     let nameInput = element(by.name('name'));
+<                     let newName = "Anakin Skywalker" + Math.round(new Date().getTime()/1000);
+< 
+<                     // clear all input
+<                     nameInput.clear().then(function () {
+<                         // trigger keyevents to trigger input validation
+<                         nameInput.sendKeys('a\b');
+<                     });
+< 
+<                     let erroneousFormGroup = element(by.css('.form-group.has-error'));
+<                     expect(erroneousFormGroup.isDisplayed()).toBe(true);
+<                     expect(erroneousFormGroup.element(by.cssContainingText('.help-block', 'Name is required')).isPresent()).toBeTruthy();
+<                 
+<                     toastWrapper.confirmWarning(() => {
+<                         element(by.linkText('Back to Overview')).click();
+<                     });
+< 
+<                     nameInput.sendKeys('any');
+<                     element(by.linkText('Back to Overview')).click();
+< 
+<                     // back on list view
+<                     expect(element(by.css('.panel-heading')).getText()).toBe('Expenses Overview');
+<                 });
+<                 
+<                 it('should update the resource', function () {
+<                     let nameInput = element(by.name('name'));
+<                     let newName = "Anakin Skywalker" + Math.round(new Date().getTime()/1000);
+< 
+<                     nameInput.clear().then(function () {
+<                         nameInput.sendKeys(newName);
+<                     });
+<                     
+<                     // expect success message, toast magic again
+<                     toastWrapper.confirmSuccess(() => {
+<                         element(by.linkText('Save expense')).click();
+<                     });
+< 
+<                     expect(element(by.css('.panel-heading')).getText()).toBe('Expenses Overview');
+<                     expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toEqual(newName.toUpperCase());
+<                 });
+< 
+<             });
+<         });
+< 
+<         describe('add', function () {
+<             beforeEach(function navigateToDetails() {
+<                 element(by.linkText('Add new expense')).click();
+<             });
+<     
+<             it('should show empty details form', function () {
+<                 expect(element(by.cssContainingText('.panel-heading', 'Add new Receipt')).isPresent()).toBeTruthy();
+<             });
+< 
+<             it('should redirect to list on success', function () {
+<                 let newName = "STORM TROOPER " + Math.round(new Date().getTime()/1000);
+<                 
+<                 element(by.name('name')).sendKeys(newName);
+<                 element(by.name('text')).sendKeys('Flight to Death Star');
+<                 element(by.name('amount')).sendKeys('1000');
+<                 element(by.cssContainingText('option', 'Flight')).click();
+< 
+< 
+<                 toastWrapper.confirmSuccess(() => {
+<                     element(by.linkText('Create expense')).click();
+<                 });
+< 
+<                 expect(element(by.css('.panel-heading')).getText()).toBe('Expenses Overview');
+<             });
+<         });
+< 
+<         describe('delete', function () {
+<             const NAME_TO_DELETE = "DELETE_ME";
+< 
+<             beforeEach(function createToBeDeleted() {
+<                 element(by.linkText('Add new expense')).click();
+< 
+<                 expect(element(by.cssContainingText('.panel-heading', 'Add new Receipt')).isPresent()).toBeTruthy();
+< 
+<                 element(by.name('name')).sendKeys(NAME_TO_DELETE);
+<                 element(by.name('text')).sendKeys('Dummy to be deleted');
+<                 element(by.name('amount')).sendKeys('1000');
+<                 element(by.cssContainingText('option', 'Flight')).click();
+< 
+<                 toastWrapper.confirmSuccess(() => {
+<                     element(by.linkText('Create expense')).click();
+<                 });
+< 
+<                 // verify new element in the list
+<                 let row = element(by.cssContainingText('tr', NAME_TO_DELETE));
+<                 expect(row.isPresent()).toBeTruthy();
+<                 
+<                 // click delete link
+<                 toastWrapper.confirmSuccess(() => {
+<                     row.element(by.css('.delete')).click();
+<                 });
+<             });
+< 
+<             it('should remove the entry from the list', function () {
+<                 // expect(true).toBeFalsy();
+<                 element.all(by.cssContainingText('tr', NAME_TO_DELETE)).then(function(items) {
+<                     expect(items.length).toBe(0);
+<                 });
+<             });
+<         });
+---
+>         expect(element(by.id('00000000-0000-0000-0000-000000000001')).getText()).toEqual('ANAKIN SKYWALKER');
+210d10
+< 
+diff -Nr -X ./ignore_patterns Application/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.spec.ts Exercises/Exercise_10/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.spec.ts
+73c73
+<         
+---
+> 
+86c86
+< 
+---
+>         
+113c113
+< 
+---
+>         
+125c125
+< 
+---
+>         
+128c128
+<         
+---
+> 

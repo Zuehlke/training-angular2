@@ -1,0 +1,218 @@
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/README.md Exercises/Exercise_07/After/README.md
+1c1
+< ## Exercise 8: Starting Point ##
+---
+> ## Exercise 7: Result ##
+3c3
+< This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+---
+> This folder contains the application as it is after you have completed this exercise.
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/app.module.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/app.module.ts
+1d0
+< import { AuthService } from './services/auth.service';
+28,30d26
+<     ],
+<     providers:[
+<         AuthService
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.html Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.html
+5,7c5
+<             <div class="col-sm-12 text-center">
+<                 <img src="{{ zuehlkeLogo }}" class="img-responsive center-block" style="max-height: 200px; padding-bottom: 20px" />
+<             </div>
+---
+>             <img src="{{ zuehlkeLogo }}" class="img-responsive center-block" style="max-height: 200px; padding-bottom: 20px"/>
+10,17c8
+<             <div class="col-sm-12 text-center">
+<                 <h3>Expense Reporting</h3>
+<             </div>
+<         </div>
+<         <div class="row">
+<             <div class="col-sm-12 text-center">
+<                 <a *ngIf="!isLoggedIn" class="btn btn-lg btn-danger" (click)="login()"><i class="glyphicon glyphicon-log-in"></i> Click here to log in using <strong>The Force</strong></a>
+<             </div>
+---
+>             <h3 class="text-center">Expense Reporting</h3>
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.spec.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.spec.ts
+8,11d7
+< import { AuthService } from '../services/auth.service';
+< 
+< import { ActivatedRoute, Router } from '@angular/router';
+< import { ActivatedRouteStub, RouterStub } from '../../../utils/testutils';
+18d13
+<     let authService: AuthService;
+27,28c22
+<             declarations: [HomeComponent],
+<             providers: [AuthService, { provide: Router, useClass: RouterStub }]
+---
+>             declarations: [HomeComponent]
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/home.component.ts
+1d0
+< import { AuthService } from './../services/auth.service';
+10,12d8
+<     constructor(private authService: AuthService){
+<     }
+< 
+16,23d11
+<     get isLoggedIn() : Boolean {
+<         return this.authService.isAuthorized;
+<     } 
+< 
+<     login(): void {
+<         this.authService.fakeLogin();
+<     }
+< 
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/navmenu.component.html Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/navmenu.component.html
+25,30d24
+<                 <li class="divider" *ngIf="isLoggedIn"></li>
+<                 <li *ngIf="isLoggedIn">
+<                     <a (click)="logout()">
+<                         <span class='glyphicon glyphicon-log-out'></span> Mischief Managed
+<                     </a>
+<                 </li>
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/navmenu.component.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/components/navmenu.component.ts
+1d0
+< import { AuthService } from './../services/auth.service';
+10,20d8
+< 
+<     constructor(private authService: AuthService) {
+<     }
+< 
+<     get isLoggedIn(): Boolean {
+<         return this.authService.isAuthorized;
+<     }
+< 
+<     logout(): void {
+<         this.authService.fakeLogout();
+<     }
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/services/auth.service.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/services/auth.service.ts
+1,32d0
+< import { Injectable } from '@angular/core';
+< import { Router } from '@angular/router';
+< import { isBrowser } from 'angular2-universal';
+< 
+< @Injectable()
+< export class AuthService {
+< 
+<     set isAuthorized(val: boolean) {
+<         if (isBrowser) {
+<             sessionStorage.setItem("isAuthorized", val + "");
+<         }
+<     }
+< 
+<     get isAuthorized(): boolean {
+<         if (isBrowser) {
+<             return sessionStorage.getItem("isAuthorized") === "true";
+<         }
+<         return false;
+<     }
+< 
+<     constructor(private router:Router){
+<     }
+< 
+<     fakeLogin(): void {
+<         this.isAuthorized = true;
+<     }    
+< 
+<     fakeLogout(): void {
+<         this.isAuthorized = false;
+<         this.router.navigate(['/home']);
+<     }
+< }
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.spec.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-add.component.spec.ts
+7c7
+< import { FormsModule, FormBuilder } from '@angular/forms';
+---
+> import { FormsModule } from '@angular/forms';
+19c19
+< describe('The ExpenseAddComponent', () => {
+---
+> describe('The ExpenseDetailComponent', () => {
+36c36
+<             providers: [ExpenseService, FormBuilder, { provide: Router, useClass: RouterStub }]
+---
+>             providers: [ExpenseService, { provide: Router, useClass: RouterStub }]
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.html Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.html
+7c7
+<         <expense-form [expense]="expense" [(isFormValidOrPristine)]="isFormValidOrPristine"></expense-form>
+---
+>         <expense-form [expense]="expense"></expense-form>
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.spec.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.spec.ts
+8c8
+< import { FormsModule, FormBuilder } from '@angular/forms';
+---
+> import { FormsModule } from '@angular/forms';
+39c39
+<             providers: [ExpenseService, FormBuilder, { provide: ActivatedRoute, useValue: activatedRoute }, { provide: Router, useClass: RouterStub }]
+---
+>             providers: [ExpenseService, { provide: ActivatedRoute, useValue: activatedRoute }, { provide: Router, useClass: RouterStub }]
+48c48
+<     beforeEach(() => {
+---
+>     it('should load the correct expense', async () => {
+51d50
+<     });
+53d51
+<     it('should load the correct expense', async () => {
+86d83
+<         await fixture.whenStable();
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-detail.component.ts
+18,19d17
+<     isFormValidOrPristine: boolean;
+< 
+35,37d32
+<         if (!this.isFormValidOrPristine) {
+<             return Promise.resolve();
+<         }
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-form.component.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-form.component.ts
+1c1
+< import { Component, Input, ViewChild, ElementRef, OnInit, Output, EventEmitter } from '@angular/core';
+---
+> import { Component, Input } from '@angular/core';
+7d6
+< import { FormGroup, FormBuilder } from "@angular/forms";
+13c12
+< export class ExpenseFormComponent implements OnInit {
+---
+> export class ExpenseFormComponent {
+18,43d16
+<     constructor(private formBuilder: FormBuilder) { }
+< 
+<     @ViewChild("expenseForm")
+<     expenseForm: any;
+< 
+<     ngOnInit() {
+<         this.expenseForm.control.valueChanges.subscribe(() => {
+<             this.isFormValidOrPristine = this.expenseForm.valid || this.expenseForm.pristine;
+<         });
+<     }
+< 
+<     private isFormValidOrPristineValue = true;
+< 
+<     @Output()
+<     isFormValidOrPristineChange = new EventEmitter<boolean>();
+< 
+<     @Input()
+<     get isFormValidOrPristine(): boolean {
+<         return this.isFormValidOrPristineValue;
+<     }
+< 
+<     set isFormValidOrPristine(val) {
+<         this.isFormValidOrPristineValue = val;
+<         this.isFormValidOrPristineChange.emit(this.isFormValidOrPristineValue);
+<     }
+< 
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/expense.module.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/expense.module.ts
+2c2
+< import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+---
+> import { FormsModule } from '@angular/forms';
+16d15
+<         ReactiveFormsModule,
+diff -Nr -X ./ignore_patterns Exercises/Exercise_08/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/expense.routing.ts Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/expense.routing.ts
+2c2
+< import { Routes, RouterModule } from '@angular/router';
+---
+> import { Routes, RouterModule} from '@angular/router';

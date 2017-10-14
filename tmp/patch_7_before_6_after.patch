@@ -1,0 +1,11 @@
+diff -Nr -X ./ignore_patterns Exercises/Exercise_07/Before/README.md Exercises/Exercise_06/After/README.md
+1c1
+< ## Exercise 7: Starting Point ##
+---
+> ## Exercise 6: Result ##
+3c3
+< This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+---
+> This folder contains the application as it is after you have completed this exercise.
+\ No newline at end of file

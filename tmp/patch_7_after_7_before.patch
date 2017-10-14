@@ -1,0 +1,53 @@
+diff -Nr -X ./ignore_patterns Exercises/Exercise_07/After/README.md Exercises/Exercise_07/Before/README.md
+1c1
+< ## Exercise 7: Result ##
+---
+> ## Exercise 7: Starting Point ##
+3c3
+< This folder contains the application as it is after you have completed this exercise.
+\ No newline at end of file
+---
+> This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_07/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-form.component.html Exercises/Exercise_07/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-form.component.html
+3c3
+<     <div class="form-group has-feedback" [ngClass]="{'has-error': !name.valid && !name.pristine}">
+---
+>     <div class="form-group">
+6,8c6
+<             <input [(ngModel)]="expense.name" name="name" type="text" class="form-control" id="name" #name="ngModel" required placeholder="Name">
+<             <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-remove': !name.valid && !name.pristine}" aria-hidden="true"></span>
+<             <span *ngIf="!name.valid && !name.pristine" class="help-block">Name is required</span>
+---
+>             <input [(ngModel)]="expense.name" type="text" class="form-control" id="name" name="name" required placeholder="Name">
+12c10
+<     <div class="form-group has-feedback" [ngClass]="{'has-error': !date.valid && !date.pristine}">
+---
+>     <div class="form-group">
+15,17c13
+<             <input [ngModel]="expense.date | date:'y-MM-dd'" (ngModelChange)="expense.date = $event" name="date" required type="date" class="form-control" #date="ngModel" id="date"/>
+<             <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-remove': !date.valid && !date.pristine}" aria-hidden="true"></span>
+<             <span *ngIf="!date.valid && !date.pristine" class="help-block">Date is required</span>
+---
+>             <input [ngModel]="expense.date | date:'y-MM-dd'" (ngModelChange)="expense.date = $event" name="date" type="date" class="form-control" id="date" required placeholder="Date">
+21c17
+<     <div class="form-group has-feedback" [ngClass]="{'has-error': !text.valid && !text.pristine}">
+---
+>     <div class="form-group">
+24,26c20
+<             <textarea [(ngModel)]="expense.text" name="text" rows="2" required type="text" class="form-control" #text="ngModel" id="text" placeholder="Text"></textarea>
+<             <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-remove': !text.valid && !text.pristine}" aria-hidden="true"></span>
+<             <span *ngIf="!text.valid && !text.pristine" class="help-block">Text is required</span>
+---
+>             <textarea [(ngModel)]="expense.text" rows="2" required type="text" class="form-control" id="text" name="text" placeholder="Text"></textarea>
+30c24
+<     <div class="form-group has-feedback" [ngClass]="{'has-error': !amount.valid && !amount.pristine}">
+---
+>     <div class="form-group">
+35c29
+<                 <input [(ngModel)]="expense.amount" name="amount" required type="number" step="0.01" class="form-control" id="amount" #amount="ngModel"/>
+---
+>                 <input [(ngModel)]="expense.amount" required type="number" step="0.01" class="form-control" id="amount" name="amount" />
+37,38d30
+<             <span class="glyphicon form-control-feedback" [ngClass]="{'glyphicon-remove': !amount.valid && !amount.pristine}" aria-hidden="true"></span>
+<             <span *ngIf="!amount.valid && !amount.pristine" class="help-block">Amount is required</span>

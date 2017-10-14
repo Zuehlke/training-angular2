@@ -1,0 +1,105 @@
+diff -Nr -X ./ignore_patterns Exercises/Exercise_06/After/README.md Exercises/Exercise_06/Before/README.md
+1c1
+< ## Exercise 6: Result ##
+---
+> ## Exercise 6: Starting Point ##
+3c3
+< This folder contains the application as it is after you have completed this exercise.
+\ No newline at end of file
+---
+> This folder contains the application as it is before you start with this exercise.
+\ No newline at end of file
+diff -Nr -X ./ignore_patterns Exercises/Exercise_06/After/Zuehlke.ExpenseReporting/ClientApp/modules/app/app.module.ts Exercises/Exercise_06/Before/Zuehlke.ExpenseReporting/ClientApp/modules/app/app.module.ts
+7d6
+< 
+11,18c10,11
+<     bootstrap: [
+<         AppComponent
+<     ],
+<     declarations: [
+<         AppComponent,
+<         NavMenuComponent,
+<         HomeComponent
+<     ],
+---
+>     bootstrap: [ AppComponent ],
+>     declarations: [AppComponent, NavMenuComponent, HomeComponent],
+21c14
+<         ExpenseModule,
+---
+>         ExpenseModule, 
+29,30c22
+< export class AppModule {
+< }
+\ No newline at end of file
+---
+> export class AppModule {}
+diff -Nr -X ./ignore_patterns Exercises/Exercise_06/After/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.spec.ts Exercises/Exercise_06/Before/Zuehlke.ExpenseReporting/ClientApp/modules/expense/components/expense-overview.component.spec.ts
+74,126d73
+< 
+<     it('should remove one entry when it is deleted', async () => {
+<         spyOn(expenseService, 'getExpenses').and.returnValue(Promise.resolve(testExpenses));
+<         spyOn(expenseService, 'deleteExpense').and.returnValue(Promise.resolve());
+<         
+<         fixture.detectChanges();
+<         await fixture.whenStable();
+<         
+<         fixture.detectChanges();
+<         await fixture.whenStable();
+< 
+<         const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a'));
+<         firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent'));
+< 
+<         fixture.detectChanges();
+<         await fixture.whenStable();
+< 
+<         expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1);
+<         expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1);
+< 
+<         fixture.detectChanges();
+<         await fixture.whenStable();
+< 
+<         const tableBody = fixture.debugElement.query(By.css('tbody'));
+<         expect(tableBody.nativeElement.children.length).toEqual(1);
+<         expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('YODA');
+<     });
+< 
+<     it('should remove one entry when it is deleted', async () => {
+<         spyOn(expenseService, 'getExpenses').and.returnValue(Promise.resolve(testExpenses));
+<         spyOn(expenseService, 'deleteExpense').and.returnValue(Promise.resolve());
+<         
+<         fixture.detectChanges();
+<         await fixture.whenStable();
+<         
+<         fixture.detectChanges();
+<         await fixture.whenStable();
+< 
+<         const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a'));
+<         firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent'));
+< 
+<         fixture.detectChanges();
+<         await fixture.whenStable();
+< 
+<         expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1);
+<         expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1);
+<         
+<         fixture.detectChanges();
+<         await fixture.whenStable();
+< 
+<         expect(expenseOverviewComponent.expenses.length).toEqual(1);
+<         expect(expenseOverviewComponent.expenses[0].name).toBe('Yoda');
+<     });
+diff -Nr -X ./ignore_patterns Exercises/Exercise_06/After/Zuehlke.ExpenseReporting.Test/ExpenseRepositoryTests.cs Exercises/Exercise_06/Before/Zuehlke.ExpenseReporting.Test/ExpenseRepositoryTests.cs
+130,131d129
+<             var subject = new ExpenseRepository();
+<             var id = Guid.Parse("00000000-0000-0000-0000-000000000005");
+133,138c131,132
+<             subject
+<                 .Invoking(x => x.Delete(id))
+<                 .ShouldNotThrow();
+<             subject
+<                 .FindById(id)
+<                 .Should().BeNull();
+---
+>             // TODO Exercise 6
+> 

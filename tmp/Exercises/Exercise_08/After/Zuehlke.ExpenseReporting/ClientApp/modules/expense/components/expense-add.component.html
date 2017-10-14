@@ -1,0 +1,12 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">Add new Receipt</div>
+    <div class="panel-body">
+        <expense-form [expense]="expense" [(isFormValidOrPristine)]="isFormValidOrPristine"></expense-form>
+    </div>
+    <div class="panel-footer">
+        <div class="btn-group">
+            <a class="btn btn-default" (click)="goBack()"><i class="glyphicon glyphicon-chevron-left"></i> Back to Overview</a>
+            <a class="btn btn-primary" (click)="createExpense()"><i class="glyphicon glyphicon-save"></i> Create expense</a>
+        </div>
+    </div>
+</div>
