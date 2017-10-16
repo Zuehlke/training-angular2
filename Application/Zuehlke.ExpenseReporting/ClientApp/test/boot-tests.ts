@@ -1,5 +1,6 @@
 // Load required polyfills and testing libraries
-import 'angular2-universal-polyfills';
+import 'reflect-metadata';
+import 'zone.js';
 import 'zone.js/dist/long-stack-trace-zone';
 import 'zone.js/dist/proxy.js';
 import 'zone.js/dist/sync-test';
@@ -23,7 +24,7 @@ testing.getTestBed().initTestEnvironment(
 );
 
 // Then we find all the tests
-const context = require.context('./modules', true, /\.spec\.ts/);
+const context = require.context('../', true, /\.spec\.ts$/);
 
 // And load the modules
 context.keys().map(context);

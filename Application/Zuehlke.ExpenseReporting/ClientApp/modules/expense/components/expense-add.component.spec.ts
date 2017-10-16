@@ -25,7 +25,7 @@ describe('The ExpenseAddComponent', () => {
     let fixture: ComponentFixture<ExpenseAddComponent>;
     let expenseService: ExpenseService;
 
-    const newExpense = new ExpenseRecord(null, 'Palpatine', ExpenseReason.Hotel, new Date('1999/1/12'), 54.00, 'Reasoning about the dark side of the force');
+    const newExpense = new ExpenseRecord("", 'Palpatine', ExpenseReason.Hotel, new Date('1999/1/12'), 54.00, 'Reasoning about the dark side of the force');
 
     beforeAll(()=>{
         TestBed.resetTestEnvironment();

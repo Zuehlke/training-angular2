@@ -39,10 +39,10 @@
             
             action();
 
+            browser.waitForAngularEnabled(waitForAngularEnabledBefore);
+
             expect(element(by.css('.toast-' + type)).getText()).toBeDefined();
             element(by.css('.toast-close-button')).click();
-
-            browser.waitForAngularEnabled(waitForAngularEnabledBefore);
         }
     };
 
