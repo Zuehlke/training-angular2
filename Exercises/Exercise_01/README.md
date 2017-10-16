@@ -75,31 +75,40 @@ export class ExpenseOverviewComponent {
   The routing information should look like this now:
 
   ```typescript
-import { ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule} from '@angular/router';
-
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 import { ExpenseOverviewComponent } from './components/expense-overview.component';
 
-export const expenseRoutes: Routes = [
-      { path: 'expense', component: ExpenseOverviewComponent }
-];
+const routes: Routes = [{
+    path: 'expense',
+    component: ExpenseOverviewComponent
+}]
 
-export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expenseRoutes);
+@NgModule({
+    imports: [
+        RouterModule.forChild(routes)
+    ],
+    exports: [
+        RouterModule
+    ]
+})
+export class ExpenseRoutingModule {}
   ```
 
-1. Add the `expenseRouting` information to the `imports` section of the `NgModule` decorator of the `ExpenseModule` to make the routes known to the application.
+1. Add the `ExpenseRoutingModule` information to the `imports` section of the `NgModule` decorator of the `ExpenseModule` to make the routes known to the application.
 
   The `NgModule` decorator should look like this now:
 
   ```typescript
-  @NgModule({
+@NgModule({
     imports: [
-        CommonModule, expenseRouting
+        CommonModule,
+        ExpenseRoutingModule
     ],
     declarations: [
         ExpenseOverviewComponent
     ]
-  })
+})
   ```
 
 #### 4. Add a menu item ####
