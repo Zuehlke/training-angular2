@@ -4,7 +4,7 @@ In this exercise you will install a toaster plugin using npm. Once you have acco
 
 ### Tasks ###
  
-1. Install the ng2-toastr plugin from the official [npm site](https://www.npmjs.com/package/ng2-toastr). Read the instructions carefully in order to install the correct version for Angular V2! After installing the plugin add it to the webpack vendor config.
+1. Install the ng2-toastr plugin from the official [npm site](https://www.npmjs.com/package/ng2-toastr). Read the instructions carefully in order to install the correct version for Angular (4.x.y)! After installing the plugin add it to the webpack vendor config.
 1. Follow the usage instructions on the official npm site of the ng2-toaster plugin and replace the alert(...) calls in the NotificationService with nice looking toasts.
 
 ### Implementation Hints ###
