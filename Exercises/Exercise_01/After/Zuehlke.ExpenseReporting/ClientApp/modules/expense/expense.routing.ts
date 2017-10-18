@@ -1,10 +1,22 @@
+import { NgModule } from '@angular/core';
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule} from '@angular/router';
 
 import { ExpenseOverviewComponent } from './components/expense-overview.component';
 
-export const expenseRoutes: Routes = [
-  { path: 'expense', component: ExpenseOverviewComponent }
+const expenseRoutes: Routes = [
+    {
+        path: 'expense',
+        component: ExpenseOverviewComponent
+    }
 ];
-
-export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expenseRoutes);
+   
+@NgModule({
+    imports: [
+        RouterModule.forChild(expenseRoutes)
+    ],
+    exports: [
+        RouterModule
+    ]
+})
+export class ExpenseRoutingModule { }

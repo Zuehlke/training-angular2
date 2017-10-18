@@ -1,10 +1,10 @@
 import { Injectable, ViewContainerRef } from '@angular/core';
-import { ToastsManager } from 'ng2-toastr';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 
 @Injectable()
 export class NotificationService {
-    constructor(private toastr: ToastsManager) {
-    }
+    constructor(public toastr: ToastsManager) {
+     }
 
     info(message: string): void {
         this.toastr.info(message, "INFO");

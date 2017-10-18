@@ -1,0 +1,11 @@
+*node_modules*
+*bin*
+*obj*
+*dist*
+*.DS_Store
+package-lock.json
+boot-tests.ts
+boot-server.ts
+boot-client.ts
+*.csproj
+*.sln

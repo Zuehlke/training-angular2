@@ -13,6 +13,9 @@ import { ExpenseFilterPipe } from '../pipes/expense-filter.pipe';
 import { ExpenseService } from '../services/expense.service';
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
 
+import { NotificationService } from './../../app/services/notification.service';
+import { ToastModule, ToastsManager } from 'ng2-toastr'; 
+
 describe('The ExpenseOverviewComponent', () => {
 
     let expenseOverviewComponent: ExpenseOverviewComponent;
@@ -33,14 +36,16 @@ describe('The ExpenseOverviewComponent', () => {
             imports: [
                 FormsModule,
                 RouterTestingModule,
-                HttpModule
+                HttpModule,
+                ToastModule.forRoot()
             ],
             declarations: [
                 ExpenseOverviewComponent,
                 ExpenseFilterPipe
             ],
             providers: [
-                ExpenseService
+                ExpenseService,
+                NotificationService
             ]
         });
 

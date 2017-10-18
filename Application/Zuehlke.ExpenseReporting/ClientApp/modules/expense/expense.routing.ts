@@ -1,3 +1,4 @@
+import { NgModule } from '@angular/core';
 import { LoginGuard } from './guards/login.guard';
 import { FormGuard } from './guards/form.guard';
 import { ModuleWithProviders } from '@angular/core';
@@ -7,16 +8,30 @@ import { ExpenseOverviewComponent } from './components/expense-overview.componen
 import { ExpenseDetailComponent } from './components/expense-detail.component';
 import { ExpenseAddComponent } from './components/expense-add.component';
 
-export const expenseRoutes: Routes = [
+const expenseRoutes: Routes = [
     {
         path: 'expense',
+        component: ExpenseOverviewComponent,
+        canActivate: [LoginGuard]
+    }, {
+        path: 'expense/add', 
+        component: ExpenseAddComponent, 
         canActivate: [LoginGuard],
-        children: [
-            { path: '', component: ExpenseOverviewComponent },
-            { path: 'add', component: ExpenseAddComponent, canDeactivate: [FormGuard] },
-            { path: ':id', component: ExpenseDetailComponent, canDeactivate: [FormGuard] }
-        ]
+        canDeactivate: [FormGuard]
+    }, {
+        path: 'expense/:id', 
+        component: ExpenseDetailComponent, 
+        canActivate: [LoginGuard],
+        canDeactivate: [FormGuard]
     }
 ];
-
-export const expenseRouting: ModuleWithProviders = RouterModule.forChild(expenseRoutes);
+   
+@NgModule({
+    imports: [
+        RouterModule.forChild(expenseRoutes)
+    ],
+    exports: [
+        RouterModule
+    ]
+})
+export class ExpenseRoutingModule { }

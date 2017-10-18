@@ -25,8 +25,15 @@ export class ExpenseService {
                         .toPromise();
     }
 
-    deleteExpense(expense: ExpenseRecord): Promise<Response> {
-        return this.http.delete(`${this.expenseUrl}/${expense.id}`)
-                        .toPromise();
+    async deleteExpense(expense: ExpenseRecord): Promise<Response> {
+        var result: Response;
+        try {
+            result = await this.http
+                .delete(`${this.expenseUrl}/${expense.id}`)
+                .toPromise();
+        } catch (response) {
+            result = response;
+        }
+        return result;
     }
 }

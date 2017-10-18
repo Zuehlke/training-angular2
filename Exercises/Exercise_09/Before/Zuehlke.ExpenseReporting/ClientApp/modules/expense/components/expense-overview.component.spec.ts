@@ -13,6 +13,8 @@ import { ExpenseFilterPipe } from '../pipes/expense-filter.pipe';
 import { ExpenseService } from '../services/expense.service';
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
 
+import { NotificationService } from './../../app/services/notification.service';
+
 describe('The ExpenseOverviewComponent', () => {
 
     let expenseOverviewComponent: ExpenseOverviewComponent;
@@ -40,7 +42,8 @@ describe('The ExpenseOverviewComponent', () => {
                 ExpenseFilterPipe
             ],
             providers: [
-                ExpenseService
+                ExpenseService,
+                NotificationService
             ]
         });
 

@@ -13,6 +13,9 @@ import { ExpenseFilterPipe } from '../pipes/expense-filter.pipe';
 import { ExpenseService } from '../services/expense.service';
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
 
+import { NotificationService } from './../../app/services/notification.service';
+import { ToastModule, ToastsManager } from 'ng2-toastr'; 
+
 describe('The ExpenseOverviewComponent', () => {
 
     let expenseOverviewComponent: ExpenseOverviewComponent;
@@ -33,14 +36,16 @@ describe('The ExpenseOverviewComponent', () => {
             imports: [
                 FormsModule,
                 RouterTestingModule,
-                HttpModule
+                HttpModule,
+                ToastModule.forRoot()
             ],
             declarations: [
                 ExpenseOverviewComponent,
                 ExpenseFilterPipe
             ],
             providers: [
-                ExpenseService
+                ExpenseService,
+                NotificationService
             ]
         });
 
@@ -62,7 +67,10 @@ describe('The ExpenseOverviewComponent', () => {
         await fixture.whenStable();
 
         expect(expenseService.getExpenses).toHaveBeenCalledTimes(1);
-
+        
+        fixture.detectChanges();
+        await fixture.whenStable();
+        
         const tableBody = fixture.debugElement.query(By.css('tbody'));
         expect(tableBody.nativeElement.children.length).toEqual(2);
         expect(tableBody.nativeElement.children[0].children[0].textContent).toContain('ANAKIN SKYWALKER');
@@ -76,6 +84,9 @@ describe('The ExpenseOverviewComponent', () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
+        fixture.detectChanges();
+        await fixture.whenStable();
+
         const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a'));
         firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent'));
 
@@ -84,6 +95,9 @@ describe('The ExpenseOverviewComponent', () => {
 
         expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1);
         expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1);
+
+        fixture.detectChanges();
+        await fixture.whenStable();
 
         const tableBody = fixture.debugElement.query(By.css('tbody'));
         expect(tableBody.nativeElement.children.length).toEqual(1);
@@ -97,6 +111,9 @@ describe('The ExpenseOverviewComponent', () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
+        fixture.detectChanges();
+        await fixture.whenStable();
+
         const firstExpenseDeleteIcon = fixture.debugElement.query(By.css('tbody > tr td:last-child a'));
         firstExpenseDeleteIcon.triggerEventHandler('click', new Event('dummyEvent'));
 
@@ -106,6 +123,9 @@ describe('The ExpenseOverviewComponent', () => {
         expect(expenseService.deleteExpense).toHaveBeenCalledTimes(1);
         expect(expenseService.deleteExpense).toHaveBeenCalledWith(expense1);
 
+        fixture.detectChanges();
+        await fixture.whenStable();
+        
         expect(expenseOverviewComponent.expenses.length).toEqual(1);
         expect(expenseOverviewComponent.expenses[0].name).toBe('Yoda');
     });

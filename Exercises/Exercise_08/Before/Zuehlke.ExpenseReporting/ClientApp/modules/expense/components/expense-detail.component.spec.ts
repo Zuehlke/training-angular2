@@ -5,7 +5,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { By } from '@angular/platform-browser';
 
@@ -36,7 +36,7 @@ describe('The ExpenseDetailComponent', () => {
         TestBed.configureTestingModule({
             imports: [FormsModule, RouterTestingModule, HttpModule],
             declarations: [ExpenseDetailComponent, ExpenseFormComponent],
-            providers: [ExpenseService, { provide: ActivatedRoute, useValue: activatedRoute }, { provide: Router, useClass: RouterStub }]
+            providers: [ExpenseService, FormBuilder, { provide: ActivatedRoute, useValue: activatedRoute }, { provide: Router, useClass: RouterStub }]
         });
 
         fixture = TestBed.createComponent(ExpenseDetailComponent);
@@ -45,10 +45,12 @@ describe('The ExpenseDetailComponent', () => {
         expenseService = fixture.debugElement.injector.get(ExpenseService);
     });
 
-    it('should load the correct expense', async () => {
+    beforeEach(() => {
         spyOn(expenseService, 'getExpense').and.returnValue(Promise.resolve(expense1));
         activatedRoute.testParams = { id: expense1.id };
+    });
 
+    it('should load the correct expense', async () => {
         fixture.detectChanges();
         await fixture.whenStable();
 
@@ -81,6 +83,7 @@ describe('The ExpenseDetailComponent', () => {
         expenseDetailComponent.expense = expense1;
 
         fixture.detectChanges();
+        await fixture.whenStable();
 
         const saveButton = fixture.debugElement.query(By.css('.btn-primary'));
         saveButton.triggerEventHandler('click', null); //trigger a save

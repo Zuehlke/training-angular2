@@ -6,7 +6,7 @@ In this exercise, we reuse the existing form component and use it to add a new e
 
 1. Extend the `ExpenseController` to support creating a new expense.
 1. Extend the `ExpenseService` to support creating a new expense.
-1. Extend the `ExpenseAddCompnent` to have a click handler that invokes the `ExpenseService` to add the new expense to the database.
+1. Extend the `ExpenseAddComponent` to have a click handler that invokes the `ExpenseService` to add the new expense to the database.
 1. Add a new button to the expense-overview component that links to the form for adding an expense.
 
 ### Implementation Hints ###

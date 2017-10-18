@@ -4,7 +4,7 @@ import { ComponentFixture, TestBed, inject } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { By } from '@angular/platform-browser';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
@@ -16,13 +16,16 @@ import { ExpenseFormComponent } from './expense-form.component';
 import { ExpenseService } from '../services/expense.service';
 import { ExpenseRecord, ExpenseReason } from '../model/expense';
 
+import { NotificationService } from './../../app/services/notification.service';
+import { ToastModule } from 'ng2-toastr'; 
+
 describe('The ExpenseDetailComponent', () => {
 
     let expenseAddComponent: ExpenseAddComponent;
     let fixture: ComponentFixture<ExpenseAddComponent>;
     let expenseService: ExpenseService;
 
-    const newExpense = new ExpenseRecord(null, 'Palpatine', ExpenseReason.Hotel, new Date('1999/1/12'), 54.00, 'Reasoning about the dark side of the force');
+    const newExpense = new ExpenseRecord("", 'Palpatine', ExpenseReason.Hotel, new Date('1999/1/12'), 54.00, 'Reasoning about the dark side of the force');
 
     beforeAll(()=>{
         TestBed.resetTestEnvironment();
@@ -31,9 +34,9 @@ describe('The ExpenseDetailComponent', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule, RouterTestingModule, HttpModule],
+            imports: [FormsModule, RouterTestingModule, HttpModule, ToastModule.forRoot()],
             declarations: [ExpenseAddComponent, ExpenseFormComponent],
-            providers: [ExpenseService, { provide: Router, useClass: RouterStub }]
+            providers: [ExpenseService, NotificationService, FormBuilder, { provide: Router, useClass: RouterStub }]
         });
 
         fixture = TestBed.createComponent(ExpenseAddComponent);

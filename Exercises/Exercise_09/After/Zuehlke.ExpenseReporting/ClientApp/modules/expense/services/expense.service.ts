@@ -33,8 +33,10 @@ export class ExpenseService {
                 .put(`${this.expenseUrl}/${expense.id}`, expense)
                 .toPromise();
             this.notify.success(`Expense ${expense.id} updated successfully.`);
+            return result;
         } catch (response) {
             this.handleError(`Error updating expense ${expense.id}.`, response);
+            result = response;
         }
         return result;
     }

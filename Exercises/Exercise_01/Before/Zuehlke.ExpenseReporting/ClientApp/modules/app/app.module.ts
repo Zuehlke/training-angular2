@@ -1,15 +1,24 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { UniversalModule } from 'angular2-universal';
-import { AppComponent } from './components/app.component'
+import { AppComponent } from './components/app.component';
 import { NavMenuComponent } from './components/navmenu.component';
 import { HomeComponent } from './components/home.component';
 
+
+
 @NgModule({
-    bootstrap: [ AppComponent ],
-    declarations: [AppComponent, NavMenuComponent, HomeComponent],
+    declarations: [
+        AppComponent,
+        NavMenuComponent,
+        HomeComponent
+    ],
     imports: [
-        UniversalModule, // Must be first import. This automatically imports BrowserModule, HttpModule, and JsonpModule too.
+        CommonModule,
+        HttpModule,
+        FormsModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -17,4 +26,5 @@ import { HomeComponent } from './components/home.component';
         ])
     ]
 })
-export class AppModule {}
+export class AppModuleShared {
+}
