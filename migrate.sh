@@ -45,7 +45,14 @@ function migratePackageJson {
 	done
 }
 
+function migrateLaunchJson {
+	for f in $(find . -name 'launch.json'); do
+		sed -i '' -e 's/Zuehlke\.ExpenseReporting\/bin\/Debug\/netcoreapp1\.1/Zuehlke\.ExpenseReporting\/bin\/Debug\/netcoreapp2\.0/g' $f;	
+	done
+}
+
 #migrateDotNetSources
 #migrateDotNetTests
 #migrateGlobalJson
-migratePackageJson
+#migratePackageJson
+migrateLaunchJson
